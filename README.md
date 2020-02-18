@@ -1,18 +1,33 @@
 # Details
 
 
-* OS: Manjaro Linux
+* **OS:** Manjaro Linux
  
-* WM: bspwm
+* **WM:** bspwm
  
-* Terminal: Kitty
+* **Terminal:** Kitty
  
-* Terminal Font: Fira Code Mono
+* **Terminal Font:** Fira Code Mono
  
-* Shell: zsh
+* **Shell:** zsh
  
-* Bar: polybar
+* **Bar:** polybar
  
-* Compositor: Compton
+* **Compositor:** Compton
 
 
+# Installation
+
+**Clone my repo**
+```
+$ cd
+$ git clone https://gitlab.com/Tanish2002/dot-files
+$ cd dotfiles
+``` 
+
+**Use stow**
+```
+$ stow Bspwm
+$ stow Wallpapers
+```
+**And Voilla That's All!!**`
