@@ -1,0 +1,116 @@
+/* RASI Theme */
+
+
+* {
+    background:                      #2b303b;
+    bordercolor:                     #8fa1b3;
+    separatorcolor:                  #8fa1b3;
+    normal-background:               #2b303b;
+    normal-foreground:               #8fa1b3;
+    alternate-normal-foreground:     #2b303b;
+    selected-normal-background:      #8fa1b3;
+    selected-normal-foreground:      #2b303b;
+    active-background:               #8fa1b3;
+    active-foreground:               #2b303b;
+    alternate-active-background:     #2b303b;
+    selected-active-background:      #8fa1b3;
+    selected-active-foreground:      #2b303b;
+    urgent-background:               #8fa1b3;
+    urgent-foreground:               #2b303b;
+    alternate-urgent-background:     #2b303b;
+    selected-urgent-background:      #8fa1b3;
+    selected-urgent-foreground:      #2b303b;
+    alternate-normal-foreground:     @normal-foreground;
+    alternate-urgent-foreground:     @urgent-foreground;
+    alternate-active-foreground:     @active-foreground;
+    foreground:                      @normal-foreground;
+}
+
+* {
+    spacing:    2;
+    border-color: @foreground;
+    background-color: transparent;
+}
+#window {
+    border:     1;
+    padding:    5;
+    background-color: @background;
+}
+#mainbox {
+    border:  0;
+    padding: 0;
+}
+#message {
+    border:  1px dash 0px 0px ;
+    padding: 2px 0px 0px ;
+    border-color: @separatorcolor;
+}
+#textbox {
+    text-color: @foreground;
+}
+#listview {
+    border-color: @separatorcolor;
+}
+#listview {
+    fixed-height: 0;
+    border:       2px dash 0px 0px ;
+    padding:      2px 0px 0px ;
+}
+#element {
+    border: 0;
+}
+#element normal.normal {
+    text-color: @normal-foreground;
+    background-color: @normal-background;
+}
+#element normal.urgent {
+    text-color: @urgent-foreground;
+    background-color: @urgent-background;
+}
+#element normal.active {
+    text-color: @active-foreground;
+    background-color: @active-background;
+}
+#element selected.normal {
+    text-color: @selected-normal-foreground;
+    background-color: @selected-normal-background;
+}
+#element selected.urgent {
+    text-color: @selected-urgent-foreground;
+    background-color: @selected-urgent-background;
+}
+#element selected.active {
+    text-color: @selected-active-foreground;
+    background-color: @selected-active-background;
+}
+#element alternate.normal {
+    text-color: @alternate-normal-foreground;
+    background-color: @alternate-normal-background;
+}
+#element alternate.urgent {
+    text-color: @alternate-urgent-foreground;
+    background-color: @alternate-urgent-background;
+}
+#element alternate.active {
+    text-color: @alternate-active-foreground;
+    background-color: @alternate-active-background;
+}
+#scrollbar {
+    border:  0;
+    width: 4px;
+    padding: 0;
+    handle-color: @normal-foreground;
+}
+#sidebar {
+    border:       2px dash 0px 0px ;
+    border-color: @separatorcolor;
+}
+#button selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+#inputbar, case-indicator, entry, prompt, button {
+    spacing: 0;
+    text-color:      @normal-foreground;
+}
+// vim:ft=css
