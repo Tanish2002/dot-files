@@ -29,5 +29,6 @@ $ cd dotfiles
 ```
 $ stow <WM-Name>
 $ stow Wallpapers
+$ stow bin
 ```
 **And Voilla That's All!!**`
