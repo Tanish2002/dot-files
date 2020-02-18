@@ -39,8 +39,8 @@ $ cd dotfiles
 
 ### **Use stow**
 ```
-$ stow <WM-Name>
-$ stow Wallpapers
-$ stow bin
+$ stow <WM-Name> -t ~/
+$ stow Wallpapers -t ~/
+$ stow bin -t ~/
 ```
 ### **And Voilla That's All!!**`

@@ -1,0 +1,201 @@
+[colors]
+foreground = ${xrdb:foreground}
+foreground-alt = ${xrdb:color7:#FFF}
+background = ${xrdb:background}
+background-alt = ${xrdb:color8:#FFF}
+
+red     = ${xrdb:color1}
+orange  = ${xrdb:color11}
+yellow  = ${xrdb:color3}
+green   = ${xrdb:color2}
+cyan    = ${xrdb:color6}
+blue    = ${xrdb:color4}
+magenta = ${xrdb:color5}
+white   = ${xrdb:color7}
+
+[global/wm]
+margin-top        = 2
+margin-bottom     = 2
+override-redirect = true
+
+[bar/top]
+monitor = eDP1
+width    = 90%
+height   = 30
+offset-x = 5%
+offset-y = 2
+fixed-center = true
+
+padding = 2
+radius = 4
+
+locale     = es_MX.UTF-8
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = artwiz lemon:size=8:antialias=true;
+font-1 = Wuncon Siji:size=9:antialias=true;
+
+modules-left   = date volume cpu
+modules-center = xwindow
+modules-right  = nowplaying previous toggle next powermenu
+
+[bar/bottom]
+inherit = bar/top
+
+width = 10%
+offset-x = 45%
+
+bottom = true
+
+font-0 = Wuncon Siji:size=8:antialias=true;
+
+modules-left =
+modules-center = bspwm
+modules-right =
+
+wm-restack = bspwm
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = 
+label-focused-background = ${colors.background}
+label-focused-foreground = ${colors.blue}
+label-focused-underline= ${colors.foreground}
+label-focused-padding = 2
+
+label-occupied = 
+label-occupied-foreground = ${colors.foreground-alt}
+label-occupied-padding = 2
+
+label-urgent = 
+label-urgent-foreground = ${colors.red}
+label-urgent-padding = 2
+
+label-empty = 
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+format-prefix =" "
+format-prefix-foreground = ${colors.yellow}
+format-prefix-padding = 1
+format-background = ${colors.background}
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+
+format-volume-background = ${colors.background}
+format-volume-padding    = 2
+
+module-margin-right = 0
+ramp-volume-0       = 
+ramp-volume-1       = 
+ramp-volume-2       = 
+
+ramp-volume-foreground = ${colors.green}
+
+label-muted-padding    = 2
+label-muted            =  Muted
+label-muted-foreground = ${colors.red}
+
+[module/date]
+type                     = internal/date
+interval                 = 1
+date                     = " %I:%M"
+format-prefix            = 
+format-prefix-foreground = ${colors.red}
+format-background        = ${colors.background}
+format-padding           = 2
+
+[module/powermenu]
+type = custom/menu
+
+label-open                 = 
+label-open-foreground      = ${colors.red}
+label-open-background      = ${colors.background}
+label-open-padding         = 2
+label-close                = ✕
+label-close-padding        = 2
+label-close-foreground     = $[colors.red]
+label-separator            = |
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0      = Reiniciar
+menu-0-0-exec = menu-open-1
+menu-0-1      = Apagar
+menu-0-1-exec = menu-open-2
+menu-0-2      = Salir
+menu-0-2-exec = menu-open-3
+
+menu-1-0      = ✕
+menu-1-0-exec = menu-open-0
+menu-1-1      = ✓
+menu-1-1-exec = systemctl reboot
+
+menu-2-0      = ✓
+menu-2-0-exec = systemctl poweroff
+menu-2-1      = ✕
+menu-2-1-exec = menu-open-0
+
+menu-3-0      = ✓
+menu-3-0-exec = openbox --exit
+menu-3-1      = ✕
+menu-3-1-exec = menu-open-0
+
+[module/previous]
+type              = custom/script
+format-text       = <label>
+label             = 
+exec              = echo label
+click-left        = exec playerctl --player=spotify previous
+format-foreground = ${colors.blue}
+format-background = ${colors.background}
+format-padding    = 1
+
+[module/next]
+type              = custom/script
+format-text       = <label>
+label             = 
+exec              = echo label
+click-left        = exec playerctl --player=spotify next
+format-foreground = ${colors.blue}
+format-background = ${colors.background}
+format-padding    = 1
+
+[module/toggle]
+type              = custom/script
+format-text       = <label>
+label             = 
+exec              = echo label
+click-left        = exec playerctl --player=spotify play-pause
+format-foreground = ${colors.blue}
+format-background = ${colors.background}
+format-padding    = 1
+
+[module/nowplaying]
+type              = custom/script
+format-prefix = 
+format = <label>
+exec              = ~/.bin/spotify.sh
+interval          = 0.01
+;click-left        = exec ~/.bin/popup/cover.sh
+format-prefix-foreground = ${colors.magenta}
+format-background = ${colors.background}
+format-padding    = 1
+
+[module/cpu]
+type                     = internal/cpu
+label                    = " %percentage%%"
+format-prefix            = " "
+;"
+format-prefix-foreground = ${colors.cyan}
+format-background        = ${colors.background}
+format-padding           = 2

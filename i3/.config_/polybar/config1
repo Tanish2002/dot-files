@@ -1,0 +1,143 @@
+[colors]
+background = ${xrdb:background}
+background-alt = ${xrdb:color0}
+foreground = ${xrdb:foreground}
+foreground-alt = ${xrdb:color7}
+primary = ${xrdb:color4}
+secondary = ${xrdb:color2}
+alert = ${xrdb:color1}
+
+[bar/top]
+monitor = eDP1
+width = 70%
+height = 24
+offset-x = 15%
+radius-bottom = 5
+fixed-center = true
+padding = 2
+
+locale = es_MX.UTF-8
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = artwiz lemon:pixelsize=8;1
+font-1 = Wuncon Siji:size=8;1
+
+modules-left = date time
+modules-center = xwindow
+modules-right = volume cpu memory
+
+[bar/bottom]
+monitor = DVI-D-0
+width = 10%
+height = 24
+offset-x = 45%
+radius-top = 5
+fixed-center = true
+padding = 2
+
+bottom = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = artwiz lemon:pixelsize=8;1
+font-1 = Wuncon Siji:size=8;1
+
+modules-left = 
+modules-center = wmdesks
+modules-right = 
+
+[module/wmdesks]
+format-font    = 1
+type           = custom/script
+exec           = python3 ~/.bin/wmdesks.py
+scroll-down    = exec xdesktop -p
+scroll-up      = exec xdesktop -n
+click-right    = exec xdesktop -p
+click-left     = exec xdesktop -n
+interval       = 0.01
+format-prefix-foreground = ${colors.primary}
+format-padding = 2
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+module-margin-left = 2
+format-padding = 2
+format-background = ${colors.background}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %percentage%%
+format-padding = 2
+
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used%%
+format-padding = 2
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%d/%b/%Y"
+date-alt = "%A %d"
+
+time = %I:%M
+time-alt = %p
+
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+
+label = %date%
+format-padding = 2
+
+
+[module/time]
+type = internal/date
+interval = 5
+
+time = %I:%M
+time-alt = %p
+format-prefix = " "
+format-prefix-foreground = ${colors.primary}
+label = %time%
+format-padding = 2
+
+[module/volume]
+type = internal/volume
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+
+format-muted = <label-muted>
+label-muted = 
+label-muted-foreground = ${colors.alert}
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.primary}
+
+format-padding = 2
+
+
+[settings]
+screenchange-reload = true
+
+
+[global/wm]
+margin-top = 2
+margin-bottom = 2
+override-redirect = false
