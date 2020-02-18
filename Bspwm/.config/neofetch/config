@@ -585,7 +585,7 @@ image_backend="kitty"
 # NOTE: 'auto' will pick the best image source for whatever image backend is used.
 #       In ascii mode, distro ascii art will be used and in an image mode, your
 #       wallpaper will be used.
-#image_source="images/battleship.jpg"
+image_source="wallpaper"
 
 
 # Ascii Options
@@ -604,7 +604,7 @@ image_backend="kitty"
 #       Change this to 'Lubuntu', 'Xubuntu', 'Ubuntu-GNOME' or 'Ubuntu-Budgie' to use the flavors.
 # NOTE: Arch, Crux and Gentoo have a smaller logo variant.
 #       Change this to 'arch_small', 'crux_small' or 'gentoo_small' to use the small logos.
-#ascii_distro="manjaro"
+#ascii_distro="kali"
 
 # Ascii Colors
 #
