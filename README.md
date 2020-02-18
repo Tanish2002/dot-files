@@ -22,8 +22,8 @@
 
 | **Bspwm** | **i3-gaps** |
 | ------ | ------ |
-| <img src="Screenshots/bspwm.png" width="500"> | <img src="Screenshots/i3.png" width="500"> |
- Color Scheme is Changable Using Pywal 
+| <img src="Screenshots/bspwm.png" width="500"> <br> <h5>Color Scheme is Changable Using Pywal</h5> | <img src="Screenshots/i3.png" width="500"> <br> <h5>Color Scheme is pretty much Fixed</h5> |
+  
 
 
 
