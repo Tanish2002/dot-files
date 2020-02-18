@@ -3,7 +3,7 @@
 
 * **OS:** Manjaro Linux
  
-* **WM:** bspwm
+* **WM:** bspwm, i3-gaps
  
 * **Terminal:** Kitty
  
@@ -13,7 +13,7 @@
  
 * **Bar:** polybar
  
-* **Compositor:** Compton
+* **Compositor:** sdhand-compton
 
 
 # Installation
@@ -27,7 +27,7 @@ $ cd dotfiles
 
 **Use stow**
 ```
-$ stow Bspwm
+$ stow <WM-Name>
 $ stow Wallpapers
 ```
 **And Voilla That's All!!**`
