@@ -22,7 +22,7 @@
 
 | **Bspwm** | **i3-gaps** |
 | ------ | ------ |
-| <img src="Screenshots/bspwm.png" width="500"> <br> <h5>Color Scheme is Changable Using Pywal</h5> | <img src="Screenshots/i3.png" width="500"> <br> <h5>Color Scheme is pretty much Fixed</h5> |
+| <img src="Screenshots/bspwm.png" width="500" > <br> <h5>Color Scheme is Changable Using Pywal</h5> <h6><a>Credit: Myself :) </a></h6> | <img src="Screenshots/i3.png" width="500" > <br> <h5>Color Scheme is pretty much Fixed</h5> <h6> Credit: <a href="https://github.com/Vista1nik/i3-mountains"> Vista1nik </a></h6> |
   
 
 
