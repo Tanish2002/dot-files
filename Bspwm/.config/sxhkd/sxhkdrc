@@ -64,7 +64,7 @@ super + shift l
 
 # clipboard
 super + c
-	rofi -width 15 -lines 15 -location 1 -xoffset 25 -yoffset 91 -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # screenshot
 Print

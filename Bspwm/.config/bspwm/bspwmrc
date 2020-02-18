@@ -3,8 +3,7 @@
 
 # Autostart
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
-pkill compton &
-compton --config /home/tanish2002/.config/compton/compton.conf -b &
+picom --config /home/tanish2002/.config/picom/picom.conf -b &
 #feh -z --bg-fill ~/Wallpapers/wallpaper.jpg &
 sh /home/tanish2002/.config/polybar/launch.sh &
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
@@ -41,7 +40,7 @@ bspc config presel_border_color "$color1"
 
 
 # Borders and Gaps
-
+#bspc config border_radius       20
 bspc config border_width         0
 bspc config window_gap          25
 
