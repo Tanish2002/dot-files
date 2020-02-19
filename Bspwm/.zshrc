@@ -60,6 +60,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
+. "${HOME}/.cache/wal/colors.sh"
+source ${HOME}/.cache/wal/colors.sh
 
 # User configuration
 
@@ -261,7 +263,7 @@ bindkey "^[[1;5C" forward-word
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
-#(cat ~/.cache/wal/sequences &)
+(cat ~/.cache/wal/sequences &)
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

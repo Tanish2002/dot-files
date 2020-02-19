@@ -2,14 +2,19 @@
 
 
 # Autostart
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
+pkill picom
+pkill sxhkd
+sleep 0.1
+
 picom --config /home/tanish2002/.config/picom/picom.conf -b &
+
+/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
 #feh -z --bg-fill ~/Wallpapers/wallpaper.jpg &
 sh /home/tanish2002/.config/polybar/launch.sh &
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
 systemctl --user --now start greenclip.service &
 sxhkd &
-wal -R &
+wal -R -o wal-set &
 #xautolock -time 10 -locker "~/scripts/lock.sh" &
 xsetroot -cursor_name left_ptr &
 
@@ -75,8 +80,9 @@ bspc rule -a feh state=floating
 
 # Restart dunst with the new color scheme
 
-mkdir -p  "${HOME}/.config/dunst"
-ln -sf    "${HOME}/.cache/wal/bspwm-dunstrc" "${HOME}/.config/dunst/bspwm-dunstrc"
-
-pkill dunst
-dunst -conf ~/.config/dunst/bspwm-dunstrc &
+#mkdir -p  "${HOME}/.config/dunst"
+#ln -sf    "${HOME}/.cache/wal/bspwm-dunstrc" "${HOME}/.config/dunst/bspwm-dunstrc"
+#
+#pkill dunst
+#sleep 0.1
+#dunst -conf ~/.config/dunst/bspwm-dunstrc &

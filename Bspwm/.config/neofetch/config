@@ -573,7 +573,7 @@ disk_display="off"
 
 # Image backend.
 #
-image_backend="kitty"
+image_backend="w3m"
 
 # Image Source
 #
