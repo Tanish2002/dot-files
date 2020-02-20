@@ -7,17 +7,17 @@
  
 * **WM:** bspwm, i3-gaps
  
-* **Terminal:** Kitty
+* **Terminal:** st
 
 *  **File Manager:** Ranger for Terminal, Thunar for GUI
  
-* **Terminal Font:** Fira Code Mono
+* **Terminal Font:** Hack Nerd Font Mono
  
 * **Shell:** zsh
  
 * **Bar:** polybar
  
-* **Compositor:** Sdhand-Compton
+* **Compositor:** Picom
  
 
 | **Bspwm** | **i3-gaps** |
@@ -42,5 +42,6 @@ $ cd dotfiles
 $ stow <WM-Name> -t ~/
 $ stow Wallpapers -t ~/
 $ stow bin -t ~/
+$ stow st -t ~/                                             //DO THIS ONLY IF U WANT MY BUILD OF st
 ```
 ### **And Voilla That's All!!**`
