@@ -4,8 +4,7 @@
 
 # terminal emulator
 super + Return
-	termite
-
+        st
 # program launcher
 #super + 
 #	rofi-appsmenu
