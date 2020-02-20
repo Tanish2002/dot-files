@@ -1,11 +1,20 @@
 --- x.c
 +++ x.c
-@@ -827,8 +827,6 @@ xloadfonts(char *fontstr, double fontsize)
- 	win.cw = ceilf(dc.font.width * cwscale);
- 	win.ch = ceilf(dc.font.height * chscale);
+@@ -627,6 +627,8 @@ setsel(char *str, Time t)
+ 	XSetSelectionOwner(xw.dpy, XA_PRIMARY, xw.win, t);
+ 	if (XGetSelectionOwner(xw.dpy, XA_PRIMARY) != xw.win)
+ 		selclear();
++
++	clipcopy(NULL);
+ }
  
--	borderpx = ceilf(((float)borderperc / 100) * win.cw);
--
- 	FcPatternDel(pattern, FC_SLANT);
- 	FcPatternAddInteger(pattern, FC_SLANT, FC_SLANT_ITALIC);
- 	if (xloadfont(&dc.ifont, pattern))
+ void
+@@ -644,7 +646,7 @@ brelease(XEvent *e)
+ 	}
+ 
+ 	if (e->xbutton.button == Button2)
+-		selpaste(NULL);
++		clippaste(NULL);
+ 	else if (e->xbutton.button == Button1)
+ 		mousesel(e, 1);
+ }

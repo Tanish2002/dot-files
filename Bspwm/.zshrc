@@ -263,7 +263,7 @@ bindkey "^[[1;5C" forward-word
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
-cat ~/.cache/wal/sequences
+(cat ~/.cache/wal/sequences &)
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
