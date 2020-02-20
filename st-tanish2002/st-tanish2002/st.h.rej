@@ -1,0 +1,19 @@
+--- st.h
++++ st.h
+@@ -231,7 +231,6 @@ extern char *opt_line;
+ extern char *opt_name;
+ extern char *opt_title;
+ extern int oldbutton;
+-int borderpx;
+ 
+ extern char *usedfont;
+ extern double usedfontsize;
+@@ -239,7 +238,7 @@ extern double defaultfontsize;
+ 
+ /* config.h globals */
+ extern char font[];
+-extern int borderperc;
++extern int borderpx;
+ extern float cwscale;
+ extern float chscale;
+ extern unsigned int doubleclicktimeout;
