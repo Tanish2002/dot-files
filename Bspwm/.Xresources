@@ -12,8 +12,9 @@
 
 !Config file for URxvt
 !#include ".rxvtrc"
-
-
+st.font:            Hack:size=12
+!st.font:        Hack Nerd Font Mono:pixelsize=15
+!st.font:        monospace:pixelsize=40
 ! Urxvt settings -----------------------------------
 
 ! Color theme

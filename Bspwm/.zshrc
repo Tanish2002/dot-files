@@ -263,7 +263,7 @@ bindkey "^[[1;5C" forward-word
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
+#(cat ~/.cache/wal/sequences &)
 
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -285,4 +285,14 @@ fi
 # If not running interactively, do not do anything
 [[ $- != *i* ]] && return
 [[ -z "$TMUX" ]] && exec tmux
+
+# St Live Reload Fixes
+export XRDM_DIR=~/.Xresource.d
+export XRDM_FONT_DIR=$XRDM_DIR/fonts
+export XRDM_COLOR_DIR=$XRDM_DIR/colors
+export XRDM_PRESET_DIR=$XRDM_DIR/presets
+export XRDM_PROGRAM_DIR=$XRDM_DIR/programs
+export XRDM_UPDATE=N
+
+
 
