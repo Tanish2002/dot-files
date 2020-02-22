@@ -4,8 +4,10 @@
 # Autostart
 pkill picom
 pkill sxhkd
+pkill batterywarn
 sleep 0.1
 
+~/bin/batterywarn &
 picom --config /home/tanish2002/.config/picom/picom.conf -b &
 
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
