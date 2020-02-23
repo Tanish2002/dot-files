@@ -5,6 +5,12 @@
 # terminal emulator
 super + Return
         st
+
+#Draw a Term Using mouse
+super + grave
+        sh ~/bin/term_draw.sh
+
+
 # program launcher
 #super + 
 #	rofi-appsmenu
@@ -67,7 +73,7 @@ super + c
 
 # screenshot
 Print
-	sh ~/scripts/screenshot-menu.sh
+	sh ~/bin/screenshot-menu.sh
 
 # calculator
 super + 0
@@ -127,7 +133,7 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 # focus the next/previous node in the current desktop
-super + {Tab,grave}
+super + {Tab}
 	bspc node -f {next,prev}.local
 
 # focus the next/previous desktop in the current monitor
