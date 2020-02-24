@@ -929,7 +929,7 @@ type = internal/alsa
 format-volume = "<label-volume>  <bar-volume>"
 format-volume-underline = ${colors.foreground-alt}
 master-mixer = Master
-label-volume = " "
+label-volume = " "
 label-volume-foreground = ${colors.foreground}
 
 label-muted = muted
