@@ -26,11 +26,11 @@ super + b
 
 # pcmanfm
 super + alt + f
-	pcmanfm
+	dolphin
 
 # ncmpcpp
 super + n
-	urxvt -e ncmpcpp
+	~/bin/rofi-wal
 
 # mpc play
 super + XF86AudioPlay
@@ -57,7 +57,7 @@ XF86AudioNext
 
 # volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
-	amixer {sset Master 5%+,sset Master 5%-,-q -D pulse sset Master toggle}
+	amixer {sset Master 5%+,sset Master 5%-,sset Master toggle}
 
 # Brightness
 XF86MonBrightness{Up,Down}

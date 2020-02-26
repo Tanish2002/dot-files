@@ -7,6 +7,9 @@ pkill sxhkd
 pkill batterywarn
 sleep 0.1
 
+feh --bg-fill ~/Wallpapers/tea.jpg
+
+xrdb ~/mytheme &
 ~/bin/batterywarn &
 picom --config /home/tanish2002/.config/picom/picom.conf -b &
 
@@ -16,7 +19,7 @@ sh /home/tanish2002/.config/polybar/launch.sh &
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
 systemctl --user --now start greenclip.service &
 sxhkd &
-wal -R -o wal-set &
+# wal -R -o wal-set &
 #xautolock -time 10 -locker "~/scripts/lock.sh" &
 xsetroot -cursor_name left_ptr &
 
@@ -29,8 +32,8 @@ bspc monitor -d web code media edit graphics other
 
 # Source the colors
 
-source "${HOME}/.cache/wal/colors.sh"
-. "${HOME}/.cache/wal/colors.sh"
+#source "${HOME}/.cache/wal/colors.sh"
+#. "${HOME}/.cache/wal/colors.sh"
 
 
 # Set the border colors

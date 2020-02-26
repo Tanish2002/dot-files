@@ -60,8 +60,8 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-. "${HOME}/.cache/wal/colors.sh"
-source ${HOME}/.cache/wal/colors.sh
+#. "${HOME}/.cache/wal/colors.sh"
+#source ${HOME}/.cache/wal/colors.sh
 
 # User configuration
 
@@ -271,15 +271,15 @@ bindkey "^[[1;5C" forward-word
 
 
 ## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
-if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
-        case $(tmux showenv TERM 2>/dev/null) in
-                *256color) ;&
-                TERM=fbterm)
-                        TERM=screen-256color ;;
-                *)
-                        TERM=screen
-        esac
-fi
+#if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
+#        case $(tmux showenv TERM 2>/dev/null) in
+#                *256color) ;&
+#                TERM=fbterm)
+#                        TERM=screen-256color ;;
+#                *)
+#                        TERM=screen
+#        esac
+#fi
 
 
 # If not running interactively, do not do anything
@@ -287,12 +287,12 @@ fi
 [[ -z "$TMUX" ]] && exec tmux
 
 # St Live Reload Fixes
-export XRDM_DIR=~/.Xresource.d
-export XRDM_FONT_DIR=$XRDM_DIR/fonts
-export XRDM_COLOR_DIR=$XRDM_DIR/colors
-export XRDM_PRESET_DIR=$XRDM_DIR/presets
-export XRDM_PROGRAM_DIR=$XRDM_DIR/programs
-export XRDM_UPDATE=N
+#export XRDM_DIR=~/.Xresource.d
+#export XRDM_FONT_DIR=$XRDM_DIR/fonts
+#export XRDM_COLOR_DIR=$XRDM_DIR/colors
+#export XRDM_PRESET_DIR=$XRDM_DIR/presets
+#export XRDM_PROGRAM_DIR=$XRDM_DIR/programs
+#export XRDM_UPDATE=N
 
 
 
