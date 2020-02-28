@@ -203,7 +203,7 @@ ramp-capacity-4 = 
 type = internal/volume
 
 format-volume = <ramp-volume> <label-volume>
-format-muted =  0%
+format-muted =  muted
 
 ramp-volume-0 = 
 ramp-volume-1 = 
