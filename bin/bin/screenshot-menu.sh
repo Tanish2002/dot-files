@@ -5,16 +5,16 @@ chosen=$(echo "fullscreen\narea\narea [clipboard]\nactive window" | rofi -dmenu 
 
 case $chosen in
     "fullscreen")
-        sleep 1; scrot '%F_%T_scrot.png' -e 'mv $f ~/screenshots/'; notify-send '	screenshot saved!'
+        sleep 0.5; maim ~/screenshots/$(date "+%F_%H:%M:%S").png ; notify-send '	screenshot saved!' -t 1500
         ;;
     "area")
-        maim -s ~/screenshots/$(date "+%F-%H-%M-%S").png; notify-send '	selected area screenshot saved!'
+        maim -s ~/screenshots/$(date "+%F_%H:%M:%S").png; notify-send '	selected area screenshot saved!' -t 1500
         ;;
     "area [clipboard")
-        maim -s | xclip -selection clipboard -t image/png; notify-send '	screenshot copied to clipboard'
+        maim -s | xclip -selection clipboard -t image/png; notify-send '	screenshot copied to clipboard' -t 1500
         ;;
     "active window")
-	sleep 1; scrot -u -b '%F_%T_scrot.png' -e 'mv $f ~/screenshots/'; notify-send '	active window screenshot saved!'
+	sleep 0.5; maim -u -i $(xdotool getactivewindow) ~/screenshots/$(date "+%F_%H:%M:%S").png; notify-send '	active window screenshot saved!' -t 1500
 	;;
 esac
 
