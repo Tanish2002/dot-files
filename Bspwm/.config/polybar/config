@@ -284,7 +284,7 @@ label-separator = |
 menu-0-0 = TG
 menu-0-0-exec = telegram-desktop &
 menu-0-1 = DSCRD
-menu-0-1-exec = discord-canary &
+menu-0-1-exec = Discord &
 menu-0-2 = KILL
 menu-0-2-exec = killall Discord | killall Discord | killall telegram-deskto
 
