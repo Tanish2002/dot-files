@@ -26,10 +26,10 @@ playlist_file=/home/tanish2002/.config/mpv/mpvtube_playlists
 # playlist_file=/path/to/your/mpvtube_playlists
 
 # Arguments that will be passed to mpv
-mpv_args="-shuffle --ytdl-raw-options=yes-playlist= --border"
+#mpv_args="-shuffle --ytdl-raw-options=yes-playlist= --border"
 
 # Use this if you only need audio
-# mpv_args="--no-video -shuffle"
+mpv_args="--no-video -shuffle"
 
 # Rofi prompt
 rofi_prompt="YouTube ❯"
@@ -47,7 +47,7 @@ get_playlists() {
 
 main() {
     # Get choice from rofi
-    choice=$( (get_playlists) | rofi -dmenu -i -fuzzy -p "$rofi_prompt" )
+    choice=$( (get_playlists) | rofi -dmenu -lines 1 -i -fuzzy -p "$rofi_prompt" )
 
   # If user has not picked anything, exit
   if [[ -z "${choice// }" ]]; then
@@ -62,7 +62,7 @@ main() {
   fi
 
   # Send notification
-  notify-send "YouTube - Loading:" "$choice"
+  notify-send "YouTube - Loading:" "$choice" -t 3000
 
   # Spawn mpv
   mpv $mpv_args "$linktoplay"

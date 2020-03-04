@@ -573,7 +573,7 @@ disk_display="off"
 
 # Image backend.
 #
-image_backend="w3m"
+image_backend="catimg"
 
 # Image Source
 #
@@ -585,10 +585,10 @@ image_backend="w3m"
 # NOTE: 'auto' will pick the best image source for whatever image backend is used.
 #       In ascii mode, distro ascii art will be used and in an image mode, your
 #       wallpaper will be used.
-image_source="wallpaper"
-
+image_source="~/Downloads/Hentai-Haven-logo.jpg"
 
 # Ascii Options
+
 
 
 # Ascii distro
@@ -636,7 +636,7 @@ image_source="wallpaper"
 # Default:  'off'
 # Values:   'on', 'off'
 # Flag:     --loop
-image_loop="off"
+image_loop="on"
 
 # Thumbnail directory
 #

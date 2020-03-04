@@ -1,0 +1,73 @@
+#!/bin/sh
+#
+# http://github.com/mitchweaver/bin
+#
+# mmt - Mitch's MPV Tool
+#
+# control mpv through a socket with nc
+#
+
+sock=${MPV_SOCKET:-$HOME/.config/mpv/mpvsocket}
+
+usage() {
+>&2 cat <<EOF
+[Mitch's MPV Tool]
+
+To use, add 'input-ipc-server=/tmp/mpvsocket' to your mpv.conf
+(alternatively you can specify via \$MPV_SOCKET in the environment)
+
+Options:
+----------
+-t     toggle play/pause
+-n     skip to next in playlist
+-p     skip to prev in playlist
+-f     seek forward by 30 seconds
+-b     seek backward by 30 seconds
+-q     stop playback
+-k     print given metadata key, one of:
+       (filename, artist, title, album, year)
+
+EOF
+exit 1
+}
+
+die() { >&2 printf '%s\n' "$*" ; exit 1 ; }
+
+isrunning() {
+    [ -S "$sock" ] || die "$sock does not exist."
+    : | nc -U -N -- "$sock" 2>/dev/null || die "mpv is not playing on $sock"
+}
+
+cmd() {
+    isrunning
+    printf '%s\n' "$*" | nc -U -N -- "$sock"
+}
+
+get() {
+    res=$(cmd "{\"command\": [\"get_property_string\", \"$1\"]}\"")
+    res=${res%,\"re*}
+    res=${res%\"}
+    res=${res#*\":}
+    res=${res#\"}
+    printf '%s\n' "$res"
+}
+
+case $1 in
+    -t) cmd cycle pause   ;;
+    -n) cmd playlist-next ;;
+    -p) cmd playlist-prev ;;
+    -f) cmd seek +30      ;;
+    -b) cmd seek -30      ;;
+    -q) cmd quit          ;;
+    -k) case $2 in
+            artist)   get 'metadata/by-key/artist' ;;
+            album)    get 'metadata/by-key/album'  ;;
+            year)     get 'metadata/by-key/date'   ;;
+            title)    get 'metadata/by-key/title'  ;;
+            filename) get filename ;;
+            *) usage
+        esac
+        ;;
+     *) usage
+esac
+

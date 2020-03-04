@@ -20,7 +20,7 @@ border-left-size = 10
 
 bottom = false
 monitor = eDP1
-wm-restack = none
+wm-restack = bspwm
 override-redirect = false
 
 ;-------;
@@ -49,9 +49,9 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = volume backlight battery discord
+modules-left = volume backlight battery discord prev play_pause next
 modules-center = bspwm
-modules-right = wlan cpu date time
+modules-right = mpv wlan cpu time
 
 tray-position = none
 tray-detached = true
@@ -270,13 +270,6 @@ type = internal/network
 interface = wlp2s0
 label-connected =  %downspeed% |  %upspeed%
 
-[bar/float]
-
-inherit = bar/white
-
-background = #ffffff
-
-tray-position = center
 
 [module/discord]
 type = custom/menu
@@ -297,3 +290,25 @@ menu-0-2-exec = killall Discord | killall Discord | killall telegram-deskto
 
 format-padding = 1
 
+[module/prev]
+type = custom/text
+content = 
+click-left = "bin/bash $HOME/bin/mpvctl -p "
+click-right = "/bin/bash $HOME/bin/mpvctl -b "
+
+[module/play_pause]
+type = custom/text
+content = 
+click-left = "/bin/bash $HOME/bin/mpvctl -t "
+click-right = "/bin/bash $HOME/bin/mpvctl -q "
+
+[module/next]
+type = custom/text
+content = 
+click-left = "/bin/bash  $HOME/bin/mpvctl -n "
+click-right = "/bin/bash $HOME/bin/mpvctl -f "
+
+[module/mpv]
+type = custom/script
+exec-if=pgrep -x mpv
+exec = "/bin/sh  $HOME/bin/song-name.sh "

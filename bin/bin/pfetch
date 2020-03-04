@@ -1215,13 +1215,27 @@ PF_ASCII="mac"
 
         [Ss]lackware*)
             read_ascii 4 <<-EOF
-				${c4}   ________
-				${c4}  /  ______|
-				${c4}  | |______
-				${c4}  \\______  \\
-				${c4}   ______| |
-				${c4}| |________/
-				${c4}|____________
+                                        
+                      .'c;.             
+                  .:::o0d.              
+              ...;dl;cd:.               
+          .':oocoo:lxolll;.             
+        .;oxkdlolcoc,,cdddxl,.          
+       .oxkxoloccOOdoodxdxdcoo.         
+      .okxxllo:;xKOl;::;llcdkxl.        
+     .ckkdlllcdxoc::c::docooc;lc.       
+     .oko:clccldl:::;ldc;ldo:cxd.       
+     .oklcloc:c:::;o0Kkccxkloxko.       
+      ckkkdlll::::lodxd:locdkxkc        
+      .okolol:lco0Xxc;:doldkxko.        
+       .:okdcloclOkc;lxllxkkxl.         
+        .':lool:dd:oOxlokkxl,           
+           .;:ldlcxxlcloc;.             
+             :xookc. ..                 
+           .lKOo:.                      
+          .:l;.                         
+           .                            
+
 			EOF
         ;;
 

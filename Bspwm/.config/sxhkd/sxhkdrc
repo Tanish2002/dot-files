@@ -1,63 +1,69 @@
-#
-# wm independent hotkeys
-#
+#### WM INDEPENDENT HOTKEYS
 
-# terminal emulator
+#----------------------------------------------------------------------------------------------------------------------------------------
+
+				                   ### TERMINAL
+
+# Terminal emulator
 super + Return
         st
 
 #Draw a Term Using mouse
 super + grave
-        sh ~/bin/term_draw.sh
+	 sh ~/bin/term_draw.sh
 
+#------------------------------------------------------------------------------------------------------------------------------------
 
-# program launcher
-#super + 
-#	rofi-appsmenu
+				                    ### ROFI
 
 # rofi run
 super + d
 	rofi -show drun
 	#rofi -show run -lines 20 -location 1 -xoffset 25 -yoffset 91
 
+# rofi-wal
+super + n
+	~/bin/rofi-wal
+
+#----------------------------------------------------------------------------------------------------------------------------------------
+       
+                     				    ### APPS
+
 # chromium
 super + b
 	chromium
 
-# pcmanfm
+# dolphin
 super + alt + f
 	dolphin
 
-# ncmpcpp
-super + n
-	~/bin/rofi-wal
+# calculator
+super + 0
+	=
 
-# mpc play
+#------------------------------------------------------------------------------------------------------------------------------------
+
+			                       ### MPV(Multimedia Player)
+
+## MPV_Playlist Menu
+super + m
+        ~/bin/rofi_mpvtube
+## MPVCTL
 super + XF86AudioPlay
-	mpc play
-
-super + shift + XF86AudioPlay 
-	mpc pause
+	$HOME/bin/mpvctl play
 
 super + XF86AudioNext
-	mpc next
+	$HOME/bin/mpvctl next
 
 super + XF86AudioPrev
-	mpc prev
+	$HOME/bin/mpvctl  prev
 
-# spotify
-XF86AudioPlay
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
-
-XF86AudioPrev
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
-
-XF86AudioNext
-	dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
-
-# volume
+## volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
 	amixer {sset Master 5%+,sset Master 5%-,sset Master toggle}
+
+#------------------------------------------------------------------------------------------------------------------------------------
+			                           ### MISCELLANEOUS
 
 # Brightness
 XF86MonBrightness{Up,Down}
@@ -75,17 +81,16 @@ super + c
 Print
 	sh ~/bin/screenshot-menu.sh
 
-# calculator
-super + 0
-	=
+
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
-S
-#
-# bspwm hotkeys
-#
+
+#------------------------------------------------------------------------------------------------------------------------------------------
+
+			                            ### BSPWM HOTKEYS
+
 
 # quit/restart bspwm
 super + shift + {Escape,r}
@@ -108,9 +113,9 @@ super + y
 super + g
 	bspc node -s biggest
 
-#
-# state/flags
-#
+
+				                     ## State/Flags
+
 
 # set the window state
 super + {t,shift + t,s,f}
@@ -120,9 +125,9 @@ super + {t,shift + t,s,f}
 super + ctrl + {m,x,y,z}
 	bspc node -g {marked,locked,sticky,private}
 
-#
-# focus/swap
-#
+
+				                  ## Focus/Swap
+
 
 # focus the node in the given direction
 super + {_,shift + }{h,j,k,l}
@@ -154,9 +159,9 @@ super + {o,i}
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
-#
-# preselect
-#
+
+				                       ## Preselect
+
 
 # preselect the direction
 super + ctrl + {h,j,k,l}
@@ -174,9 +179,9 @@ super + ctrl + space
 super + ctrl + shift + space
 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
 
-#
-# move/resize
-#
+
+				                      # Move/Resize
+
 
 # expand a window by moving one of its side outward
 super + alt + {h,j,k,l}
@@ -190,7 +195,4 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-# BrightnessControl
-   XF86MonBrightnessUp
-      xbacklight -inc 10
  

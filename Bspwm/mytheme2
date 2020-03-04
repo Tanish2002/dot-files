@@ -1,0 +1,38 @@
+! special
+*.foreground:   #ecdfe1
+*.background:   #3a3343
+*.cursorColor:  #ecdfe1
+
+! black
+*.color0:       #20262c
+*.color8:       #465463
+
+! red
+*.color1:       #db86ba
+*.color9:       #d04e9d
+
+! green
+*.color2:       #74dd91
+*.color10:      #4bc66d
+
+! yellow
+*.color3:       #e49186
+*.color11:      #db695b
+
+! blue
+*.color4:       #c262d5
+*.color12:      #3dbac2
+
+! magenta
+*.color5:       #b4a1db
+*.color13:      #825ece
+
+! cyan
+*.color6:       #9ee9ea
+*.color14:      #62cdcd
+
+! white
+*.color7:       #f1fcf9
+*.color15:      #e0e5e5
+st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
+st.alpha: 0.9
