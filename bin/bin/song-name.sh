@@ -2,7 +2,7 @@
 #
 # http://github.com/mitchweaver/bin
 #
-# nicely display current song from mmt (Mitch's MPV Tool)
+# nicely display current song from mpvctl (also in bin)
 #
 
 artist=$($HOME/bin/mpvctl -k artist)

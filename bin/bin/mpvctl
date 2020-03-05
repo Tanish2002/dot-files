@@ -2,9 +2,8 @@
 #
 # http://github.com/mitchweaver/bin
 #
-# mmt - Mitch's MPV Tool
 #
-# control mpv through a socket with nc
+# control mpv through a socket with nc(openbsd-netcat).......(DONT USE GNU-netcat)
 #
 
 sock=${MPV_SOCKET:-$HOME/.config/mpv/mpvsocket}
