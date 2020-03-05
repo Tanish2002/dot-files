@@ -57,13 +57,14 @@ Credit: Meeeee
 
 ### **Clone my repo**
 ```
-$ cd
+$ Sudo xbps-install -S git                                  // Use ur distro's command to install Git
 $ git clone https://gitlab.com/Tanish2002/dot-files
 $ cd dotfiles
 ``` 
 
 ### **Use stow**
 ```
+$ Sudo xbps-install -S stow                                // Use ur distro's command to install GNU-stow
 $ stow <WM-Name> -t ~/
 $ stow Wallpapers -t ~/
 $ stow bin -t ~/
