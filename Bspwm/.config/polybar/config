@@ -36,7 +36,7 @@ font-3 = "Font Awesome 5 Brands:pixelsize=12;3"
 ; COLORS ;
 ;--------;
 background = 0
-foreground = #c5a9f9
+foreground = #a6a9b7
 border-color = 0
 third = ${xrdb:color2:#222}
 
@@ -55,6 +55,8 @@ modules-right = mpv wlan cpu time
 
 tray-position = none
 tray-detached = true
+
+;--------------------------------------------------------------------------------------------------------------------------------------------;
 
 [bar/mpd]
 ;------------;
@@ -94,7 +96,7 @@ font-3 = "Font Awesome 5 Brands:pixelsize=10;3"
 ;--------;
 
 background = 0
-foreground = #c5a9f9
+foreground = #a6a9b7
 border-color = 0
 
 ;---------------;

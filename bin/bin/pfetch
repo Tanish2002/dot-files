@@ -820,7 +820,7 @@ get_ascii() {
 "
         done
     }
-PF_ASCII="mac"
+
     # This checks for ascii art in the following order:
     # '$1':        Argument given to 'get_ascii()' directly.
     # '$PF_ASCII': Environment variable set by user.
@@ -1215,27 +1215,13 @@ PF_ASCII="mac"
 
         [Ss]lackware*)
             read_ascii 4 <<-EOF
-                                        
-                      .'c;.             
-                  .:::o0d.              
-              ...;dl;cd:.               
-          .':oocoo:lxolll;.             
-        .;oxkdlolcoc,,cdddxl,.          
-       .oxkxoloccOOdoodxdxdcoo.         
-      .okxxllo:;xKOl;::;llcdkxl.        
-     .ckkdlllcdxoc::c::docooc;lc.       
-     .oko:clccldl:::;ldc;ldo:cxd.       
-     .oklcloc:c:::;o0Kkccxkloxko.       
-      ckkkdlll::::lodxd:locdkxkc        
-      .okolol:lco0Xxc;:doldkxko.        
-       .:okdcloclOkc;lxllxkkxl.         
-        .':lool:dd:oOxlokkxl,           
-           .;:ldlcxxlcloc;.             
-             :xookc. ..                 
-           .lKOo:.                      
-          .:l;.                         
-           .                            
-
+				${c4}   ________
+				${c4}  /  ______|
+				${c4}  | |______
+				${c4}  \\______  \\
+				${c4}   ______| |
+				${c4}| |________/
+				${c4}|____________
 			EOF
         ;;
 
@@ -1375,7 +1361,7 @@ main() {
         # Disable globbing and set the positional parameters to the
         # contents of 'PF_INFO'.
         set -f
-        set +f ${PF_INFO-ascii  title os wm editor shell uptime  memory  palette}
+        set +f ${PF_INFO- title os wm pkgs palette}
 
         # Grab the ascii art if the user has enabled it. This simply
         # populates the '$ascii' variable.

@@ -50,13 +50,13 @@ super + m
         ~/bin/rofi_mpvtube
 ## MPVCTL
 super + XF86AudioPlay
-	$HOME/bin/mpvctl play
+	$HOME/bin/mpvctl -t
 
 super + XF86AudioNext
-	$HOME/bin/mpvctl next
+	$HOME/bin/mpvctl -n
 
 super + XF86AudioPrev
-	$HOME/bin/mpvctl  prev
+	$HOME/bin/mpvctl  -p
 
 ## volume
 XF86Audio{RaiseVolume,LowerVolume,Mute}
