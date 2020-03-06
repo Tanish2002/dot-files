@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #Theme Changing script Don't use this if u don't know what it is doing
-
+#You need to disable password prompt at sudo for this script to work
 opt="$(echo "tea\nlake\npywal" | rofi -dmenu)"
 cmd() {
   cd $HOME/dot-files/
@@ -12,6 +12,7 @@ cmd() {
   wal -i $HOME/Wallpapers/$opt.* -o wal-set
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
+  sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
   bspc wm -r
   sudo pkill -USR1 st 
   killall dunst
@@ -21,8 +22,12 @@ cmd() {
 }
 pywal() {
   xrdb -remove
+  cd $HOME/dot-files/
+  stow -D Bspwm:\ tea
+  stow -D Bspwm:\ lake
+  stow -D Bspwm:\ pywal
+  stow Bspwm:\ pywal
   $HOME/bin/rofi-wal
-  sudo pkill -USR1 st
 }
 case $opt in
   tea) cmd ;;

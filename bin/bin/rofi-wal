@@ -2,4 +2,9 @@
 # Opens a rofi menu with Wallpapers(pywal)
 imagepath="$HOME/Wallpapers/"
 chosen=$(ls $imagepath | rofi -dmenu -lines 4  -p "Select Wallpaper" -i )
-wal -i $HOME/Wallpapers/$chosen  -o wal-set | sleep 0.5s | notify-send "Theme Changed" -i $HOME/Wallpapers/$chosen -t 3000
+bspc wm -r
+wal -i $HOME/Wallpapers/$chosen  -o wal-set | sleep 1 | notify-send "Theme Changed" -i $HOME/Wallpapers/$chosen -t 3000
+xrdb -merge $HOME/xrdb/pywal/pywal
+sudo cp $HOME/Wallpapers/$chosen /boot/grub/themes/Ettery/background.png
+sleep 1
+sudo pkill -USR1 st

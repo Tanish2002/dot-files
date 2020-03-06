@@ -6,7 +6,7 @@ killall -q polybar
 
 
 # Launch bar1 and bar2
-polybar white &
+polybar mainbar-bspwm &
 #polybar bar2 &
 
 echo "Bars launched..."

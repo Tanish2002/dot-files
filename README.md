@@ -90,3 +90,6 @@ $ sudo xbps-remove -R stow git                                // Use ur distro's
 ### Some More Info
 **For helpful scripts Check Out:** [bin](https://gitlab.com/Tanish2002/dot-files/-/tree/master/bin%2Fbin) <br />
 **For My build of st:**[Here](https://gitlab.com/Tanish2002/st-tanish2002)
+
+##### Here is a example of me...changing my Themes
+![preview-gif](Screenshots/Theme-change.gif)
