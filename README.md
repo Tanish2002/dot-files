@@ -22,7 +22,7 @@
 ## Previews
 
 ## i3-gaps: Mountains
-![previer-i3](Screenshots/i3.png)
+![preview-i3](Screenshots/i3:Mountains.png)
 ### Info
 ##### Color Scheme is pretty much Fixed
 ##### What's on Screen: Polybar, feh, ufetch, cava
