@@ -1,0 +1,31 @@
+#!/bin/sh
+
+#Theme Changing script Don't use this if u don't know what it is doing
+
+opt="$(echo "tea\nlake\npywal" | rofi -dmenu)"
+cmd() {
+  cd $HOME/dot-files/
+  stow -D Bspwm:\ tea
+  stow -D Bspwm:\ lake
+  stow -D Bspwm:\ pywal
+  stow Bspwm:\ $opt
+  wal -i $HOME/Wallpapers/$opt.* -o wal-set
+  xrdb -remove
+  xrdb $HOME/xrdb/$opt/$opt
+  bspc wm -r
+  sudo pkill -USR1 st 
+  killall dunst
+  dunst &
+  sleep 1
+  notify-send "Theme Changed to $opt" -i $HOME/Wallpapers/$opt.* -t 3000;
+}
+pywal() {
+  xrdb -remove
+  $HOME/bin/rofi-wal
+  sudo pkill -USR1 st
+}
+case $opt in
+  tea) cmd ;;
+  lake) cmd ;;
+  pywal) pywal ;;
+esac

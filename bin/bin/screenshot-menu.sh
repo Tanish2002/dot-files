@@ -9,7 +9,7 @@ case $chosen in
         sleep 0.5; maim ~/screenshots/$(date "+%F_%H:%M:%S").png ; notify-send '	screenshot saved!' -t 1500
         ;;
     "area")
-        maim -s ~/screenshots/$(date "+%F_%H:%M:%S").png; notify-send '	selected area screenshot saved!' -t 1500
+        maim -u -s ~/screenshots/$(date "+%F_%H:%M:%S").png; notify-send '	selected area screenshot saved!' -t 1500
         ;;
     "area [clipboard")
         maim -s | xclip -selection clipboard -t image/png; notify-send '	screenshot copied to clipboard' -t 1500

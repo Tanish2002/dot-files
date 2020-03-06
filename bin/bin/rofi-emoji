@@ -1,0 +1,12 @@
+#!/bin/sh
+
+chosen=$(grep -v "#" ~/bin/emoji | \
+	rofi -dmenu -columns 2 \
+	-kb-row-select "Tab" -kb-row-tab "" -i)
+
+[ "$chosen" != "" ] || exit
+
+c=$(echo "$chosen" | sed "s/ .*//")
+echo "$c" | tr -d '\n' | xclip -selection clipboard
+notify-send "'$c' copied to clipboard." &
+

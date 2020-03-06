@@ -1,0 +1,6 @@
+#!/bin/sh
+opt="$(echo "Poweroff \nReboot \nLogout " | rofi -dmenu)"
+case $opt in
+    h*|p*|r*|s*) systemctl $opt;;
+    lock) lock;;
+esac
