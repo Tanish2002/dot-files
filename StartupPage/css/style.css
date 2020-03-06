@@ -1,10 +1,10 @@
 @font-face {
-    font-family: "Roboto Mono";
-    src: url("../fonts/roboto-mono-medium.ttf");
+    font-family: "FuraMono Nerd Font Mono";
+    font-weight: "bold"
 }
 
 :root {
-    --font: "Roboto Mono";
+    --font: "FuraMono Nerd Font Mono";
     --background: #282828;
     --foreground: #fffffe;
     --pink: #62b3e4;
@@ -15,6 +15,7 @@
 
 html {
     font-size: 18px;
+    font-weight: bold;
 }
 
 body {
@@ -30,6 +31,7 @@ body {
 
 .prompt {
     font-family: var(--font);
+    font-weight: bold;
     color: var(--foreground);
 }
 
@@ -45,7 +47,7 @@ h1 {
     display: inline;
     font-family: var(--font);
     font-size: 1rem;
-    font-weight: normal;
+    font-weight: bold;
     color: var(--red);
 }
 
@@ -88,6 +90,7 @@ li:last-child::after {
 a {
     font-family: var(--font);
     font-size: 1rem;
+    font-weight: bold;
     color: var(--foreground);
     text-decoration: none;
     outline: none;
@@ -105,6 +108,7 @@ form h1 {
 input {
     font-family: var(--font);
     font-size: 1rem;
+    font-weight: bold;
     color: var(--foreground);
     background-color: var(--background);
     border: none;

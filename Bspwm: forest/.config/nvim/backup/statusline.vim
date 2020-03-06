@@ -3,22 +3,22 @@
 function! ModeColors(mode) " {{{
   " Normal mode
   if a:mode == 'n'
-    hi fgc guifg=#0f0f13 guibg=#e1acff
+    hi fgc guifg=#292d3e guibg=#e1acff
     hi powerline guifg=#e1acff
     hi fgc_b guifg=#e1acff guibg=#434758
   " Insert mode
   elseif a:mode == 'i'
-    hi fgc guifg=#0f0f13 guibg=#ffe585
+    hi fgc guifg=#292d3e guibg=#ffe585
     hi powerline guifg=#ffe585
     hi fgc_b guifg=#ffe585 guibg=#434758
   " Replace mode
   elseif a:mode == 'R'
-    hi fgc guifg=#0f0f13 guibg=#f0b295
+    hi fgc guifg=#292d3e guibg=#f0b295
     hi powerline guifg=#f0b295
     hi fgc_b guifg=#f0b295 guibg=#434758
   " Visual mode
   elseif a:mode == 'v' || a:mode == 'V' || a:mode == ""
-    hi fgc guifg=#0f0f13 guibg=#f07178
+    hi fgc guifg=#292d3e guibg=#f07178
     hi powerline guifg=#f07178
     hi fgc_b guifg=#f07178 guibg=#434758
   " Command mode
@@ -66,15 +66,15 @@ function! ModeName(mode)
   endif
 endfunction
 
-hi modified_powerline_b guifg=#0f0f13 guibg=#434758
-hi modified_fgc guifg=#0f0f13 guibg=#434758
+hi modified_powerline_b guifg=#292d3e guibg=#434758
+hi modified_fgc guifg=#292d3e guibg=#434758
 function! Modified(modified)
   if a:modified == 1
     hi modified_powerline_b guifg=#434758 guibg=NONE
     hi modified_fgc guifg=#f07178 guibg=#434758
   else
-    hi modified_powerline_b guifg=#0f0f13 guibg=#0f0f13
-    hi modified_fgc guifg=#0f0f13 guibg=#0f0f13
+    hi modified_powerline_b guifg=#292d3e guibg=#292d3e
+    hi modified_fgc guifg=#292d3e guibg=#292d3e
   endif
   return '●'
 endfunction
@@ -95,7 +95,7 @@ set statusline+=%#powerline#%#fgc#%{ModeName(mode())}%#powerline#
 set statusline+=\ 
 
 " Filename
-set statusline+=%#powerline_b#%#gc_b#%.20f%#powerline_b#
+set statusline+=%#powerline_b#%#fgc_b#%.20f%#powerline_b#
 set statusline+=\ 
 
 " Right Side
@@ -106,4 +106,4 @@ set statusline+=%#modified_powerline_b#%#modified_fgc#%{Modified(&modified)}%
 set statusline+=\ 
 
 " Number of buffers
-set statusline+=%#powerline#%#fgc#%{BufNum()}%#powerline#f
+set statusline+=%#powerline#%#fgc#%{BufNum()}%#powerline#

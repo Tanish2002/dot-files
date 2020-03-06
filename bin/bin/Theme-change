@@ -2,12 +2,14 @@
 
 #Theme Changing script Don't use this if u don't know what it is doing
 #You need to disable password prompt at sudo for this script to work
-opt="$(echo "tea\nlake\npywal" | rofi -dmenu)"
+opt="$(echo "tea\nlake\nforest\npywal" | rofi -dmenu)"
 cmd() {
   cd $HOME/dot-files/
   stow -D Bspwm:\ tea
   stow -D Bspwm:\ lake
   stow -D Bspwm:\ pywal
+  stow -D Bspwm:\ forest
+  stow -D Bspwm:\ *
   stow Bspwm:\ $opt
   wal -i $HOME/Wallpapers/$opt.* -o wal-set
   xrdb -remove
@@ -33,4 +35,5 @@ case $opt in
   tea) cmd ;;
   lake) cmd ;;
   pywal) pywal ;;
+  forest) cmd ;;
 esac

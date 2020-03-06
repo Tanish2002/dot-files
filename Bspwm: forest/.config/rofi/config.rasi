@@ -3,7 +3,7 @@ configuration {
 /*	width: 50;*/
 /*	lines: 15;*/
 	columns: 2;
-	font: "FuraCode Nerd Font Mono Bold 18";
+	font: "FuraCode Nerd Font Mono 18";
 /*	bw: 1;*/
 /*	location: 0;*/
 /*	padding: 5;*/
@@ -53,7 +53,7 @@ configuration {
 /*	window-format: "{w}    {c}   {t}";*/
 /*	click-to-exit: true;*/
 /*	show-match: true;*/
-	theme: "~/.cache/wal/colors-rofi-dark.rasi";
+	theme: "~/.cache/wal/colors-rofi-light.rasi";
 /*	color-normal: ;*/
 /*	color-urgent: ;*/
 /*	color-active: ;*/
