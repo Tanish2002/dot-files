@@ -53,7 +53,7 @@ Credit: Me again :)
 ##### What's on Screen: Polybar, pfetch, neovim, Ranger
 Credit: Meeeee 
 
-## Bspwm: Lake
+## Bspwm: Forest
 ![preview-Bspwm1](Screenshots/bspwm:Forest1.png)
 ![preview-Bspwm2](Screenshots/bspwm:Forest2.png)
 ### Info
