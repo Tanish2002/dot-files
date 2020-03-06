@@ -41,7 +41,7 @@ Credit: Me :)
 ## Bspwm: Tea
 ![preview-Bspwm](Screenshots/bspwm:Tea.png)
 ### Info
-##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/blob/master/Bspwm/mytheme1)
+##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar, pfetch
 Credit: Me again :) 
 
@@ -49,9 +49,17 @@ Credit: Me again :)
 ![preview-Bspwm1](Screenshots/bspwm:Lake1.png)
 ![preview-Bspwm2](Screenshots/bspwm:Lake2.png)
 ### Info
-##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/blob/master/Bspwm/mytheme1)
+##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar, pfetch, neovim, Ranger
 Credit: Meeeee 
+
+## Bspwm: Lake
+![preview-Bspwm1](Screenshots/bspwm:Forest1.png)
+![preview-Bspwm2](Screenshots/bspwm:Forest2.png)
+### Info
+##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
+##### What's on Screen: Polybar, pfetch, colorpanes script
+Credit: ME   //I don't Steal Now a days 
 
 ## Installation
 
