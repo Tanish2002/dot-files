@@ -59,13 +59,14 @@ Credit: Meeeee
 ```
 $ Sudo xbps-install -S git                                  // Use ur distro's command to install Git
 $ git clone https://gitlab.com/Tanish2002/dot-files
-$ cd dotfiles
+$ cd dotfiles/
 ``` 
 
 ### **Use stow**
 ```
 $ Sudo xbps-install -S stow                                // Use ur distro's command to install GNU-stow
 $ stow <WM-Name> -t ~/
+$ stow xrdb -t ~/
 $ stow Wallpapers -t ~/
 $ stow bin -t ~/
 
@@ -73,6 +74,18 @@ Do basic stuff like using pywal or xrdb and adding bin to $PATH
 ```
 
 ### **And Voilla That's All!!**`
+
+## Uninstallation
+```
+$ cd dot-files/
+$ stow -D <WM-Name>
+$ stow -D xrdb
+$ stow -D Wallpapers
+$ stow -D bin
+$ cd ..
+$ rm -rf dot-files/
+$ sudo xbps-remove -R stow git                                // Use ur distro's command to uninstall GNU-stow and git
+```
 
 ### Some More Info
 **For helpful scripts Check Out:** [bin](https://gitlab.com/Tanish2002/dot-files/-/tree/master/bin%2Fbin) <br />
