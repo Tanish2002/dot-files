@@ -28,6 +28,8 @@ pywal() {
   stow -D Bspwm:\ tea
   stow -D Bspwm:\ lake
   stow -D Bspwm:\ pywal
+  stow -D Bspwm:\ forest
+  stow -D Bspwm:\ *
   stow Bspwm:\ pywal
   $HOME/bin/rofi-wal
 }

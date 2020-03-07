@@ -1,0 +1,195 @@
+# Vim Interface
+
+Terminal         -> Normal
+
+TabLine          -> StatusLineNC
+TabLineFill      -> StatusLineNC
+TabLineSel       -> StatusLine
+
+StatusLineTerm   -> StatusLine
+StatusLineTermNC -> StatusLineNC
+
+VisualNOS        -> Visual
+
+# Diff
+
+diffAdded          -> DiffAdd
+diffBDiffer        -> WarningMsg
+diffChanged        -> DiffChange
+diffCommon         -> WarningMsg
+diffDiffer         -> WarningMsg
+diffFile           -> Directory
+diffIdentical      -> WarningMsg
+diffIndexLine      -> Number
+diffIsA            -> WarningMsg
+diffNoEOL          -> WarningMsg
+diffOnly           -> WarningMsg
+diffRemoved        -> DiffDelete
+
+# Syntax
+
+# Assume constants (which are always highlighted the same as identifiers) are
+# from libraries.
+Constant           -> LibraryIdent
+Float              -> Number
+StringDelimiter    -> String
+
+Identifier         -> LocalIdent # Assume identifiers are local to the project.
+Function           -> LibraryFunc # Assume functions are from libraries.
+
+Boolean            -> Statement
+Conditional        -> Statement
+Exception          -> Statement
+Include            -> Statement
+Keyword            -> Statement
+Label              -> Statement
+Repeat             -> Statement
+StorageClass       -> Statement
+Structure          -> Statement
+
+Define             -> PreProc
+Macro              -> PreProc
+PreCondit          -> PreProc
+
+Type               -> LocalType # Assume that types are local to the project.
+
+Debug              -> Special
+SpecialChar        -> Special
+Tag                -> Special
+
+Noise              -> Delimiter
+Quote              -> StringDelimiter
+
+Conceal            -> Ignore
+NonText            -> Ignore
+SpecialKey         -> Ignore
+Whitespace         -> Ignore
+
+Searchlight        -> IncSearch
+SignifySignAdd     -> Signify
+SignifySignChange  -> Signify
+SignifySignDelete  -> Signify
+cssAtRule          -> Keyword
+cssAttr            -> Keyword
+cssBraces          -> cssNoise
+cssClassName       -> LocalIdent
+cssColor           -> cssAttr
+cssFunction        -> None
+cssIdentifier      -> LocalIdent
+cssProp            -> LibraryType
+cssPseudoClassId   -> LibraryIdent
+cssSelectorOp      -> Operator
+gitcommitHeader    -> Todo
+gitcommitOverflow  -> Error
+gitcommitSummary   -> Title
+goField            -> LocalIdent
+goFunction         -> FunctionDef
+goFunctionCall     -> LibraryFunc
+goVarAssign        -> LocalIdent
+goVarDefs          -> IdentifierDef
+helpCommand        -> helpExample
+helpExample        -> markdownCode
+helpHeadline       -> Title
+helpHyperTextEntry -> Comment
+helpHyperTextJump  -> Underlined
+helpSectionDelim   -> Ignore
+helpURL            -> helpHyperTextJump
+helpVim            -> Title
+htmlArg            -> Special
+htmlEndTag         -> Delimiter
+htmlLink           -> Underlined
+htmlSpecialTagName -> htmlTagName
+htmlTag            -> Delimiter
+htmlTagName        -> Statement
+jsBuiltins         -> LibraryFunc
+jsClassDefinition  -> Typedef
+jsDomErrNo         -> LibraryIdent
+jsDomNodeConsts    -> LibraryIdent
+jsExceptions       -> LibraryType
+jsFuncArgCommas    -> jsNoise
+jsFuncName         -> FunctionDef
+jsFunction         -> jsStatement
+jsGlobalObjects    -> LibraryType
+jsObjectProp       -> LocalIdent
+jsOperatorKeyword  -> jsStatement
+jsThis             -> jsStatement
+jsVariableDef      -> IdentifierDef
+jsonKeywordMatch   -> Operator
+rsForeignConst     -> LibraryIdent
+rsForeignFunc      -> LibraryFunc
+rsForeignType      -> LibraryType
+rsFuncDef          -> FunctionDef
+rsIdentDef         -> IdentifierDef
+rsLibraryConst     -> LibraryIdent
+rsLibraryFunc      -> LibraryFunc
+rsLibraryType      -> LibraryType
+rsUserConst        -> LocalIdent
+rsUserFunc         -> LocalFunc
+rsUserMethod       -> LibraryFunc
+rsUserType         -> LocalType
+scssAttribute      -> cssNoise
+scssInclude        -> Keyword
+scssMixin          -> Keyword
+scssMixinName      -> LocalFunc
+scssMixinParams    -> cssNoise
+scssSelectorName   -> cssClassName
+scssVariableAssignment -> Operator
+scssVariableValue  -> Operator
+swiftFuncDef       -> FunctionDef
+swiftIdentDef      -> IdentifierDef
+swiftLibraryFunc   -> LibraryFunc
+swiftLibraryProp   -> LibraryIdent
+swiftLibraryType   -> LibraryType
+swiftUserFunc      -> LocalFunc
+swiftUserProp      -> LocalIdent
+swiftUserType      -> LocalType
+typescriptArrayMethod -> LibraryFunc
+typescriptArrowFunc -> Operator
+typescriptAssign   -> Operator
+typescriptBOM      -> LibraryType
+typescriptBOMWindowCons -> LibraryType
+typescriptBOMWindowMethod -> LibraryFunc
+typescriptBOMWindowProp -> LibraryType
+typescriptBinaryOp -> Operator
+typescriptBraces   -> Delimiter
+typescriptCall     -> None
+typescriptClassHeritage -> Type
+typescriptClassName -> TypeDef
+typescriptDOMDocMethod -> LibraryFunc
+typescriptDOMDocProp -> LibraryIdent
+typescriptDOMEventCons -> LibraryType
+typescriptDOMEventMethod -> LibraryFunc
+typescriptDOMEventMethod -> LibraryFunc
+typescriptDOMEventProp -> LibraryIdent
+typescriptDOMEventTargetMethod -> LibraryFunc
+typescriptDOMNodeMethod -> LibraryFunc
+typescriptDOMStorageMethod -> LibraryIdent
+typescriptEndColons -> Delimiter
+typescriptExport   -> Keyword
+typescriptFuncName -> FunctionDef
+typescriptFuncTypeArrow -> typescriptArrowFunc
+typescriptGlobal   -> typescriptPredefinedType
+typescriptIdentifier -> Keyword
+typescriptInterfaceName -> Typedef
+typescriptMember   -> LocalFunc
+typescriptObjectLabel -> LocalIdent
+typescriptOperator -> Keyword
+typescriptParens   -> Delimiter
+typescriptPredefinedType -> LibraryType
+typescriptTypeAnnotation -> Delimiter
+typescriptTypeReference -> typescriptUserDefinedType
+typescriptUserDefinedType -> LocalType
+typescriptVariable -> Keyword
+typescriptVariableDeclaration -> IdentifierDef
+vimAutoCmdSfxList  -> LibraryType
+vimAutoEventList   -> LocalIdent
+vimCmdSep          -> Special
+vimCommentTitle    -> SpecialComment
+vimContinue        -> Delimiter
+vimFuncName        -> LibraryFunc
+vimFunction        -> FunctionDef
+vimHighlight       -> Statement
+vimMapModKey       -> vimNotation
+vimNotation        -> LibraryType
+vimOption          -> LibraryIdent
+vimUserFunc        -> LocalFunc

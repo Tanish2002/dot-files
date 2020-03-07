@@ -1,0 +1,11 @@
+markdownBoldDelimiter       -> markdownDelimiter
+markdownBoldItalicDelimiter -> markdownDelimiter
+markdownCodeBlock           -> markdownCode
+markdownCodeDelimiter       -> markdownDelimiter
+markdownHeadingDelimiter    -> markdownDelimiter
+markdownItalicDelimiter     -> markdownDelimiter
+markdownLinkDelimiter       -> markdownDelimiter
+markdownLinkText            -> None
+markdownLinkTextDelimiter   -> markdownDelimiter
+markdownListMarker          -> markdownDelimiter
+markdownUrl                 -> Underlined
