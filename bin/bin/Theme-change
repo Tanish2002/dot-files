@@ -5,12 +5,12 @@
 opt="$(echo "tea\nlake\nforest\npywal" | rofi -dmenu)"
 cmd() {
   cd $HOME/dot-files/
-  stow -D Bspwm:\ tea
-  stow -D Bspwm:\ lake
-  stow -D Bspwm:\ pywal
-  stow -D Bspwm:\ forest
-  stow -D Bspwm:\ *
-  stow Bspwm:\ $opt
+  stow -D Bspwm:tea
+  stow -D Bspwm:lake
+  stow -D Bspwm:pywal
+  stow -D Bspwm:forest
+  stow -D Bspwm:*
+  stow Bspwm:$opt
   wal -i $HOME/Wallpapers/$opt.* -o wal-set
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
@@ -25,12 +25,12 @@ cmd() {
 pywal() {
   xrdb -remove
   cd $HOME/dot-files/
-  stow -D Bspwm:\ tea
-  stow -D Bspwm:\ lake
-  stow -D Bspwm:\ pywal
-  stow -D Bspwm:\ forest
-  stow -D Bspwm:\ *
-  stow Bspwm:\ pywal
+  stow -D Bspwm:tea
+  stow -D Bspwm:lake
+  stow -D Bspwm:pywal
+  stow -D Bspwm:forest
+  stow -D Bspwm:*
+  stow Bspwm:pywal
   $HOME/bin/rofi-wal
 }
 case $opt in

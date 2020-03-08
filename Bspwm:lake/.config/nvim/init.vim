@@ -7,6 +7,7 @@ Plug 'challenger-deep-theme/vim', { 'as': 'challenger-deep' }
 Plug 'sainnhe/vim-color-forest-night'
 Plug 'arzg/vim-colors-xcode'
 Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'dylanaraps/wal.vim'
 " Enhancements
 
 Plug 'junegunn/limelight.vim'
@@ -31,11 +32,13 @@ setlocal spell
 set spelllang=en_us
 inoremap <C-l> <c-g>u<Esc>[s1z=`]a<c-g>u
 
-set termguicolors
+"set termguicolors
 
-colorscheme dracula
+
+colorscheme wal
 "set background=dark
-"set notermguicolors t_Co=256
+set t_Co=256 
+
 
 syntax on
 
