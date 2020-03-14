@@ -1,0 +1,149 @@
+#!/bin/sh -e
+#
+# http://github.com/mitchweaver/bin
+#
+# the unholy lemonbar
+#
+
+# -*-*-*-*-*-* init -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+bar_fifo=${XDG_CACHE_HOME:-~/.cache}/bar
+song_skroll=${XDG_CACHE_HOME:-~/.cache}/song_skroll
+
+rm $bar_fifo $song_skroll 2>/dev/null ||:
+mkfifo $bar_fifo
+
+# -*-*-*-*-*-* daemons *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+while read -r line ; do
+    xsetroot -name "$line"
+done <$bar_fifo &
+
+pids=$!
+
+while sleep 5 ; do
+    while pgrep mpv >/dev/null && \
+        : | nc -U -N /tmp/mpvsocket 2>/dev/null ;do
+        /home/tanish2002/bin/song-name.sh | skroll -n 40 -d 0.2 -r >>$song_skroll
+    done
+    rm $song_skroll 2>/dev/null ||:
+done &
+
+pids="$pids $!"
+
+trap 'for p in $pids ; do kill -9 $p ; done ; \
+    rm $bar_fifo $song_skroll ; xsetroot -name killed' \
+    INT TERM QUIT KILL EXIT
+
+# -*-*-*-*-* helper functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+get_interface() {
+    for int in em0 urtwn0 wlp0s20u1 ; do
+        if ifconfig $int 2>/dev/null | grep active >/dev/null ; then
+            echo $int
+            break
+        fi
+    done
+}
+
+
+# -*-*-*-*-* modules -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*
+get_vpn() {
+while read -r cmd ; do
+    case $cmd in
+        openvpn*)
+            vpn=${cmd##* }
+            vpn=${vpn##*/}
+            vpn=" ${vpn%.ovpn}"
+            break
+    esac
+done <<EOF
+$(ps -wwU root -o 'command')
+EOF
+printf '%s' "${vpn:- None}"
+}
+
+get_song() {
+        song=$(/home/tanish2002/bin/song-name.sh)
+        printf '%s' "${song:+🎵 $song} /"
+}
+
+get_ssid() {
+    printf '%s' ' ' "$(iwgetid -r)"
+}
+
+get_link_qual() {
+                 iwconfig $int | while read -r line ; do
+                        read -r _ _ _ _ _ _ _ dBm _
+                        printf ' %s%%' $(((${dBm%dBm} + 100) ))
+                        break
+            done
+        }
+
+get_traffic() {
+while read -r line ; do
+    set -- $line
+done <<EOF
+$(netstat -c 1 -w 1 -b)
+EOF
+printf ' %s  %s' \
+    "$(fmt_human $1)" \
+    "$(fmt_human $2)"
+}
+
+get_cpu() {
+cpuload=$(top -bn1 | grep "Cpu(s)" | \
+           sed "s/.*, *\([0-9.]*\)%* id.*/\1/" | \
+           awk '{print 100 - $1"%"}')
+echo '💻' ${cpuload}
+
+}
+get_mem() {
+
+    ram=$(free -m | awk 'NR==2{printf "%sM", $3 }')
+    printf ' %s' "${ram}"
+}
+get_bat() {
+    p=$(cat /sys/class/power_supply/BAT1/capacity)
+    case $(cat /sys/class/power_supply/BAT1/status) in
+        Full | Charging) emoji='' ;;
+        Discharging)
+              if [ $p -gt 80 ] ; then emoji=''
+            elif [ $p -gt 60 ] ; then emoji=''
+            elif [ $p -gt 35 ] ; then emoji=''
+            elif [ $p -gt 10 ] ; then emoji=''
+                                 else emoji=''; fi
+    esac
+    printf "%s  %s%%" "$emoji" "$p"
+}
+
+get_vol() {
+getvol=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
+echo '🔊 ' ${getvol}
+
+}
+get_space() {
+    df -a -h | while read -r line ; do
+        case $line in
+            */home)
+                set -- $line
+                printf ' %s' $4
+                break
+        esac
+    done
+}
+
+# -*-*-*-*-*-* main *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+main() {
+    while sleep 1 ; do
+        printf '%s %s / %s / %s / %s / %s / %s  / %s\n' \
+            "$(get_song)" \
+            "$(get_ssid)$(get_link_qual)" \
+            "$(get_cpu)" \
+            "$(get_mem)" \
+            "$(get_space)" \
+            "$(get_bat)" \
+            "$(get_vol)" \
+            "$(date "+%a %I:%M %p") "
+    done >$bar_fifo
+}
+
+main

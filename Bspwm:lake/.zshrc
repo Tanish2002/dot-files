@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.emacs.d/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -284,8 +284,8 @@ bindkey "^[[1;5C" forward-word
 
 
 # If not running interactively, do not do anything
-[[ $- != *i* ]] && return
-[[ -z "$TMUX" ]] && exec tmux
+#[[ $- != *i* ]] && return
+#[[ -z "$TMUX" ]] && exec tmux
 
 # St Live Reload Fixes
 #export XRDM_DIR=~/.Xresource.d
@@ -296,4 +296,4 @@ bindkey "^[[1;5C" forward-word
 #export XRDM_UPDATE=N
 
 
-
+[ ! -z "$WINDOWID" ] && export UEBERZUG_USE_WINDOWID=1

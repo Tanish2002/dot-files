@@ -284,8 +284,8 @@ bindkey "^[[1;5C" forward-word
 
 
 # If not running interactively, do not do anything
-[[ $- != *i* ]] && return
-[[ -z "$TMUX" ]] && exec tmux
+#[[ $- != *i* ]] && return
+#[[ -z "$TMUX" ]] && exec tmux
 
 # St Live Reload Fixes
 #export XRDM_DIR=~/.Xresource.d

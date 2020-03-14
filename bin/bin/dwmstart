@@ -1,0 +1,3 @@
+/usr/local/bin/dwm 
+sleep 0.1
+sh -c /home/tanish2002/bin/autostart

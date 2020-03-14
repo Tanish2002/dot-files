@@ -49,7 +49,7 @@ bspc config presel_border_color "$color1"
 
 
 # Borders and Gaps
-bspc config border_radius       15
+bspc config border_radius        0
 bspc config border_width         0
 bspc config window_gap          25
 

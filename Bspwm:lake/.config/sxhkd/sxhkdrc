@@ -6,7 +6,7 @@
 
 # Terminal emulator
 super + Return
-        st
+        tabbed -d -c -r 2 st -w ''
 
 #Draw a Term Using mouse
 super + grave

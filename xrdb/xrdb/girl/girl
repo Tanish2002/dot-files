@@ -1,0 +1,55 @@
+st.alpha: 1
+st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
+st.cursorcolor: #FF69B4
+st.cursorshape: 6
+
+dwm.normfg: #e1dfd8
+dwm.normbg: #d5d0c2
+dwm.normborder: #9d9c97
+                         
+dwm.selfg: #e1dfd8
+dwm.selbg: #A5A29A
+dwm.selborder: #e1dfd8
+
+tabbed.normbgcolor: #3a3a3a
+tabbed.normfgcolor: #d5d0c2
+tabbed.selfgcolor:  #3a3a3a
+tabbed.selbgcolor:  #d5d0c2
+
+! special
+*.foreground:   #3a3a3a
+*.background:   #d5d0c2
+*.cursorColor:  #3a3a3a
+
+! black
+*.color0:       #252525
+*.color8:       #3a3a3a
+
+! red
+*.color1:       #b63c3c
+*.color9:       #c75d5d
+
+! green
+*.color2:       #99a52a
+*.color10:      #c3cd5e
+
+! yellow
+*.color3:       #de7c39
+*.color11:      #f0c064
+
+! blue
+*.color4:       #3d75a4
+*.color12:      #81a2be
+
+! magenta
+*.color5:       #885299
+*.color13:      #b294bb
+
+! cyan
+*.color6:       #519f95
+*.color14:      #8abeb7
+
+! white
+*.color7:       #687582
+*.color15:      #b8bbb9
+

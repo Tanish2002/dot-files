@@ -6,7 +6,7 @@
 # control mpv through a socket with nc(openbsd-netcat).......(DONT USE GNU-netcat)
 #
 
-sock=${MPV_SOCKET:-$HOME/.config/mpv/mpvsocket}
+sock=${MPV_SOCKET:-/tmp/mpvsocket}
 
 usage() {
 >&2 cat <<EOF

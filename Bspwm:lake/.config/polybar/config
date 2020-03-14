@@ -49,7 +49,7 @@ padding-left = 2
 padding-right = 2
 module-margin = 1.5
 
-modules-left = volume backlight battery discord prev play_pause next
+modules-left = volume battery discord prev play_pause next
 modules-center = bspwm
 modules-right = mpv wlan cpu time
 
@@ -182,6 +182,7 @@ label = %date%
 type = internal/battery
 
 battery = BAT1
+adapter = ACAD
 
 poll-interval = 1
 
@@ -235,23 +236,24 @@ bar-progress-empty = ─
 
 [module/backlight]
 type = internal/backlight
-
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
-card = radeon_bl0
+card = intel_backlight
 
 format = <ramp> <label>
+
+enable-scroll = true
 
 label = %percentage%%
 
 ramp-0 = 
 ramp-1 = 
-ramp-2 = 
+ramp-2 = 
 
 [module/wlan]
 type = internal/network
 
-interface = wlp0s20u1
+interface = wlp0s29u1u3
 
 interval = 5
 

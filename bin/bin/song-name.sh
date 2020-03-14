@@ -22,7 +22,7 @@ else
             if [ ${#res} -eq 11 ] ; then
                 pgrep -f youtube-dl >/dev/null ||
                 ytdl=$(youtube-dl -e "http://youtube.com/watch?v=$res" 2>/dev/null)
-                [ "$ytdl" ] && printf '%s\n' "$ytdl"
+                                [ "$ytdl" ] && printf '%s\n' "$ytdl"
             fi
     esac
 fi

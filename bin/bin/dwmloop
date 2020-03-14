@@ -1,0 +1,28 @@
+#we are logging in with xenodm, which 
+# will not load our profile automatically
+do_exit() {
+killall picom
+killall batterywarn
+}
+trap do_exit EXIT INT TERM KILL
+
+
+xrdb -remove
+xrdb /home/tanish2002/dot-files/xrdb/xrdb/lake/lake
+
+
+feh --bg-fill /home/tanish2002/Downloads/lake\(1\).png
+xbacklight -set 100 &
+
+# -*-*-*-*-*-*-*-* user daemons *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+_pids=
+
+pgrep -f picom 		 >/dev/null   || picom --config /home/tanish2002/.config/picom/picom.conf -b & _pids="$_pids $!"
+pgrep -f dunst   	 >/dev/null   || dunst       & _pids="$_pids $!"
+pgrep -f batterywarn    >/dev/null    || /home/tanish2002/bin/batterywarn       & _pids="$_pids $!"
+# -*-*-*-*-*-*-*-* start *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+# if dwm exits 0, restart -- this allows hot reloading of config.h
+while type dwm >/dev/null ; do dwm && continue || break ; done
+
+do_exit

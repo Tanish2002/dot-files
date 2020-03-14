@@ -1,0 +1,19 @@
+pkill picom  
+pkill polybar 
+pkill batterywarn 
+pkill dunst
+
+xrdb -remove &
+xrdb /home/tanish2002/xrdb/girl/girl &
+feh --bg-fill /home/tanish2002/Wallpapers/girl.png &
+
+sleep 0.1
+
+picom --config /home/tanish2002/.config/picom/picom.conf &
+/home/tanish2002/bin/batterywarn &
+/home/tanish2002/bin/wal-set &
+dunst &
+polybar white &
+
+
+exec /usr/local/bin/dwm

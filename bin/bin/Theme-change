@@ -2,21 +2,24 @@
 
 #Theme Changing script Don't use this if u don't know what it is doing
 #You need to disable password prompt at sudo for this script to work
-opt="$(echo "tea\nlake\nforest\npywal" | rofi -dmenu)"
+opt="$(echo "tea\nlake\nforest\ngirl\npywal" | rofi -dmenu)"
 cmd() {
   cd $HOME/dot-files/
   stow -D Bspwm:tea
   stow -D Bspwm:lake
   stow -D Bspwm:pywal
   stow -D Bspwm:forest
+  stow -D Dwm:girl
   stow -D Bspwm:*
   stow Bspwm:$opt
+  stow Dwm:$opt
   wal -i $HOME/Wallpapers/$opt.* -o wal-set
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
   sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
   bspc wm -r
   sudo pkill -USR1 st 
+  stmessage tabbed
   killall dunst
   dunst &
   sleep 1
@@ -38,4 +41,5 @@ case $opt in
   lake) cmd ;;
   pywal) pywal ;;
   forest) cmd ;;
+  girl) cmd ;;
 esac
