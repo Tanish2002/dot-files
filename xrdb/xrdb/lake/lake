@@ -14,8 +14,8 @@ tabbed.selbgcolor:  #0f0f13
 *.cursorColor:  #9ca1b8
 
 ! black
-*.color0:       #484e5b
-*.color8:       #5b6373
+*.color0:       #30343d
+*.color8:       #535b69
 
 ! red
 *.color1:       #e75e87
@@ -42,6 +42,6 @@ tabbed.selbgcolor:  #0f0f13
 *.color14:      #acd1e8
 
 ! white
-*.color7:       #707880
+*.color7:       #b4c1ce
 *.color15:      #c5c8c6
 

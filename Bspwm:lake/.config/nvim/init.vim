@@ -8,11 +8,12 @@ Plug 'sainnhe/vim-color-forest-night'
 Plug 'arzg/vim-colors-xcode'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'dylanaraps/wal.vim'
-" Enhancements
 
+" Enhancements
 Plug 'junegunn/limelight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Comfort
 Plug 'tpope/vim-sleuth'
