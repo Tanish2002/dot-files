@@ -5,7 +5,7 @@
 
 * **OS:** Bedrock Linux {Void + Arch}
  
-* **WM:** bspwm, i3-gaps
+* **WM:** bspwm, i3-gaps, [dwm](https://gitlab.com/Tanish2002/dwm-tanish2002)
  
 * **Terminal:** [st](https://gitlab.com/Tanish2002/st-tanish2002)
 
@@ -17,7 +17,7 @@
  
 * **Bar:** polybar
  
-* **Compositor:** Picom
+* **Compositor:** [Sdhand's Picom](https://github.com/sdhand/compton)
  
 ## Previews
 
@@ -60,6 +60,15 @@ Credit: Meeeee
 ##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar, pfetch, colorpanes script
 Credit: ME   //I don't Steal Now a days 
+
+## Dwm: Girl
+![preview-Dwm1](Screenshots/dwm:Girl1.png)
+![preview-Bspwm2](Screenshots/dwm:Girl2.png)
+### Info
+##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
+##### What's on Screen: Polybar(coz Dwm Bar ugly), pfetch
+Credit: ME  
+
 
 ## Installation
 
