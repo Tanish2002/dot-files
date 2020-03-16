@@ -1,6 +1,6 @@
 # Details
 
-`0x0`- Upload a image or string of text to 0x0.st **(Credit:[viz](https://github.com/vizs/home/tree/master/bin))
+`0x0`- Upload a image or string of text to 0x0.st **(Credit:[viz](https://github.com/vizs/home/tree/master/bin))**
 
 `Theme-change`- My Handy Script to change themes // I don't recommend using this
 
