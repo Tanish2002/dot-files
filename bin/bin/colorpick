@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+while read -r line; do
+    IFS=', ' read -r r g b hex <<< $line
+
+    printf '%s\n\e[48;2;%s;%s;%sm       \e[m\n' \
+        "$hex" "$r" "$g" "$b"
+done < <(stdbuf -oL colorpicker)

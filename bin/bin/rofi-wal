@@ -2,6 +2,17 @@
 # Opens a rofi menu with Wallpapers(pywal)
 imagepath="$HOME/Wallpapers/"
 chosen=$(ls $imagepath | rofi -dmenu -lines 4  -p "Select Wallpaper" -i )
+
+[ "$chosen" != "" ] || exit
+
+xrdb -remove
+cd $HOME/dot-files/
+stow -D Bspwm:tea
+stow -D Bspwm:lake
+stow -D Bspwm:pywal
+stow -D Bspwm:forest
+stow -D Bspwm:*
+stow Bspwm:pywal
 bspc wm -r
 wal -i $HOME/Wallpapers/$chosen  -o wal-set | sleep 1 | notify-send "Theme Changed" -i $HOME/Wallpapers/$chosen -t 3000
 xrdb -merge $HOME/xrdb/pywal/pywal

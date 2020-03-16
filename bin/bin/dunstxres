@@ -1,0 +1,11 @@
+#!/bin/sh
+
+. $HOME/bin/xvars
+
+# inject xvars colors into dunst config
+sed -i "s/background = .*/background = \"$XBG\"/g" ~/.config/dunst/dunstrc
+sed -i "s/foreground = .*/foreground = \"$XFG\"/g" ~/.config/dunst/dunstrc
+sed -i "s/frame_color = .*/frame_color = \"$XFG\"/g" ~/.config/dunst/dunstrc
+
+pkill dunst
+dunst &

@@ -1,7 +1,7 @@
 configuration {
 	modi: "window,run,ssh,drun";
-/*	width: 50;*/
-/*	lines: 15;*/
+	width: 50;
+	lines: 15;
 	columns: 2;
 	font: "FuraCode Nerd Font Mono Bold 18";
 /*	bw: 1;*/

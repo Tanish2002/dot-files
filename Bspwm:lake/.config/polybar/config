@@ -253,7 +253,7 @@ ramp-2 = 
 [module/wlan]
 type = internal/network
 
-interface = wlp0s29u1u3
+interface = wlp0s20u2
 
 interval = 5
 

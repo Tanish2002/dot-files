@@ -1,12 +1,12 @@
 # Details
 
-`0x0`- Upload a image or string of text to 0x0.st
+`0x0`- Upload a image or string of text to 0x0.st **(Credit:[viz](https://github.com/vizs/home/tree/master/bin))
 
 `Theme-change`- My Handy Script to change themes // I don't recommend using this
 
 `batterywarn`- Gives a Dunst notification with a sound(`battery.ogg`) when battery goes below a critical level
 
-`bunnyfetch`- A cute fetch script (Credit: Elenapan)
+`bunnyfetch`- A cute fetch script **(Credit: [Elenapan](https://github.com/elenapan/dotfiles/tree/master/bin))**
 
 `colorballs`- Prints Some balls which take colors from xrdb
 
@@ -14,11 +14,15 @@
 
 `colorpanes`- same as above but as Panes
 
+`colorpick`- Click on a pixel on your screen and print its color value in RGB **(Credit:[ym1234](https://github.com/ym1234/colorpicker))**
+
+`dunstxres`- A script to set colors to set colors to dunst from xrdb
+
 `emoji`- A bunch of emojis which I use with `rofi-emoji`
 
 `fetch.sh`- My incomplete fetch script which I never finished 
 
-`mpvctl`- A handy script to control mpv playback using socket....Depends upon openbsd-netcat  **(Credit: [mitchweaver](https://github.com/mitchweaver/bin))**
+`mpvctl`- A handy script to control mpv playback using socket....Needs openbsd-netcat  **(Credit: [mitchweaver](https://github.com/mitchweaver/bin))**
 
 `performance_mode`- Name says what it does **(Credit: [Elenapan](https://github.com/elenapan/dotfiles/tree/master/bin))**
 
@@ -32,11 +36,11 @@
 
 `rofi_mpvtube`- Displays a Rofi prompt with Youtube playlists to play from...More info inside **(Credit: [Elenapan](https://github.com/elenapan/dotfiles/tree/master/bin))**
 
-`screenshot-menu.sh`- Displays a Rofi prompt with Screenshot options
+`screenshot-menu`- Displays a Rofi prompt with Screenshot options
 
-`song-name.sh`- Displays the song currently playing using mpv **(Credit: [mitchweaver](https://github.com/mitchweaver/bin))**
+`song-name`- Displays the song currently playing using mpv **(Credit: [mitchweaver](https://github.com/mitchweaver/bin))**
 
-`term_draw.sh`- Draw a term windows anywhere on screen **(Credit: [GaugeK](https://github.com/GaugeK/quoll/blob/master/other/bin/README.md))**
+`term_draw`- Draw a term windows anywhere on screen **(Credit: [GaugeK](https://github.com/GaugeK/quoll/blob/master/other/bin/README.md))**
 
 
 `volume-control.sh`- A script to control volume

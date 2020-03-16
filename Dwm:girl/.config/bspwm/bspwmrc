@@ -7,7 +7,7 @@ pkill sxhkd
 pkill batterywarn
 sleep 0.1
 
-feh --bg-fill ~/Wallpapers/lake.png
+feh --bg-fill ~/Wallpapers/girl.png
 
 xrdb ~/xrdb/lake/lake &
 ~/bin/batterywarn &

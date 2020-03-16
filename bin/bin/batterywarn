@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/bin/sh
 
+# Set the path to Alarm/Sound
 alarm="/home/tanish2002/bin/battery.ogg"
 
 # Notify when below this percentage
@@ -9,10 +10,9 @@ warning_level=11
 check_interval=1
 
 while true; do
-  battery_level=$(cat /sys/class/power_supply/BAT1/capacity)
+  read -r battery_level < "/sys/class/power_supply/BAT1/capacity"
 
-  charging=$(cat /sys/class/power_supply/BAT1/status)
-
+  read -r charging < "/sys/class/power_supply/BAT1/status"
 
   # When battery is low, and not already charging
   if [ $battery_level -lt $warning_level ] && [ $charging = "Discharging" ]; then
