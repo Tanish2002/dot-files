@@ -16,14 +16,13 @@ cmd() {
   wal -i $HOME/Wallpapers/$opt.*
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
-  $HOME/bin/dunstxres
+ 
   sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
   bspc wm -r
   sudo pkill -USR1 st 
   stmessage tabbed
-  killall dunst
-  dunst &
-  sleep 1
+  $HOME/bin/dunstxres
+  sleep 0.5
   notify-send "Theme Changed to $opt" -i $HOME/Wallpapers/$opt.* -t 3000;
 }
 pywal() {

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+in=$(cat -)
+n="$1"
+IFS=${2:-\ }
+set -- $in
+printf '%s\n' "${!n}"
