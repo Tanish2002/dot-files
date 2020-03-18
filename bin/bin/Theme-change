@@ -10,20 +10,19 @@ cmd() {
   stow -D Bspwm:pywal
   stow -D Bspwm:forest
   stow -D Dwm:girl
-  stow -D Bspwm:*
   stow Bspwm:$opt
   stow Dwm:$opt
-  wal -i $HOME/Wallpapers/$opt.*
+  feh --bg-fill $HOME/Wallpapers/$opt.*
+  $HOME/.config/bspwm/bspwmrc
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
  
-  sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
-  bspc wm -r
+
   sudo pkill -USR1 st 
   stmessage tabbed
   $HOME/bin/dunstxres
-  sleep 0.5
   notify-send "Theme Changed to $opt" -i $HOME/Wallpapers/$opt.* -t 3000;
+  sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
 }
 pywal() {
   $HOME/bin/rofi-wal

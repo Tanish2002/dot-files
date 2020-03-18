@@ -1,65 +1,17 @@
 #!/bin/sh
-# Grab ~/.Xresources colors
-# Use like so:
-#   source xvars
-#Gitlab: https://gitlab.com/Tanish2002/
 
-#-------------------------Normal Colors-----------------------------------------------------------------------------------------------------
-XBG="$(xrdb -query | grep -m 1 background: | awk '{print $2}')"
-XFG="$(xrdb -query | grep -m 1 foreground: | awk '{print $2}')"
-X0="$(xrdb -query | grep -m 1 color0: | awk '{print $2}')"
-X1="$(xrdb -query | grep -m 1 color1: | awk '{print $2}')"
-X2="$(xrdb -query | grep -m 1 color2: | awk '{print $2}')"
-X3="$(xrdb -query | grep -m 1 color3: | awk '{print $2}')"
-X4="$(xrdb -query | grep -m 1 color4: | awk '{print $2}')"
-X5="$(xrdb -query | grep -m 1 color5: | awk '{print $2}')"
-X6="$(xrdb -query | grep -m 1 color6: | awk '{print $2}')"
-X7="$(xrdb -query | grep -m 1 color7: | awk '{print $2}')"
-X8="$(xrdb -query | grep -m 1 color8: | awk '{print $2}')"
-X9="$(xrdb -query | grep -m 1 color9: | awk '{print $2}')"
-X10="$(xrdb -query | grep -m 1 color10: | awk '{print $2}')"
-X11="$(xrdb -query | grep -m 1 color11: | awk '{print $2}')"
-X12="$(xrdb -query | grep -m 1 color12: | awk '{print $2}')"
-X13="$(xrdb -query | grep -m 1 color13: | awk '{print $2}')"
-X14="$(xrdb -query | grep -m 1 color14: | awk '{print $2}')"
-X15="$(xrdb -query | grep -m 1 color15: | awk '{print $2}')"
+hex2rgb() {
+	# format: ff2233
+	s=${1#??}
+	printf '%d %d %d' 0x${1%????} 0x${s%??} 0x${1#????}
+}
 
-#-----------------------Dark Colors-------------------------------------------------------------------------------------------------------------
-DBG="#$($HOME/bin/darken ${XBG##*#} 0.5)"
-DFG="#$($HOE/bin/darken ${XFG##*#} 0.5)"
-D0="#$($HOME/bin/darken ${X0##*#} 0.5)"
-D1="#$($HOME/bin/darken ${X1##*#} 0.5)"
-D2="#$($HOME/bin/darken ${X2##*#} 0.5)"
-D3="#$($HOME/bin/darken ${X3##*#} 0.5)"
-D4="#$($HOME/bin/darken ${X4##*#} 0.5)"
-D5="#$($HOME/bin/darken ${X5##*#} 0.5)"
-D6="#$($HOME/bin/darken ${X6##*#} 0.5)"
-D7="#$($HOME/bin/darken ${X7##*#} 0.5)"
-D8="#$($HOME/bin/darken ${X8##*#} 0.5)"
-D9="#$($HOME/bin/darken ${X9##*#} 0.5)"
-D10="#$($HOME/bin/darken ${X10##*#} 0.5)"
-D11="#$($HOME/bin/darken ${X11##*#} 0.5)"
-D12="#$($HOME/bin/darken ${X12##*#} 0.5)"
-D13="#$($HOME/bin/darken ${X13##*#} 0.5)"
-D14="#$($HOME/bin/darken ${X14##*#} 0.5)"
-D15="#$($HOME/bin/darken ${X15##*#} 0.5)"
+t=${2:-0.8}
+set -- `hex2rgb ${1}`
 
-#--------------------------Light Colors-----------------------------------------------------------------------------------------------------
-LBG="#$($HOME/bin/darken ${XBG##*#} 2)"
-LFG="#$($HOME/bin/darken ${XFG##*#} 2)"
-L0="#$($HOME/bin/darken ${X0##*#} 2)"
-L1="#$($HOME/bin/darken ${X1##*#} 2)"
-L2="#$($HOME/bin/darken ${X2##*#} 2)"
-L3="#$($HOME/bin/darken ${X3##*#} 2)"
-L4="#$($HOME/bin/darken ${X4##*#} 2)"
-L5="#$($HOME/bin/darken ${X5##*#} 2)"
-L6="#$($HOME/bin/darken ${X6##*#} 2)"
-L7="#$($HOME/bin/darken ${X7##*#} 2)"
-L8="#$($HOME/bin/darken ${X8##*#} 2)"
-L9="#$($HOME/bin/darken ${X9##*#} 2)"
-L10="#$($HOME/bin/darken ${X10##*#} 2)"
-L11="#$($HOME/bin/darken ${X11##*#} 2)"
-L12="#$($HOME/bin/darken ${X12##*#} 2)"
-L13="#$($HOME/bin/darken ${X13##*#} 2)"
-L14="#$($HOME/bin/darken ${X14##*#} 2)"
-L15="#$($HOME/bin/darken ${X15##*#} 2)"M
+for i; do
+	a=`echo "${i} * ${t}" | bc`
+	a=${a%.*}
+	[ ${a} -gt 255 ] && a=255
+	printf '%02x' ${a}
+done

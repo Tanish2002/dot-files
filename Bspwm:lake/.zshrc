@@ -131,6 +131,8 @@ alias CD="cd"
 alias ff='firefox'
 alias netprocs="lsof -P -i -n"
 alias update="sudo xbps-install -Svu"
+alias CC="cd $HOME"
+alias cc="cd .."
 # So that sudo doesnt override aliases (doesnt work with flags)
 # alias sudo='sudo '
 

@@ -12,9 +12,9 @@ feh --bg-fill ~/Wallpapers/lake.png
 xrdb ~/xrdb/lake/lake &
 ~/bin/batterywarn &
 picom --config /home/tanish2002/.config/picom/picom.conf -b &
+$HOME/.config/polybar/launch.sh 
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
-sh /home/tanish2002/.config/polybar/launch.sh &
+
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
 sxhkd &
 # wal -R -o wal-set &

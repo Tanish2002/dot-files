@@ -10,7 +10,7 @@ super + Return
 
 #Draw a Term Using mouse
 super + grave
-	 sh ~/bin/term_draw.sh
+	 $HOME/bin/term_draw
 
 #------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ super + d
 
 # rofi-wal
 super + n
-	~/bin/Theme-change
+	$HOME/bin/Theme-change
 
 #----------------------------------------------------------------------------------------------------------------------------------------
        
@@ -31,7 +31,7 @@ super + n
 
 # chromium
 super + b
-	chromium
+	firefox
 
 # dolphin
 super + alt + f
@@ -47,7 +47,7 @@ super + 0
 
 ## MPV_Playlist Menu
 super + m
-        ~/bin/rofi_mpvtube
+        $HOME/bin/rofi_mpvtube
 ## MPVCTL
 XF86AudioPlay
 	$HOME/bin/mpvctl -t
@@ -71,7 +71,7 @@ XF86MonBrightness{Up,Down}
 
 # lockscreen
 super + shift l
-	#sh ~/scripts/lock.sh
+	#sh $HOME/scripts/lock.sh
 
 # clipboard
 super + c
@@ -79,12 +79,11 @@ super + c
 
 # screenshot
 Print
-	sh ~/bin/screenshot-menu.sh
+	sh $HOME/bin/screenshot-menu.sh
 
 #Rofi-Emoji Select
 super + Delete
-	~/bin/rofi-emoji
-
+	$HOME/bin/rofi-emoji
 
 
 
@@ -97,9 +96,13 @@ super + Escape
 			                            ### BSPWM HOTKEYS
 
 
-# quit/restart bspwm
-super + shift + {Escape,r}
-	bspc {quit,wm -r}
+# quit bspwm
+super + shift + Escape
+	bspc quit
+
+# restart bspwm
+super + shift + r
+	$HOME/.config/bspwm/bspwmrc
 
 # close and kill
 super + shift + q
@@ -189,11 +192,11 @@ super + ctrl + shift + space
 
 
 # expand a window by moving one of its side outward
-super + alt + {Left,Down,Up,Right}
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {Left,Down,Up,Right}
+super + ctrl + shift + {Left,Down,Up,Right}
 	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window

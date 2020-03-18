@@ -1,3 +1,12 @@
+st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
+st.alpha: 0.9
+
+tabbed.normbgcolor: #a6a9b7
+tabbed.normfgcolor: #ffffff
+tabbed.selfgcolor:  #ecdfe1
+tabbed.selbgcolor:  #3a3343
+
+
 ! special
 *.foreground:   #ecdfe1
 *.background:   #3a3343
@@ -34,5 +43,4 @@
 ! white
 *.color7:       #f1fcf9
 *.color15:      #e0e5e5
-st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
-st.alpha: 0.9
+

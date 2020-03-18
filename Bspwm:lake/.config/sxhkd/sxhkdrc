@@ -96,9 +96,13 @@ super + Escape
 			                            ### BSPWM HOTKEYS
 
 
-# quit/restart bspwm
-super + shift + {Escape,r}
-	bspc {quit,wm -r}
+# quit bspwm
+super + shift + Escape
+	bspc quit
+
+# restart bspwm
+super + shift + r
+	$HOME/.config/bspwm/bspwmrc
 
 # close and kill
 super + shift + q
