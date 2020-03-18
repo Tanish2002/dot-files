@@ -1,17 +1,18 @@
 #!/bin/sh
+#Darken/Lighten hex value
+# credit: https://github.com/vizs
 
 hex2rgb() {
-	# format: ff2233
-	s=${1#??}
-	printf '%d %d %d' 0x${1%????} 0x${s%??} 0x${1#????}
+	s="${1#??}"
+	printf '%d %d %d' "0x${1%????}" "0x${s%??}" "0x${1#????}"
 }
 
 t=${2:-0.8}
-set -- `hex2rgb ${1}`
+set -- $(hex2rgb "$1")
 
 for i; do
-	a=`echo "${i} * ${t}" | bc`
-	a=${a%.*}
-	[ ${a} -gt 255 ] && a=255
+	a="$(echo "$i*$t" | bc)"
+	a="${a%.*}"
+	[ "$a" -gt 255 ] && a=255
 	printf '%02x' ${a}
 done

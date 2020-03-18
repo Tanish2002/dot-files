@@ -220,3 +220,5 @@ alias gameon="sudo cpufreq-set -g performance"
 
 # Ueberzug Fix for tabbed (https://github.com/seebye/ueberzug/issues/80)
 [ ! -z "$WINDOWID" ] && export UEBERZUG_USE_WINDOWID=1
+
+cd $HOME

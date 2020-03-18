@@ -296,4 +296,4 @@ bindkey "^[[1;5C" forward-word
 #export XRDM_UPDATE=N
 
 
-
+cd $HOME

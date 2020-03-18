@@ -14,9 +14,11 @@ stow -D Bspwm:forest
 stow -D Dwm:girl
 stow Bspwm:pywal
 $HOME/.config/bspwm/bspwmrc
-wal -i $HOME/Wallpapers/$chosen  -o wal-set | sleep 1 | notify-send "Theme Changed" -i $HOME/Wallpapers/$chosen -t 3000
+wal -i $HOME/Wallpapers/$chosen  -o wal-set
 xrdb -merge $HOME/xrdb/pywal/pywal
 sudo cp $HOME/Wallpapers/$chosen /boot/grub/themes/Ettery/background.png
 sleep 0.5
 sudo pkill -USR1 st
 stmessage tabbed
+notify-send "Theme Changed" -i $HOME/Wallpapers/$chosen -t 3000
+cd $HOME

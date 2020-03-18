@@ -23,6 +23,7 @@ cmd() {
   $HOME/bin/dunstxres
   notify-send "Theme Changed to $opt" -i $HOME/Wallpapers/$opt.* -t 3000;
   sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
+  cd $HOME
 }
 pywal() {
   $HOME/bin/rofi-wal

@@ -297,3 +297,5 @@ bindkey "^[[1;5C" forward-word
 
 
 [ ! -z "$WINDOWID" ] && export UEBERZUG_USE_WINDOWID=1
+
+cd $HOME
