@@ -28,7 +28,11 @@ checkdep() {
             distro=${distro##[\"\']}
 	    distro=${distro%%[\"\']}
             [ "${distro}" = "Void Linux" ] && printf "Installing all the dependencies:\n" || printf "error: Void Installation Not Found\n"
+            sudo chsh -s $(which zsh)
             sudo xbps-install -Svu zsh make libXft curl nodejs gcc make pkg-config libX11-devel libXft-devel libXinerama-devel picom polybar dunst bc rofi mpv maim youtube-dl xprop stow ranger nerd-fonts-ttf nerd-fonts-otf pywal xrdb feh git bspwm
+            sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+            curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+                    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             ;;
         [Nn]*)
             clear
@@ -84,6 +88,7 @@ suckless() {
                 git clone https://gitlab.com/Tanish2002/$answer-tanish2002
                 cd $answer-tanish2002
                 sudo make clean install
+                [ "$answer" = "dwm" ] && sudo cp dwm.desktop /usr/share/xsessions/
                 clear
                 printf "\n Next Program? [dwm ,st ,tabbed]\n"
                 printf "\n Type:'exit' when you have installed the programs you need\n"
@@ -94,7 +99,7 @@ suckless() {
                 git clone https://gitlab/Tanish2002/dwm-tanish2002
                 git clone https://gitlab/Tanish2002/st-tanish2002
                 git clone https://gitlab/Tanish2002/tabbed-tanish2002
-                cd dwm-tanish2002 && sudo make install && cd ..
+                cd dwm-tanish2002 && sudo make install && sudo cp dwm.desktop /usr/share/xsessions/ && cd .. 
                 cd st-tanish2002 && sudo make install && cd ..
                 cd tabbed-tanish2002 && sudo make install && cd ..
                 st="true" && tabbed="true"
