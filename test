@@ -1,0 +1,134 @@
+#!/bin/sh
+
+die() {
+    echo "$1" >&2
+    exit 1
+}
+
+confirm() {
+    clear
+    while true; do
+        printf "\n$* Do you want to continue [y/n]\n"
+        read -r yn
+        case $yn in
+            [Yy]*) return 0  ;;  
+            [Nn]*) printf "\nAborted\n" ; die ;;
+        esac
+    done
+}
+
+checkdep() {
+    clear
+    printf "If you are on Void Linux the script can install dependencies for you\nDo you want to install the dependencies? [y/n]\n" 
+    read -r yn
+    case $yn in
+        [Yy]*)
+            clear
+            distro=$(lsb_release -sd)
+            distro=${distro##[\"\']}
+	    distro=${distro%%[\"\']}
+            [ "${distro}" = "Void Linux" ] && printf "Installing all the dependencies:\n" || printf "error: Void Installation Not Found\n"
+            sudo xbps-install picom polybar dunst bc rofi mpv maim youtube-dl xprop stow ranger nerd-fonts-ttf nerd-fonts-otf pywal xrdb feh git bspwm
+            ;;
+        [Nn]*)
+            clear
+            printf "A file named dependencies is in the repo check it for all the dependencies.txt"
+            printf "\nHave you installed all the dependencies manually? [y/n]"
+            read -r x
+            case $x in
+                [Yy]*) return 0 ;;
+                [Nn]*) printf "Aborted\n" ; die ;;
+            esac
+            ;;
+    esac
+}
+
+settheme() {
+    xrdb -remove
+    xrdb "$HOME"/xrdb/"$1"/"$1" 
+    feh --bg-fill "$HOME"/Wallpapers/"$1".*
+    
+}
+
+stoww() {
+    cd ${pwd}
+    stow Wallpapers -t "$HOME"
+    stow xrdb -t "$HOME"
+    stow bin -t "$HOME"
+}
+
+unstow() {
+    cd ${pwd}
+    stow -D Wallpapers
+    stow -D xrdb
+    stow -D bin
+    stow -D Bspwm:lake
+    stow -D Bspwm:forest
+    stow -D Bspwm:pywal
+    stow -D Dwm:girl
+}
+
+suckless() {
+    pwd=$(pwd)
+    clear
+    printf "\n Do you want to install my Suckless Programs? [dwm, st, tabbed, All]\n"
+    printf "Type 'exit' if you don't want my Suckless Programs\n"
+    printf "\n Type the programs one at a time\n"
+    read -r answer 
+    while [ "$answer" != "exit" ]; do
+        case $answer in
+            dwm | st | tabbed)
+                [ "$answer" = "st" ] && st="true"
+                [ "$answer" = "tabbed" ] && tabbed="true"
+                cd $HOME
+                git clone https://gitlab.com/Tanish2002/$answer-tanish2002
+                cd $answer-tanish2002
+                sudo make clean install
+                clear
+                printf "\n Next Program? [dwm ,st ,tabbed]\n"
+                printf "\n Type:'exit' when you have installed the programs you need\n"
+                read -r answer 
+                ;;
+            ALL)
+                cd $HOME
+                git clone https://gitlab/Tanish2002/dwm-tanish2002
+                git clone https://gitlab/Tanish2002/st-tanish2002
+                git clone https://gitlab/Tanish2002/tabbed-tanish2002
+                cd dwm-tanish2002 && sudo make install && cd ..
+                cd st-tanish2002 && sudo make install && cd ..
+                cd tabbed-tanish2002 && sudo make install && cd ..
+                st="true" && tabbed="true"
+                ;;
+            *)
+                printf "\nI don't have suckless program with that name :)\n" 
+                printf "Do you want to retry?[y/n]" 
+                read -r yn 
+                case $yn in
+                    [Yy]*)suckless ;;
+                    [Nn]*)return 0 ;; 
+                esac
+        esac
+    done
+}
+
+livereload(){
+    [ "$tabbed" = "true" ] && $HOME/bin/stmessage tabbed
+    [ "$st" = "true" ] && pkill -USR1 st
+}
+
+
+confirm
+checkdep 
+suckless
+unstow 
+stoww 
+settheme "$1"
+case $1 in
+    lake) $(stow Bspwm:lake -t "$HOME");; 
+    forest) $(stow Bspwm:forest -t "$HOME");;
+    girl) $(stow Dwm:girl -t "$HOME");;
+    pywal) $(stow Bspwm:pywal -t "$HOME") ;;
+    *)
+        die "usage : ${0##*/} <lake|forest|girl|pywal>"
+esac
+livereload
