@@ -17,9 +17,8 @@ cmd() {
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
  
-
-  sudo pkill -USR1 st 
-  stmessage tabbed
+ 
+  $HOME/bin/stmessage st tabbed
   $HOME/bin/dunstxres
   notify-send "Theme Changed to $opt" -i $HOME/Wallpapers/$opt.* -t 3000;
   sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png

@@ -31,6 +31,7 @@ checkdep() {
             sudo chsh -s $(which zsh)
             sudo xbps-install -Svu zsh make libXft curl nodejs gcc make pkg-config libX11-devel libXft-devel libXinerama-devel picom polybar dunst bc rofi mpv maim youtube-dl xprop stow ranger nerd-fonts-ttf nerd-fonts-otf pywal xrdb feh git bspwm
             sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+            rm $HOME/.zshrc
             curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
                     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
             ;;
@@ -103,6 +104,7 @@ suckless() {
                 cd st-tanish2002 && sudo make install && cd ..
                 cd tabbed-tanish2002 && sudo make install && cd ..
                 st="true" && tabbed="true"
+                break
                 ;;
             *)
                 printf "\nI don't have suckless program with that name :)\n" 
@@ -118,22 +120,24 @@ suckless() {
 
 livereload(){
     [ "$tabbed" = "true" ] && $HOME/bin/stmessage tabbed
-    [ "$st" = "true" ] && pkill -USR1 st
+    [ "$st" = "true" ] && $HOME/bin/stmessage st
+    [ "$1" = "lake" ] || [ "$1" = "forest" ] || [ "$1" = "pywal" ] && $HOME/.config/bspwm/bspwmrc
+    [ "$1" = "girl" ] && $HOME/bin/autostart
 }
 
 
-confirm
-checkdep 
-suckless
-unstow 
-stoww 
-settheme "$1"
+
+
+
 case $1 in
-    lake) $(stow Bspwm:lake -t "$HOME");; 
-    forest) $(stow Bspwm:forest -t "$HOME");;
-    girl) $(stow Dwm:girl -t "$HOME");;
-    pywal) $(stow Bspwm:pywal -t "$HOME") ;;
+    lake) confirm && checkdep && suckless && unstow && stoww && settheme "$1" && $(stow Bspwm:lake -t "$HOME" || die);; 
+    forest) confirm && checkdep && suckless && unstow && stoww && settheme "$1" && $(stow Bspwm:forest -t "$HOME") || die;;
+    girl) confirm && checkdep && suckless && unstow && stoww && settheme "$1" && $(stow Dwm:girl -t "$HOME") ||die;;
+    pywal) confirm && checkdep && suckless && unstow && stoww && settheme && "$1" && $(stow Bspwm:pywal -t "$HOME") || die;;
     *)
         die "usage : ${0##*/} <lake|forest|girl|pywal>"
 esac
-livereload
+livereload "$1"
+sleep 1
+clear
+printf "\nDONE :)\n"
