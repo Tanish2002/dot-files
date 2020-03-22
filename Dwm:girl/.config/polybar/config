@@ -244,7 +244,7 @@ ramp-2 = 
 [module/wlan]
 type = internal/network
 
-interface = wlp0s20u2
+interface = ""
 
 interval = 5
 
@@ -262,7 +262,7 @@ label =   %mb_used%
 
 [module/network]
 type = internal/network
-interface = wlp0s20u2
+interface = ""
 label-connected =   %downspeed:1%    %upspeed:1%
 
 

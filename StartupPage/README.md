@@ -1,5 +1,7 @@
 ## A basic term-like startpage with tree structure
 
+![preview-StartupPage](../Screenshots/StartupPage.png)
+
 ### For using it in Firfox follow the following steps -:
 
 * Make a file called `enable-autoconfig.js` in `/usr/lib/firefox/browser/defaults/preferences`
@@ -22,4 +24,4 @@ aboutNewTabService = Cc["@mozilla.org/browser/aboutnewtab-service;1"].getService
 aboutNewTabService.newTabURL = "file:///<path to .html>";
 ```
 
-Remeber to change the path to where you store the HTML files
+Remember to change the path to where you store the HTML files
