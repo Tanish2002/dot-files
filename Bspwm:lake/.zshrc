@@ -134,6 +134,7 @@ alias update="sudo xbps-install -Svu"
 alias CC="cd $HOME"
 alias cc="cd .."
 alias xr="sudo xbps-remove"
+alias DD="cd $HOME/clones"
 # So that sudo doesnt override aliases (doesnt work with flags)
 # alias sudo='sudo '
 
