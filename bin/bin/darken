@@ -16,3 +16,4 @@ for i; do
 	[ "$a" -gt 255 ] && a=255
 	printf '%02x' ${a}
 done
+printf '\n'

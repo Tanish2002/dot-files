@@ -122,8 +122,8 @@ export BROWSER=firefox
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias zshconfig="gedit ~/.zshrc"
+# alias ohmyzsh="gedit ~/.oh-my-zsh"
 alias h="history"
 alias p="pwd -P"
 alias s="sudo -s"
@@ -133,6 +133,7 @@ alias netprocs="lsof -P -i -n"
 alias update="sudo xbps-install -Svu"
 alias CC="cd $HOME"
 alias cc="cd .."
+alias xr="sudo xbps-remove"
 # So that sudo doesnt override aliases (doesnt work with flags)
 # alias sudo='sudo '
 
@@ -143,8 +144,7 @@ alias init.vim="vim ~/.config/nvim/init.vim"
 # Quick edit
 alias pac="sudo pacman -S"
 alias rr="ranger"
-alias xr="vim ~/.Xresources"
-alias xrc="vim ~/.wally/Xresources-clean"
+alias xres="vim ~/.Xresources"
 alias zshrc="vim ~/.zshrc"
 alias i3config="vim ~/.config/i3/config"
 alias polyconf="vim ~/.config/polybar/config"

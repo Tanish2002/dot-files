@@ -1,6 +1,6 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
-
+export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$HOME/.emacs.d/bin:$PATH
+FORCE_UNSAFE_CONFIGURE=1
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
@@ -66,8 +66,8 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export HISTSIZE=500000
-export SAVEHIST=500000
+export HISTSIZE=999999
+export SAVEHIST=999999
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # Cursor
@@ -75,25 +75,12 @@ export SAVEHIST=500000
 #echo -e -n "\x1b[\x31 q" # changes to blinking block also
 #echo -e -n "\x1b[\x32 q" # changes to steady block
 #echo -e -n "\x1b[\x33 q" # changes to blinking underline
-echo -e -n "\x1b[\x34 q" # changes to steady underline
+#echo -e -n "\x1b[\x34 q" # changes to steady underline
 #echo -e -n "\x1b[\x35 q" # changes to blinking bar
-#echo -e -n "\x1b[\x36 q" # changes to steady bar
+echo -e -n "\x1b[\x36 q" # changes to steady bar
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Find new executables in path
 zstyle ':completion:*' rehash true
@@ -104,42 +91,6 @@ zle -N bracketed-paste bracketed-paste-magic
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
-# --- Remembering recent directories ---
-# --- NOTE: Doesn't work if you have more than one zsh session open, and attempt to cd, due to a conflict in both sessions writing to the same file. ---
-#DIRSTACKFILE="$HOME/.cache/zsh/dirs"
-#if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
-  #dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-  #[[ -d $dirstack[1] ]] && cd $dirstack[1]
-#fi
-#chpwd() {
-  #print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
-#}
-
-#DIRSTACKSIZE=20
-
-#setopt AUTO_PUSHD PUSHD_SILENT PUSHD_TO_HOME
-
-### Remove duplicate entries
-#setopt PUSHD_IGNORE_DUPS
-
-### This reverts the +/- operators.
-#setopt PUSHD_MINUS
-# --------------------------------------
-
-# Allows st to use different cursors in different vim modes (in neovim)
-#export TERM=xterm
-#export TERM=xterm-256color
-
-# Possible fix for del key not working on st
-#function zle-line-init () { echoti smkx }
-#function zle-line-finish () { echoti rmkx }
-#zle -N zle-line-init
-#zle -N zle-line-finish
-
-# Set current working directory for termite
-#if [[ $TERM == xterm-termite ]]; then
- # source /etc/profile.d/vte-2.91.sh
-#fi
 
 # Freeze and unfreeze processes (for example: stop firefox)
 stop(){
@@ -162,9 +113,7 @@ cont(){
   fi
 }
 
-export WEECHAT_HOME="~/.config/weechat"
-
-export EDITOR=vim
+export EDITOR=nvim
 export BROWSER=firefox
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -173,35 +122,29 @@ export BROWSER=firefox
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias zshconfig="gedit ~/.zshrc"
+# alias ohmyzsh="gedit ~/.oh-my-zsh"
 alias h="history"
 alias p="pwd -P"
 alias s="sudo -s"
 alias CD="cd"
-alias hc='herbstclient'
 alias ff='firefox'
-# Force tmux to use 256 colors
-# Either set this or TERM=xterm (or both if tmux keeps messing up?)
-#alias tmux="tmux -2"
-# clock
-#alias c="while sleep 1;do tput sc;tput cup 0 $(($(tput cols)-29));date;tput rc;done &; clear"
-
 alias netprocs="lsof -P -i -n"
-alias up="sudo apt update && sudo apt upgrade"
+alias update="sudo xbps-install -Svu"
+alias CC="cd $HOME"
+alias cc="cd .."
+alias xr="sudo xbps-remove"
 # So that sudo doesnt override aliases (doesnt work with flags)
 # alias sudo='sudo '
 
 # neovim
-alias vim="nvim" # not needed since i used update-alternatives
+alias vim="nvim"
 alias init.vim="vim ~/.config/nvim/init.vim"
 
 # Quick edit
 alias pac="sudo pacman -S"
 alias rr="ranger"
-alias squash="/home/tanish2002/squash/squash"
-alias xr="vim ~/.Xresources"
-alias xrc="vim ~/.wally/Xresources-clean"
+alias xres="vim ~/.Xresources"
 alias zshrc="vim ~/.zshrc"
 alias i3config="vim ~/.config/i3/config"
 alias polyconf="vim ~/.config/polybar/config"
@@ -212,23 +155,13 @@ alias stconf="vim ~/pro/xst/src/config.h"
 alias playlists="vim ~/.config/mpv/tubify_playlists"
 alias airlinevim="vim ~/.config/nvim/plugged/vim-airline/autoload/airline/themes/dark.vim"
 alias quteconf="vim ~/.config/qutebrowser/config.py"
-alias comptonconf="vim ~/.config/compton/compton.conf"
-alias rc.lua="vim ~/.config/awesome/rc.lua"
-alias theme.lua="vim ~/.config/awesome/themes/reasons/theme.lua"
-#alias awesomeconf="vim ~/.config/awesome/rc.lua"
-#alias subl="subl3"
-# Update qutebrowser
-alias quteup="(cd ~/pro/qutebrowser; git pull origin && tox -r -e mkvenv-pypi-old)"
+alias picomconf="vim ~/.config/picom/picom.conf"
+alias ls="/opt/coreutils/bin/ls"
 
-# nvidia optimus -> prime select 
-alias nvidia="sudo prime-select nvidia"
-alias intel="sudo prime-select intel"
 # cpu governor
 alias gameoff="sudo cpufreq-set -g powersave"
 alias gameon="sudo cpufreq-set -g performance"
 
-# translate-shell: brief
-alias t='trans -brief'
 
 # --- even-better-ls ---  
 # LS_COLORS=$(ls_colors_generator)
@@ -248,17 +181,7 @@ alias t='trans -brief'
 # alias vdir="run_vdir"
 # --- ---
 
-# urxvt
-#bindkey "^[Od" backward-word
-#bindkey "^[Oc" forward-word
-bindkey "^H" backward-kill-word
-#bindkey "^[[3^" kill-word
 
-# other
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-# lxterminal doesnt detect diff between backspace and ctrl + backspace
-#bindkey "^?" backward-kill-word
 
 
 # Import colorscheme from 'wal' asynchronously
@@ -287,13 +210,15 @@ bindkey "^[[1;5C" forward-word
 #[[ $- != *i* ]] && return
 #[[ -z "$TMUX" ]] && exec tmux
 
-# St Live Reload Fixes
-#export XRDM_DIR=~/.Xresource.d
+# XRDM DIRS
+# #export XRDM_DIR=~/.Xresource.d
 #export XRDM_FONT_DIR=$XRDM_DIR/fonts
 #export XRDM_COLOR_DIR=$XRDM_DIR/colors
 #export XRDM_PRESET_DIR=$XRDM_DIR/presets
 #export XRDM_PROGRAM_DIR=$XRDM_DIR/programs
 #export XRDM_UPDATE=N
 
+# Ueberzug Fix for tabbed (https://github.com/seebye/ueberzug/issues/80)
+[ ! -z "$WINDOWID" ] && export UEBERZUG_USE_WINDOWID=1
 
 cd $HOME

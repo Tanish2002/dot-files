@@ -12,7 +12,6 @@ feh --bg-fill ~/Wallpapers/lake.png
 xrdb ~/xrdb/lake/lake &
 ~/bin/batterywarn &
 picom --config /home/tanish2002/.config/picom/picom.conf -b &
-$HOME/.config/polybar/launch.sh 
 
 
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
@@ -22,6 +21,7 @@ sxhkd &
 xsetroot -cursor_name left_ptr &
 
 
+sh -c /home/tanish2002/.config/polybar/launch.sh 
 
 # Workspaces
 
