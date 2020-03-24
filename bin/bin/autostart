@@ -11,9 +11,9 @@ sleep 0.1
 
 picom --config /home/tanish2002/.config/picom/picom.conf &
 /home/tanish2002/bin/batterywarn &
-/home/tanish2002/bin/wal-set &
+/home/tanish2002/bin/dunstxres &
 dunst &
-polybar white &
+$HOME/bin/bar
 
 
 exec /usr/local/bin/dwm

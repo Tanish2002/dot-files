@@ -13,7 +13,7 @@ cmd() {
   stow Bspwm:$opt
   stow Dwm:$opt
   feh --bg-fill $HOME/Wallpapers/$opt.*
-  $HOME/.config/bspwm/bspwmrc
+  [ "${opt}" = "girl" ] && killall -q polybar || $HOME/.config/bspwm/bspwmrc
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
  

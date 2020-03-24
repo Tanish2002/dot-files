@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/sh
 #
 # http://github.com/mitchweaver/bin
 #
@@ -19,10 +19,10 @@ done <$bar_fifo &
 
 pids=$!
 
-while sleep 5 ; do
+while sleep 3 ; do
     while pgrep mpv >/dev/null && \
         : | nc -U -N /tmp/mpvsocket 2>/dev/null ;do
-        /home/tanish2002/bin/song-name.sh | skroll -n 40 -d 0.2 -r >>$song_skroll
+        $HOME/bin/song-name | skroll -n 40 -d 0.2 -r >>$song_skroll
     done
     rm $song_skroll 2>/dev/null ||:
 done &
@@ -35,11 +35,9 @@ trap 'for p in $pids ; do kill -9 $p ; done ; \
 
 # -*-*-*-*-* helper functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 get_interface() {
-    for int in em0 urtwn0 wlp0s20u1 ; do
-        if ifconfig $int 2>/dev/null | grep active >/dev/null ; then
-            echo $int
-            break
-        fi
+    for int in enp1s0 wlp0s20u1u3 wlp0s20u1 ; do
+        a=$(iwconfig $int 2>/dev/null)
+        [ "${a}" ] && echo "${int}" && break
     done
 }
 
@@ -60,15 +58,25 @@ EOF
 printf '%s' "${vpn:- None}"
 }
 
+
 get_song() {
-        song=$(/home/tanish2002/bin/song-name.sh)
-        printf '%s' "${song:+🎵 $song} /"
+    [ -f $song_skroll ] || return 1
+    while read -r line ; do
+        song=$line
+    done <$song_skroll
+    printf '🎵 %s /' "${song:-loading...}"
 }
 
 get_ssid() {
-    printf '%s' ' ' "$(iwgetid -r)"
+    int=$(get_interface)
+    case $int in
+        enp1s0) ssid='  Wired' ;;
+        wlp0s20u1|wlp0s20u1u3)
+            out=$(iwconfig "${int}" | head -n1 | cut -d '"' -f 2)
+        ssid="  ${out}"
+    esac
+    printf '%s' "${ssid:-❌ No Internet}"
 }
-
 get_link_qual() {
                  iwconfig $int | while read -r line ; do
                         read -r _ _ _ _ _ _ _ dBm _
@@ -115,8 +123,11 @@ get_bat() {
 }
 
 get_vol() {
-getvol=$(amixer sget Master | grep 'Right:' | awk -F'[][]' '{ print $2 }')
-echo '🔊 ' ${getvol}
+    speakers=$(amixer sget Master | grep '\[on\]' 2>/dev/null)
+    getvol=$(amixer sget Master)
+    getvol=${getvol%%\%*}
+    getvol=${getvol##*\[}
+    [ "${speakers}" ] && echo '🔊 ' ${getvol}% || echo '  muted' 
 
 }
 get_space() {
