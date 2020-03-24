@@ -25,3 +25,5 @@ aboutNewTabService.newTabURL = "file:///<path to .html>";
 ```
 
 Remember to change the path to where you store the HTML files
+
+Use Discord.css with stylus(extension) to enable css in discord

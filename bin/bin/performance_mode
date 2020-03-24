@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # Toggle compton
 # Requires that you have allowed cpufreq-set to run without password.
-if pgrep compton; then
-    pkill compton
+if pgrep picom; then
+    pkill picom 
     sudo cpufreq-set -g performance
     echo "ON"
 else
-    compton --config ~/.config/compton/compton.conf &
+    picom --config ~/.config/picom/picom.conf &
     sudo cpufreq-set -g powersave
     echo "OFF"
 fi
