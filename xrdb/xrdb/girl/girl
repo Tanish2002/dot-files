@@ -1,21 +1,22 @@
+/*------st-colors----------------------------------------------------*/
 st.alpha: 1
 st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
 st.cursorcolor: #FF69B4
 st.cursorshape: 6
-
-dwm.normfg: #e1dfd8
-dwm.normbg: #d5d0c2
-dwm.normborder: #9d9c97
+/*---------------------------------------dwm-colors-----------------------*/
+dwm.normfgcolor: #d5d0c2
+dwm.normbgcolor: #3a3a3a
+dwm.normbordercolor: #575757
                          
-dwm.selfg: #e1dfd8
-dwm.selbg: #A5A29A
-dwm.selborder: #e1dfd8
-
+dwm.selfgcolor: #ffffff
+dwm.selbgcolor: #747474
+dwm.selbordercolor: #3a3a3a
+/*-------------------------------------tabbed-colors----------------------*/
 tabbed.normbgcolor: #3a3a3a
 tabbed.normfgcolor: #d5d0c2
 tabbed.selfgcolor:  #3a3a3a
 tabbed.selbgcolor:  #d5d0c2
-
+/*------------------------------------girl--------------------------------*/
 ! special
 *.foreground:   #3a3a3a
 *.background:   #d5d0c2

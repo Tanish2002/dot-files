@@ -13,7 +13,7 @@ picom --config /home/tanish2002/.config/picom/picom.conf &
 /home/tanish2002/bin/batterywarn &
 /home/tanish2002/bin/dunstxres &
 dunst &
-$HOME/bin/bar
+$HOME/bin/bar &
 
 
 exec /usr/local/bin/dwm

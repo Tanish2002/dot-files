@@ -75,7 +75,7 @@ export SAVEHIST=500000
 #echo -e -n "\x1b[\x31 q" # changes to blinking block also
 #echo -e -n "\x1b[\x32 q" # changes to steady block
 #echo -e -n "\x1b[\x33 q" # changes to blinking underline
-echo -e -n "\x1b[\x34 q" # changes to steady underline
+#echo -e -n "\x1b[\x34 q" # changes to steady underline
 #echo -e -n "\x1b[\x35 q" # changes to blinking bar
 #echo -e -n "\x1b[\x36 q" # changes to steady bar
 
@@ -181,6 +181,7 @@ alias s="sudo -s"
 alias CD="cd"
 alias hc='herbstclient'
 alias ff='firefox'
+alias ls='/opt/coreutils/bin/ls'
 # Force tmux to use 256 colors
 # Either set this or TERM=xterm (or both if tmux keeps messing up?)
 #alias tmux="tmux -2"
@@ -208,27 +209,14 @@ alias polyconf="vim ~/.config/polybar/config"
 alias dunstrc="vim ~/.config/dunst/dunstrc"
 alias tint2rc="vim ~/.config/tint2/tint2rc"
 alias userChrome.css="vim ~/thm/Firefox/userChrome.css"
-alias stconf="vim ~/pro/xst/src/config.h"
-alias playlists="vim ~/.config/mpv/tubify_playlists"
-alias airlinevim="vim ~/.config/nvim/plugged/vim-airline/autoload/airline/themes/dark.vim"
-alias quteconf="vim ~/.config/qutebrowser/config.py"
-alias comptonconf="vim ~/.config/compton/compton.conf"
-alias rc.lua="vim ~/.config/awesome/rc.lua"
-alias theme.lua="vim ~/.config/awesome/themes/reasons/theme.lua"
-#alias awesomeconf="vim ~/.config/awesome/rc.lua"
-#alias subl="subl3"
-# Update qutebrowser
-alias quteup="(cd ~/pro/qutebrowser; git pull origin && tox -r -e mkvenv-pypi-old)"
+alias DD="cd $HOME/clones"
 
-# nvidia optimus -> prime select 
-alias nvidia="sudo prime-select nvidia"
-alias intel="sudo prime-select intel"
 # cpu governor
 alias gameoff="sudo cpufreq-set -g powersave"
 alias gameon="sudo cpufreq-set -g performance"
 
-# translate-shell: brief
-alias t='trans -brief'
+
+
 
 # --- even-better-ls ---  
 # LS_COLORS=$(ls_colors_generator)
