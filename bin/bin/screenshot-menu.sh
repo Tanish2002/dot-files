@@ -1,7 +1,7 @@
 #!/bin/sh
 # Opens A rofi menu with screenshot Options
 
-chosen=$(echo "fullscreen\narea\narea [clipboard]\nactive window" | rofi -dmenu -lines 4 -p "screenshot" -i)
+chosen=$(echo "fullscreen\narea\narea [clipboard]\nactive window" | rofi -dmenu -lines 4 -width 25 -p "screenshot" -i)
 
 
 case $chosen in

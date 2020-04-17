@@ -315,4 +315,4 @@ click-right = "/bin/bash $HOME/bin/mpvctl -f "
 [module/mpv]
 type = custom/script
 exec-if=pgrep -x mpv
-exec = "/bin/sh  $HOME/bin/song-name.sh "
+exec = "/bin/sh  $HOME/bin/song-name"

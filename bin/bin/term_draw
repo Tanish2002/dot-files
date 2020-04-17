@@ -28,7 +28,6 @@ case $wm in
         tabbed -d -c -r 2 st -w ''
         ;;
     dwm)
-
-    tabbed -d -c -g ${dimensions} -r 2 st -w '' -T draw
+        exec tabbed -d -c -g "${dimensions}" -n "draw" -r 2 st -w '' -T "draw" -t "draw"
         ;;
 esac

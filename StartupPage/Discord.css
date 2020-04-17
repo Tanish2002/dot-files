@@ -5,11 +5,12 @@
 @description    A new userstyle
 @author         Me
 ==/UserStyle== */
-   * {
+/*   * {
         font-family: FuraCode Nerd Font Mono;
-        font-weight: Bolder !important;
+        font-weight: Normal !important;
         font-size: 13px;
     }
+*/    
     :root {
         --background-dark-primary: #0f0f13 !important;
         --background-dark-secondary: #0f0f13 !important;

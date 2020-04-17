@@ -3,53 +3,53 @@ st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
 st.cursorcolor: #FF69B4
 st.cursorshape: 6
 
-dwm.normfg: #e1dfd8
-dwm.normbg: #d5d0c2
-dwm.normborder: #9d9c97
+dwm.normfgcolor: #f2a5b7
+dwm.normbgcolor: #090909
+dwm.normbordercolor: #22242b
                          
-dwm.selfg: #e1dfd8
-dwm.selbg: #A5A29A
-dwm.selborder: #e1dfd8
+dwm.selfgcolor: #090909
+dwm.selbgcolor: #f2a5b7
+dwm.selbordercolor: #ebd5d6
 
-tabbed.normbgcolor: #3a3a3a
-tabbed.normfgcolor: #d5d0c2
-tabbed.selfgcolor:  #3a3a3a
-tabbed.selbgcolor:  #d5d0c2
+tabbed.normbgcolor: #F2A5B7
+tabbed.normfgcolor: #090909
+tabbed.selfgcolor:  #F2A5B7
+tabbed.selbgcolor:  #090909
 
 ! special
-*.foreground:   #34302d
-*.background:   #f5e7de
-*.cursorColor:  #34302d
+*.foreground:   #f55966
+*.background:   #090909
+*.cursorColor:  #f55966
 
 ! black
-*.color0:       #666661
-*.color8:       #7f7f7a
+*.color0:       #6a6d7a
+*.color8:       #84868f
 
 ! red
-*.color1:       #992e2e
-*.color9:       #b23636
+*.color1:       #9a545a
+*.color9:       #ffa8b4
 
 ! green
-*.color2:       #4c3226
-*.color10:      #664233
+*.color2:       #2b4c4a
+*.color10:      #355957
 
 ! yellow
-*.color3:       #a67c53
-*.color11:      #bf8f60
+*.color3:       #cbc037
+*.color11:      #cbc46b
 
 ! blue
 *.color4:       #4c7399
 *.color12:      #5986b2
 
 ! magenta
-*.color5:       #bf9986
-*.color13:      #d9ae98
+*.color5:       #a369bf
+*.color13:      #b789cd
 
 ! cyan
-*.color6:       #d97742
-*.color14:      #f2854a
+*.color6:       #50feff
+*.color14:      #5aeaeb
 
 ! white
-*.color7:       #34302d
-*.color15:      #4c4742
+*.color7:       #d6c2c3
+*.color15:      #eaddde
 

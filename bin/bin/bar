@@ -35,7 +35,7 @@ trap 'for p in $pids ; do kill -9 $p ; done ; \
 
 # -*-*-*-*-* helper functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 get_interface() {
-    for int in enp1s0 wlp0s20u1u3 wlp0s20u1 ; do
+    for int in enp1s0 wlp0s29u1u3 wlp0s20u1u3 wlp0s20u1 ; do
         a=$(iwconfig $int 2>/dev/null)
         [ "${a}" ] && echo "${int}" && break
     done
@@ -69,21 +69,25 @@ get_song() {
 
 get_ssid() {
     int=$(get_interface)
+    stat=$(iwconfig $int | head -n1 | cut -d ':' -f 2)
+    [ "${stat}" = "off/any  " ] && printf "❌ Not Connected" && return 0 
     case $int in
         enp1s0) ssid='  Wired' ;;
-        wlp0s20u1|wlp0s20u1u3)
-            out=$(iwconfig "${int}" | head -n1 | cut -d '"' -f 2)
-        ssid="  ${out}"
+        wlp0s20u1|wlp0s20u1u3|wlp0s29u1u3)
+
+            out=$(iwconfig "${int}" | head -n1 | cut -d '"' -f 2) 
+            ssid="  ${out}"    
     esac
     printf '%s' "${ssid:-❌ No Internet}"
 }
 get_link_qual() {
-                 iwconfig $int | while read -r line ; do
-                        read -r _ _ _ _ _ _ _ dBm _
-                        printf ' %s%%' $(((${dBm%dBm} + 100) ))
-                        break
-            done
-        }
+    stat=$(iwconfig $int | head -n1 | cut -d ':' -f 2)
+    [ "${stat}" = "off/any  " ] && return 0
+
+    dBm=$(iwconfig $int | grep "level=" | cut -d '=' -f 3)
+    dBm=${dBm% dBm*}
+    printf ' %s%%' $(((${dBm%dBm} + 100) ))
+}
 
 get_traffic() {
 while read -r line ; do

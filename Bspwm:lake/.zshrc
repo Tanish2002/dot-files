@@ -4,6 +4,9 @@ FORCE_UNSAFE_CONFIGURE=1
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
+# GIT_SSH_COMMAND(git ssh seprate folder)
+export GIT_SSH_COMMAND="ssh -i /home/tanish2002/.config/ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -221,5 +224,6 @@ alias gameon="sudo cpufreq-set -g performance"
 
 # Ueberzug Fix for tabbed (https://github.com/seebye/ueberzug/issues/80)
 [ ! -z "$WINDOWID" ] && export UEBERZUG_USE_WINDOWID=1
+
 
 cd $HOME

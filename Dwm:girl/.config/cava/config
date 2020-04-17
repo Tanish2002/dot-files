@@ -97,14 +97,14 @@ source = auto
 # Or defined by hex code '#xxxxxx' (hex code must be within ''). User defined colors requires a
 # terminal that can change color definitions such as Gnome-terminal or rxvt.
 ; background = '#158070'
-; foreground = '#2af598'
+ foreground = '#f2a5b7'
 
 # Gradient mode, only hex defined colors are supported, background must also be defined in hex
 # or remain commented out. 1 = on, 0 = off. Warning: for certain terminal emulators cava will
 # not able to restore color definitions on exit, simply restart your terminal to restore colors.
-gradient = 1
-gradient_color_1 = '#c262d5'
-gradient_color_2 = '#cd99d7'
+;gradient = 1
+;gradient_color_1 = '#c262d5'
+;gradient_color_2 = '#cd99d7'
 
 
 
