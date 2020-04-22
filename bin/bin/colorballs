@@ -13,8 +13,8 @@ t=$'\e[0m'
 v=$'\e[7m'
 
 # Symbol
-s=
-# s=
+#s=
+s=
 
 cat << EOF
 

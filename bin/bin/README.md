@@ -38,6 +38,8 @@
 
 `screenshot-menu`- Displays a Rofi prompt with Screenshot options
 
+`shitfetch`- Displays system info
+
 `song-name`- Displays the song currently playing using mpv **(Credit: [mitchweaver](https://github.com/mitchweaver/bin))**
 
 `term_draw`- Draw a term windows anywhere on screen **(Credit: [GaugeK](https://github.com/GaugeK/quoll/blob/master/other/bin/README.md))**
