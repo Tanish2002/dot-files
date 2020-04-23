@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+## Made by Tanish2002 (https://gitlab.com/Tanish2002)
+
+## Getting OS
+for manager in xbps-query pacman-key rpm dpkg kiss yum crux bonsai guix ; do
+ if command -v "${manager}" > /dev/null; then
+  break
+ fi
+done
+
+## Window Manager
+ wm="$(xprop -id $(xprop -root -notype | grep "_NET_SUPPORTING_WM_CHECK:" | cut -d '#' -f 2) | grep "_NET_WM_NAME" | cut -d '"' -f 2)"
+## Packages
+case "${manager}" in
+   "dpkg") os="Debian" ; pkg=$(dpkg -l | wc -l) ;;
+   "rpm") os="Red Hat Linux" ; pkg=$(rpm -qa | wc -l) ;;
+   "kiss") os="Kiss Linux" ; pkg=$(kiss l | wc -l) ;;
+   "xbps-query") os="Void Linux" ; pkg=$(xbps-query -l | wc -l) ;;
+   "pacman-key") os="Arch Linux" ; pkg=$(pacman -Qq | wc -l) ;;
+   "yum") os="Fedora Linux" ; pkg=$(yum list installed | wc -l) ;;
+   "crux") os="Crux Linux" ; pkg=$(pkginfo -i | wc -l) ;;
+   "bonsai") os="Bonsai Linux" ; pkg=$(bonsai list | wc -l) ;;
+   "guix") os="GUIX System" ; pkg=$(guix package --list-installed | wc -l) ;;
+   *) os=$(source /etc/os-release) && os="${PRETTY_NAME}" ; pkg="N/A"
+esac
+case $PATH in
+  */bedrock/cross/*) os='Bedrock Linux' ; pkg="N/A"
+esac
+
+## Colors
+black="\e[30m"
+red="\e[31m"
+green="\e[32m"
+yellow="\e[33m"
+blue="\e[34m"
+magenta="\e[35m"
+cyan="\e[36m"
+white="\e[37m"
+
+## Output
+if [ "${1}" ]; then 
+	echo -e  "${green}" ; cat "${1}"
+fi
+echo -e  "${yellow}""$(id -un)"@"$(cat /etc/hostname)" 
+echo -e  "${red}"os:  "${cyan}""${os}"
+echo -e  "${red}"shell:  "${cyan}""${SHELL##*/}"
+echo -e  "${red}"wm:  "${cyan}""${wm}"
+echo -e  "${red}"pkgs:  "${cyan}"${pkg}
+echo -e "\e[41m   \e[42m   \e[43m   \e[44m   \e[45m   \e[46m   \e[47m   \e[0m"
+

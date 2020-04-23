@@ -1,0 +1,2 @@
+#!/bin/sh
+[ "${1}" ] && cat "${1}" | nc termbin.com 9999 | tee /dev/stderr | xclip -sel clip || printf 'Usage: tb <file>\n'

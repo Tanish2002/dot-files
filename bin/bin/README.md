@@ -38,7 +38,9 @@
 
 `screenshot-menu`- Displays a Rofi prompt with Screenshot options
 
-`shitfetch`- Displays system info
+`shitfetch`- Displays system info [Posix sh compliant]
+
+`shitfetch_old`- Displays system info [Written in Bash]
 
 `song-name`- Displays the song currently playing using mpv **(Credit: [mitchweaver](https://github.com/mitchweaver/bin))**
 

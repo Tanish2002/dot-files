@@ -1,0 +1,3 @@
+#!/bin/sh
+convert -size 128x128 canvas:"$1" -separate -attenuate 0.13 \
+  +noise gaussian -combine -colorspace sRGB static.png
