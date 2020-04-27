@@ -5,6 +5,7 @@
 pkill picom
 pkill sxhkd
 pkill batterywarn
+pkill greenclip
 sleep 0.1
 
 feh --bg-fill ~/Wallpapers/lake.png
@@ -13,7 +14,7 @@ xrdb ~/xrdb/lake/lake &
 ~/bin/batterywarn &
 picom --config /home/tanish2002/.config/picom/picom.conf -b &
 
-
+greenclip daemon &
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
 sxhkd &
 # wal -R -o wal-set &

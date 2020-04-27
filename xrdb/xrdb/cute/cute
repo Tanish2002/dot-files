@@ -22,7 +22,8 @@ tabbed.selbgcolor:  #090909
 *.cursorColor:  #f55966
 
 ! black
-*.color0:       #6a6d7a
+! *.color0:       #6a6d7a
+*.color0:	#090909
 *.color8:       #84868f
 
 ! red

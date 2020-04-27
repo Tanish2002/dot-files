@@ -1,0 +1,38 @@
+#!/bin/sh
+#shades of hex value
+touch /tmp/converted.txt
+
+orig="${1}"
+hex2rgb() {
+	s="${1#??}"
+	printf '%d %d %d' "0x${1%????}" "0x${s%??}" "0x${1#????}"
+}
+
+set -- $(hex2rgb "$1")
+printf 'Original-->\033[48;2;%s;%s;%sm          \033[m    #%s\n\n' "$1" "$2" "$3" "$orig"
+
+t=0.8
+for i; do
+	a="$(echo "$i*$t" | bc)"
+	a="${a%.*}"
+	[ "$a" -gt 255 ] && a=255
+	printf '%02x' ${a}
+done > /tmp/converted.txt
+read converted <"/tmp/converted.txt"
+
+set -- $(hex2rgb "$converted")
+printf 'Dark------>\033[48;2;%s;%s;%sm          \033[m    #%s\n\n' "$1" "$2" "$3" "$converted"
+
+set -- $(hex2rgb "$orig")
+t=2
+for i; do
+	a="$(echo "$i*$t" | bc)"
+	a="${a%.*}"
+	[ "$a" -gt 255 ] && a=255
+	printf '%02x' ${a}
+done > /tmp/converted.txt
+read converted <"/tmp/converted.txt"
+
+set -- $(hex2rgb "$converted")
+printf 'Light----->\033[48;2;%s;%s;%sm          \033[m    #%s\n' "$1" "$2" "$3" "$converted"
+

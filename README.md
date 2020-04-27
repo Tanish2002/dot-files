@@ -17,7 +17,7 @@
  
 * **Bar:** polybar
  
-* **Compositor:** [Sdhand's Picom](https://github.com/sdhand/compton)
+* **Compositor:** [ibhagwan's Picom](https://github.com/ibhagwan/picom)
  
 ## Previews
 

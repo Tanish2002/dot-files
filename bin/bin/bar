@@ -35,12 +35,37 @@ trap 'for p in $pids ; do kill -9 $p ; done ; \
 
 # -*-*-*-*-* helper functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
 get_interface() {
-    for int in enp1s0 wlp0s29u1u3 wlp0s20u1u3 wlp0s20u1 ; do
-        a=$(iwconfig $int 2>/dev/null)
-        [ "${a}" ] && echo "${int}" && break
-    done
+while read -r int _ ; do
+    case $int in
+        Inter*|*face)
+            # garbage
+            ;;
+        *)
+            printf '%s\n' "${int%:}"
+    esac
+done </proc/net/wireless
 }
 
+
+human() {  
+    [ "$1" ] || { read -r inp ; set -- $inp ; }
+
+    if [ $1 -gt 1073741824 ] ; then
+        res=$(( $1 * 10 / 1073741824 ))
+        pow=G
+    elif [ $1 -gt 1048576 ] ; then
+        res=$(( $1 * 10 / 1048576 ))
+        pow=M
+    elif [ $1 -gt 1024 ] ; then
+        res=$(( $1 * 10 / 1024 ))
+        pow=K
+    else
+        printf '%sB\n' ${1:-0}
+        exit
+    fi
+
+    printf "%s$pow\n" "${res%?}.${res#${res%?}}"
+}
 
 # -*-*-*-*-* modules -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*
 get_vpn() {
@@ -68,36 +93,49 @@ get_song() {
 }
 
 get_ssid() {
-    int=$(get_interface)
-    stat=$(iwconfig $int | head -n1 | cut -d ':' -f 2)
-    [ "${stat}" = "off/any  " ] && printf "❌ Not Connected" && return 0 
-    case $int in
-        enp1s0) ssid='  Wired' ;;
-        wlp0s20u1|wlp0s20u1u3|wlp0s29u1u3)
-
-            out=$(iwconfig "${int}" | head -n1 | cut -d '"' -f 2) 
-            ssid="  ${out}"    
+    case $(get_interface) in
+        eth[0-9]|enp[0-9]s[0-9][0-9])
+            essid=Wired
+            ;;
+        *)
+read _ _ _ essid <<-EOF
+$(iwconfig $(get_interface) 2>/dev/null)
+EOF
     esac
-    printf '%s' "${ssid:-❌ No Internet}"
+
+    case $essid in
+        *':off/'*)
+            ;;
+        *)
+            e=
+            ssid=${essid%\"*}
+            ssid=${ssid#*\"}
+    esac
+    printf '%s %s' "${e:-❌}  ${ssid:-No Internet}"
 }
 get_link_qual() {
-    stat=$(iwconfig $int | head -n1 | cut -d ':' -f 2)
-    [ "${stat}" = "off/any  " ] && return 0
-
-    dBm=$(iwconfig $int | grep "level=" | cut -d '=' -f 3)
-    dBm=${dBm% dBm*}
-    printf ' %s%%' $(((${dBm%dBm} + 100) ))
+iwconfig $(get_interface) 2>/dev/null | \
+while read -r line ; do
+    case $line in
+        *'Link Quality'*)
+            line=${line%/*}
+            line=${line#*=}
+            line=$((line * 100 / 70))
+            printf '%s%%' $line
+            break
+    esac
+done
 }
 
 get_traffic() {
-while read -r line ; do
-    set -- $line
-done <<EOF
-$(netstat -c 1 -w 1 -b)
-EOF
-printf ' %s  %s' \
-    "$(fmt_human $1)" \
-    "$(fmt_human $2)"
+    int=$(get_interface)
+    if [ -f "/sys/class/net/$int/statistics/rx_bytes" ] ; then
+        read rx <"/sys/class/net/$int/statistics/rx_bytes"
+        read tx <"/sys/class/net/$int/statistics/tx_bytes"
+    fi
+    printf ' %s  %s' \
+        "$(printf '%s\n' "${rx:-0}" | human )" \
+        "$(printf '%s\n' "${tx:-0}" | human )"
 }
 
 get_cpu() {
@@ -108,22 +146,30 @@ echo '💻' ${cpuload}
 
 }
 get_mem() {
+    while IFS=':k ' read -r key val _ ; do
+        case $key in
+            MemTotal|Shmem) used=$((used + val)) ;;
+            MemFree|Buffers|Cached|SReclaimable) used=$((used - val))
+        esac
+    done </proc/meminfo
 
-    ram=$(free -m | awk 'NR==2{printf "%sM", $3 }')
-    printf ' %s' "${ram}"
+    printf ' %s' "$((used / 1024))M"
 }
+
 get_bat() {
-    p=$(cat /sys/class/power_supply/BAT1/capacity)
-    case $(cat /sys/class/power_supply/BAT1/status) in
-        Full | Charging) emoji='' ;;
-        Discharging)
-              if [ $p -gt 80 ] ; then emoji=''
-            elif [ $p -gt 60 ] ; then emoji=''
-            elif [ $p -gt 35 ] ; then emoji=''
-            elif [ $p -gt 10 ] ; then emoji=''
-                                 else emoji=''; fi
+    read p </sys/class/power_supply/BAT1/capacity
+    read s </sys/class/power_supply/ACAD/online
+    case $s in
+        1) e='' ;;
+        0) case ${p%?} in
+               [8-9]|10) e='' ;;
+               [6-7]) e='' ;;
+               [3-5]) e='' ;;
+               [1-2]) e='' ;;
+                   *) e=''
+           esac
     esac
-    printf "%s  %s%%" "$emoji" "$p"
+    printf "$e  %s%%" $p
 }
 
 get_vol() {
@@ -149,15 +195,16 @@ get_space() {
 
 main() {
     while sleep 1 ; do
-        printf '%s %s / %s / %s / %s / %s / %s  / %s\n' \
-            "$(get_song)" \
-            "$(get_ssid)$(get_link_qual)" \
-            "$(get_cpu)" \
-            "$(get_mem)" \
-            "$(get_space)" \
-            "$(get_bat)" \
-            "$(get_vol)" \
-            "$(date "+%a %I:%M %p") "
+    printf '%s %s / %s / %s / %s / %s / %s / %s / %s\n' \
+        "$(get_song)" \
+        "$(get_ssid)$(get_link_qual)" \
+        "$(get_traffic)" \
+        "$(get_cpu)" \
+        "$(get_mem)" \
+        "$(get_space)" \
+        "$(get_bat)" \
+        "$(get_vol)" \
+        "$(date "+%a %d %I:%M %p") "
     done >$bar_fifo
 }
 

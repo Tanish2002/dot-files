@@ -79,8 +79,8 @@ export SAVEHIST=999999
 #echo -e -n "\x1b[\x32 q" # changes to steady block
 #echo -e -n "\x1b[\x33 q" # changes to blinking underline
 #echo -e -n "\x1b[\x34 q" # changes to steady underline
-#echo -e -n "\x1b[\x35 q" # changes to blinking bar
-echo -e -n "\x1b[\x36 q" # changes to steady bar
+echo -e -n "\x1b[\x35 q" # changes to blinking bar
+#echo -e -n "\x1b[\x36 q" # changes to steady bar
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8

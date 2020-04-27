@@ -13,7 +13,7 @@ set -- $(hex2rgb "$1")
 for i; do
 	a="$(echo "$i*$t" | bc)"
 	a="${a%.*}"
-	[ "$a" -gt 255 ] && a=255
+	[ "$a" -gt 55 ] && a=255
 	printf '%02x' ${a}
 done
 printf '\n'

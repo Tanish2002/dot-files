@@ -1,7 +1,9 @@
 st.alpha: 1
-st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
+st.font: FuraCode Nerd Font:pixelsize=15:style=Bold
+! st.font: FuraCode Nerd Font Mono:pixelsize=15:style=Regular
 st.cursorcolor: #FF69B4
 st.cursorshape: 6
+
 
 tabbed.normbgcolor: #202026
 tabbed.normfgcolor: #a6a9b7
