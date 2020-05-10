@@ -1,6 +1,18 @@
 #!/bin/sh
-opt="$(echo "Poweroff \nReboot \nLogout " | rofi -dmenu)"
+opt="$(echo "Poweroff \nReboot \nLogout " | rofi -dmenu -width 22 -lines 4 -i -p "Power Menu ❯")"
+echo $opt
 case $opt in
-    h*|p*|r*|s*) systemctl $opt;;
-    lock) lock;;
+    "Logout ")
+        bspc quit || dwmc quit 
+        ;;
+    "Reboot ")
+        sudo reboot
+        ;;
+    "Poweroff ")
+        sudo shutdown -P now
+        ;;
+    "*")
+        echo none
+        ;;
 esac
+

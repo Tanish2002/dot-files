@@ -18,10 +18,14 @@ pref("general.config.filename", "autoconfig.cfg");
   and add this to it:-
 
 ```
-// set new tab page
 var {classes:Cc,interfaces:Ci,utils:Cu} = Components;
-aboutNewTabService = Cc["@mozilla.org/browser/aboutnewtab-service;1"].getService(Ci.nsIAboutNewTabService);
-aboutNewTabService.newTabURL = "file:///<path to .html>";
+
+/* set new tab page */
+try {
+  Cu.import("resource:///modules/AboutNewTab.jsm");
+  var newTabURL = "file://<path to html file>";
+  AboutNewTab.newTabURL = newTabURL;
+} catch(e){Cu.reportError(e);} // report errors in the Browser Console
 ```
 
 Remember to change the path to where you store the HTML files

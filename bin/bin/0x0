@@ -2,3 +2,7 @@
 [ -f "${1}" ] && op=cat
 ${op:-echo} "${1:-`cat -`}" | curl -s -F file='@-' 'http://0x0.st' | tee /dev/stderr | xclip -sel clip
 
+#[ -f "$1" ] && op="cat"
+#var="$(${op:-echo} "${@:-$(cat -)}" | curl -s -F file='@-' 'http://0x0.st')"
+#echo "$var"
+#printf "%s" "$var" | xclip -sel clip

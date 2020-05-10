@@ -1,6 +1,6 @@
 st.alpha: 1
 st.font: FuraCode Nerd Font:pixelsize=15:style=Bold
-! st.font: FuraCode Nerd Font Mono:pixelsize=15:style=Regular
+! st.font: Hack Nerd Font:pixelsize=15:style=Bold
 st.cursorcolor: #FF69B4
 st.cursorshape: 6
 
@@ -46,4 +46,5 @@ tabbed.selbgcolor:  #0f0f13
 ! white
 *.color7:       #b4c1ce
 *.color15:      #c5c8c6
+
 

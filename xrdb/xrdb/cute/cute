@@ -1,5 +1,6 @@
 st.alpha: 1
-st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
+! st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
+st.font: VictorMono Nerd Font Mono:pixelsize=15:style=SemiBold
 st.cursorcolor: #FF69B4
 st.cursorshape: 6
 
@@ -18,7 +19,8 @@ tabbed.selbgcolor:  #090909
 
 ! special
 *.foreground:   #f55966
-*.background:   #090909
+ *.background:   #090909
+! *.background:   #FFFBFC
 *.cursorColor:  #f55966
 
 ! black

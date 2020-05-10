@@ -1,0 +1,6 @@
+#!/bin/sh
+[ -z "${1}" ] && echo "Usage: moe <file>" || localFile="${1}"
+uploadResult="$(curl -H "token: 8Ygnr3EeH1bFAb0E0cVAudfwpDTS2m7IG3ADPiv4LJMvG4I2665CqVtQAXbtpdNv" -sf -F files[]="@${localFile}" "https://safe.fiery.me/api/upload")"
+uploadResult="$(echo "${uploadResult}" | grep -Po '"url":"[A-Za-z0-9]+.*?"' | sed 's/"url":"//;s/"//')"
+echo "${uploadResult}" | xclip -sel clip
+echo "${uploadResult}"

@@ -262,7 +262,7 @@ label =   %mb_used%
 
 [module/network]
 type = internal/network
-interface = ""
+interface = "wlp0s20u"
 label-connected =   %downspeed:1%    %upspeed:1%
 
 

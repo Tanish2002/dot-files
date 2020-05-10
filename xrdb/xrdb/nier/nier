@@ -1,0 +1,46 @@
+st.alpha: 0.85
+st.font: FuraCode Nerd Font:pixelsize=15:style=Retina,Regular
+
+
+tabbed.normbgcolor: #A199A4
+tabbed.normfgcolor: #282B31
+tabbed.selfgcolor:  #A199A4
+tabbed.selbgcolor:  #282B31
+
+! special
+*.foreground:   #c8c8d0
+*.background:   #0c1016
+*.cursorColor:  #c8c8d0
+
+! black
+*.color0:       #0c1016
+*.color8:       #101316
+
+! red
+*.color1:       #fb543f
+*.color9:       #ed6554
+
+! green
+*.color2:       #95c085
+*.color10:      #b1cfa5
+
+! yellow
+*.color3:       #fac03b
+*.color11:      #f2ca71
+
+! blue
+*.color4:       #0d6678
+*.color12:      #377886
+
+! magenta
+*.color5:       #8f4673
+*.color13:      #9f5b85
+
+! cyan
+*.color6:       #8ba59b
+*.color14:      #95b1a6
+
+! white
+*.color7:       #cfc7bd
+*.color15:      #c7b69d
+
