@@ -9,7 +9,6 @@ die() {
 
 opt="$(echo "tea\nlake\nforest\ngirl\nnier\nsolid\npywal" | rofi -dmenu -width 25 -lines 7 -i -p "Select Theme " | tr -d '\n')"
 bspwm_cmd() {
-  bspc help >/dev/null 2>&1 || die "Not Using Bspwm" 
   cd $HOME/dot-files/
   stow -D Bspwm_tea
   stow -D Bspwm_lake

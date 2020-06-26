@@ -1,5 +1,4 @@
 # My Mostly Stolen Dots
-
 ## Details
 
 
@@ -22,7 +21,7 @@
 ## Previews
 
 ## i3-gaps: Mountains
-![preview-i3](Screenshots/i3:Mountains.png)
+![preview-i3](Screenshots/i3_Mountains.png)
 ### Info
 ##### Color Scheme is pretty much Fixed
 ##### What's on Screen: Polybar, feh, ufetch, cava
@@ -30,45 +29,60 @@ Credit: [Vista1nik](https://github.com/Vista1nik/i3-mountains)
 
 
 ## Bspwm: Pywal
-![preview-Bspwm](Screenshots/bspwm:Pywal2.png)
-![preview-Bspwm](Screenshots/bspwm:Pywal1.png)
-![preview-Bspwm](Screenshots/bspwm:Pywal3.png)
+![preview-Bspwm](Screenshots/bspwm_Pywal2.png)
+![preview-Bspwm](Screenshots/bspwm_Pywal1.png)
+![preview-Bspwm](Screenshots/bspwm_Pywal3.png)
 ### Info
 ##### Color Scheme is Changable Using Pywal, Most of The wallpapers in my [Wallpapers](https://gitlab.com/Tanish2002/dot-files/-/tree/master/Wallpapers%2FWallpapers) Folder <br />
 ##### What's on Screen: Polybar, pfetch
 Credit: Me :) 
 
 ## Bspwm: Tea
-![preview-Bspwm](Screenshots/bspwm:Tea.png)
+![preview-Bspwm](Screenshots/bspwm_Tea.png)
 ### Info
 ##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar, pfetch
 Credit: Me again :) 
 
 ## Bspwm: Lake
-![preview-Bspwm1](Screenshots/bspwm:Lake1.png)
-![preview-Bspwm2](Screenshots/bspwm:Lake2.png)
+![preview-Bspwm1](Screenshots/bspwm_Lake1.png)
+![preview-Bspwm2](Screenshots/bspwm_Lake2.png)
 ### Info
 ##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar, pfetch, neovim, Ranger
 Credit: Meeeee 
 
 ## Bspwm: Forest
-![preview-Bspwm1](Screenshots/bspwm:Forest1.png)
-![preview-Bspwm2](Screenshots/bspwm:Forest2.png)
+![preview-Bspwm1](Screenshots/bspwm_Forest1.png)
+![preview-Bspwm2](Screenshots/bspwm_Forest2.png)
 ### Info
 ##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar, pfetch, colorpanes script
 Credit: ME   //I don't Steal Now a days 
 
 ## Dwm: Girl
-![preview-Dwm1](Screenshots/dwm:Girl1.png)
-![preview-Bspwm2](Screenshots/dwm:Girl2.png)
+![preview-Dwm1](Screenshots/dwm_Girl1.png)
+![preview-Dwm2](Screenshots/dwm_Girl2.png)
 ### Info
 ##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
 ##### What's on Screen: Polybar(coz Dwm Bar ugly), pfetch
-Credit: ME  
+Credit: ME 
 
+## Bspwm: Nier
+![preview-Bspwm1](Screenshots/bspwm_Nier1.png)
+![preview-Bspwm2](Screenshots/bspwm_Nier2.png)
+### Info
+##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
+##### What's on Screen: Polybar, neovim, [balls](bin/bin/balls), feh
+Credit: ME 
+
+## Dwm: Solid
+![preview-Dwm1](Screenshots/dwm_Solid1.png)
+![preview-Dwm2](Screenshots/dwm_Solid2.png)
+### Info
+##### Color Scheme is Made by [me](https://gitlab.com/Tanish2002/dot-files/-/tree/master/xrdb%2Fxrdb)
+##### What's on Screen: Dwm Bar, [shitfetch](bin/bin/shitfetch)
+Credit: ME 
 
 ## Installation
 
