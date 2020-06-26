@@ -1,0 +1,148 @@
+#!/bin/sh
+#
+#
+#
+
+# -*-*-*-*-*-* init -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+song_skroll=${XDG_CACHE_HOME:-~/.cache}/song_skroll
+
+rm $song_skroll >/dev/null 2>&1 ||:
+
+
+# -*-*-*-*-*-* daemons *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+pids=$!
+
+while sleep 3 ; do
+    while pgrep mpv >/dev/null && \
+        : | nc -U -N /tmp/mpvsocket 2>/dev/null ;do
+        $HOME/bin/song-name | skroll -n 40 -d 0.2 -r >>$song_skroll
+    done
+    rm $song_skroll 2>/dev/null ||:
+done &
+
+pids="$pids $!"
+
+trap 'for p in $pids ; do kill -9 $p ; done ; \
+    rm $bar_fifo $song_skroll 2>/dev/null ; xsetroot -name killed' \
+    INT TERM QUIT KILL EXIT
+
+# -*-*-*-*-* helper functions -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+get_interface() {
+while read -r int _ ; do
+    case $int in
+        Inter*|*face)
+            # garbage
+            ;;
+        *)
+            printf '%s\n' "${int%:}"
+    esac
+done </proc/net/wireless
+}
+
+
+human() {  
+    [ "$1" ] || { read -r inp ; set -- $inp ; }
+
+    if [ $1 -gt 1073741824 ] ; then
+        res=$(( $1 * 10 / 1073741824 ))
+        pow=G
+    elif [ $1 -gt 1048576 ] ; then
+        res=$(( $1 * 10 / 1048576 ))
+        pow=M
+    elif [ $1 -gt 1024 ] ; then
+        res=$(( $1 * 10 / 1024 ))
+        pow=K
+    else
+        printf '%sB\n' ${1:-0}
+        exit
+    fi
+
+    printf "%s$pow\n" "${res%?}.${res#${res%?}}"
+}
+
+# -*-*-*-*-* modules -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*--*-*-*
+
+get_song() {
+    [ -f $song_skroll ] || return 1
+    while read -r line ; do
+        song=$line
+    done <$song_skroll
+    printf '🎵 %s |' "${song:-loading...}"
+}
+
+get_ssid() {
+    case $(get_interface) in
+        eth[0-9]|enp[0-9]s[0-9][0-9])
+            essid=Wired
+            ;;
+        *)
+read _ _ _ essid <<-EOF
+$(iwconfig $(get_interface) 2>/dev/null)
+EOF
+    esac
+
+    case $essid in
+        *':off/'*)
+            ;;
+        *)
+            e=
+            ssid=${essid%\"*}
+            ssid=${ssid#*\"}
+    esac
+    printf '%s %s' "${e:-❌}  ${ssid:-No Internet}"
+}
+get_link_qual() {
+iwconfig $(get_interface) 2>/dev/null | \
+while read -r line ; do
+    case $line in
+        *'Link Quality'*)
+            line=${line%/*}
+            line=${line#*=}
+            line=$((line * 100 / 70))
+            printf '%s%%' $line
+            break
+    esac
+done
+}
+
+get_bat() {
+    read p </sys/class/power_supply/BAT1/capacity
+    read s </sys/class/power_supply/ACAD/online
+    case $s in
+        1) e='' ;;
+        0) case ${p%?} in
+               [8-9]|10) e='' ;;
+               [6-7]) e='' ;;
+               [3-5]) e='' ;;
+               [1-2]) e='' ;;
+                   *) e=''
+           esac
+    esac
+    printf "$e  %s%%" $p
+}
+
+get_vol() {
+    speakers=$(amixer sget Master | grep '\[on\]' 2>/dev/null)
+    getvol=$(amixer sget Master)
+    getvol=${getvol%%\%*}
+    getvol=${getvol##*\[}
+    [ "${speakers}" ] && echo '🔊 ' ${getvol}% || echo '  muted' 
+
+}
+
+# -*-*-*-*-*-* main *-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+main() {
+    
+    printf '%s %s | %s | %s | %s %s\n' \
+        "$(get_song)" \
+        "$(get_ssid)$(get_link_qual)" \
+        "$(get_bat)" \
+        "$(get_vol)" \
+        "$(date "+%I:%M %p") "
+   
+}
+
+main

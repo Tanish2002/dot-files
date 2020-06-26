@@ -2,18 +2,17 @@ pkill picom
 pkill polybar 
 pkill batterywarn 
 pkill dunst
-pkill bar
-xrdb -remove &
-xrdb /home/tanish2002/xrdb/girl/girl &
-feh --bg-fill /home/tanish2002/Wallpapers/girl.png &
-
+pkill bar_small
+feh --bg-fill ~/Wallpapers/solid.png
 sleep 0.1
 
+xrdb -remove
+xrdb $HOME/xrdb/solid/solid
 picom --config /home/tanish2002/.config/picom/picom.conf &
 /home/tanish2002/bin/batterywarn &
 /home/tanish2002/bin/dunstxres &
 dunst &
-$HOME/bin/bar &
+$HOME/bin/bar_small &
 pkill -USR1 dwm
 
 exec /usr/local/bin/dwm

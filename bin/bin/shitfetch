@@ -37,7 +37,22 @@ get_packages() {
 }
 ## Window Manager
 get_wm() {
-  wm="$(xprop -id $(xprop -root -notype | grep "_NET_SUPPORTING_WM_CHECK:" | cut -d '#' -f 2) | grep "_NET_WM_NAME" | cut -d '"' -f 2)"
+  wm="$(xprop -id $(xprop -root -notype | grep "_NET_SUPPORTING_WM_CHECK:" | cut -d '#' -f 2) | grep "_NET_WM_NAME" | cut -d '"' -f 2 >/dev/null)"
+  [ "$wm" ] || while read -r ps_line; do
+                        case $ps_line in
+                            *catwm*)     wm=catwm ;;
+                            *fvwm*)      wm=fvwm ;;
+                            *dwm*)       wm=dwm ;;
+                            *2bwm*)      wm=2bwm ;;
+                            *monsterwm*) wm=monsterwm ;;
+                            *wmaker*)    wm='Window Maker' ;;
+                            *sowm*)      wm=sowm ;;
+                            *xmonad*)    wm=xmonad ;;
+                        esac
+                    done <<-EOF
+                        $(ps x)
+					EOF
+
 }
 
 get_shell() {

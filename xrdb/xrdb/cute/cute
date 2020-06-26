@@ -1,6 +1,6 @@
 st.alpha: 1
 ! st.font: FuraMono Nerd Font Mono:pixelsize=15:style=Bold
-st.font: VictorMono Nerd Font Mono:pixelsize=15:style=SemiBold
+st.font: VictorMono Nerd Font Mono:pixelsize=15:style=Regular
 st.cursorcolor: #FF69B4
 st.cursorshape: 6
 

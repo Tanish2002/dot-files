@@ -2,19 +2,26 @@
 
 #Theme Changing script Don't use this if you don't know what it is doing
 #You need to disable password prompt at sudo for this script to work
-opt="$(echo "tea\nlake\nforest\ngirl\nnier\npywal" | rofi -dmenu -width 25 -lines 6 -i -p "Select Theme ")"
-cmd() {
+die() {
+    notify-send "$1" >&2 -t 3000
+    exit 1
+}
+
+opt="$(echo "tea\nlake\nforest\ngirl\nnier\nsolid\npywal" | rofi -dmenu -width 25 -lines 7 -i -p "Select Theme " | tr -d '\n')"
+bspwm_cmd() {
+  bspc help >/dev/null 2>&1 || die "Not Using Bspwm" 
   cd $HOME/dot-files/
-  stow -D Bspwm:tea
-  stow -D Bspwm:lake
-  stow -D Bspwm:pywal
-  stow -D Bspwm:forest
-  stow -D Dwm:girl
-  stow -D Bspwm:nier
-  stow Bspwm:$opt
-  stow Dwm:$opt
+  stow -D Bspwm_tea
+  stow -D Bspwm_lake
+  stow -D Bspwm_pywal
+  stow -D Bspwm_forest
+  stow -D Bspwm_nier
+  stow -D Dwm_girl
+  stow -D Dwm_solid
+  stow Bspwm_$opt
+  stow Dwm_$opt
   feh --bg-fill $HOME/Wallpapers/$opt.*
-  [ "${opt}" = "girl" ] && killall -q polybar || $HOME/.config/bspwm/bspwmrc
+  $HOME/.config/bspwm/bspwmrc
   xrdb -remove
   xrdb $HOME/xrdb/$opt/$opt
  
@@ -25,14 +32,56 @@ cmd() {
   sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
   cd $HOME
 }
+
+dwm_cmd() {
+  cd $HOME/dot-files/
+  stow -D Bspwm_tea
+  stow -D Bspwm_lake
+  stow -D Bspwm_pywal
+  stow -D Bspwm_forest
+  stow -D Bspwm_nier
+  stow -D Dwm_girl
+  stow -D Dwm_solid 
+  stow Dwm_$opt
+  feh --bg-fill $HOME/Wallpapers/$opt.*
+  killall -q polybar
+  xrdb -remove
+  xrdb $HOME/xrdb/$opt/$opt
+ 
+ 
+  $HOME/bin/stmessage st tabbed
+  $HOME/bin/dunstxres
+  killall -USR1 dwm
+  killall picom  
+  killall polybar 
+  killall batterywarn 
+  killall dunst
+  killall bar_small ; killall bar
+  
+  picom --config /home/tanish2002/.config/picom/picom.conf &
+  /home/tanish2002/bin/batterywarn &
+  /home/tanish2002/bin/dunstxres &
+  dunst &
+  if [ "$opt" = "solid" ];then
+    $HOME/bin/bar_small &
+  else
+    $HOME/bin/bar &
+  fi
+
+  notify-send "Theme Changed to $opt" -i $HOME/Wallpapers/$opt.* -t 3000;
+  sudo cp $HOME/Wallpapers/$opt.* /boot/grub/themes/Ettery/background.png
+  cd $HOME
+
+}
 pywal() {
   $HOME/bin/rofi-wal
 }
 case $opt in
-  tea) cmd ;;
-  lake) cmd ;;
+  tea) bspwm_cmd ;;
+  lake) bspwm_cmd ;;
   pywal) pywal ;;
-  forest) cmd ;;
-  girl) cmd ;;
-  nier) cmd ;;
+  forest) bspwm_cmd ;;
+  girl) dwm_cmd ;;
+  solid) dwm_cmd ;;
+  nier) bspwm_cmd ;;
 esac

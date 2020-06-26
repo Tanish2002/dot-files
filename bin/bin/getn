@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/bin/sh
+
+# $1 is which number you want
+# $2 is delimeter (defaults to space)
 
 in=$(cat -)
 n="$1"
-IFS=${2:-\ }
+IFS="${2:- }"
 set -- $in
-printf '%s\n' "${!n}"
+eval "s=$"${n}
+printf '%s\n' ${s}

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+#Mount a disk
+ 
+disk=$(ls -l /dev/disk/by-label | tail -n +2 | cut -d ' ' -f 10- | rofi -dmenu -p "Mount") || exit 1
+disk=$(echo ${disk##*/})
+
+mkdir -p $HOME/mnt/$disk
+sudo mount "/dev/$disk" "$HOME/mnt/$disk" && echo "Mounted the Disk on $HOME/mnt/$disk"

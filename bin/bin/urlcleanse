@@ -1,0 +1,34 @@
+#!/bin/sed -f
+#
+# http://github.com/mitchweaver/bin
+#
+# convert / chop-up urls before sending them along to other programs
+#
+
+# force https
+s/http:/https:/g
+
+# remove www. to make ps look cleaner
+s/www\.//g
+
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+# youtube.com -> invidio.us
+#######s/youtube\.com/invidio\.us/g
+# youtu.be/AAAAAA -> invidio.us/watch?v=AAAAAA
+########s/youtu\.be\//invidio\.us\/watch?v=/g
+
+# invidio has been having downtime lately, use hooktube for now
+s/youtube\.com/hootube\.com/g
+s/youtu\.be\//hooktube\.com\/watch?v=/g
+s/invidio\.us/hooktube\.com/g
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+# twitter.com -> nitter.net
+s/twitter\.com/nitter\.net/g
+
+# instagram.com -> bibliogram.art
+s/instagram\.com/bibliogram\.art/g
+
+# force use of old reddit
+s/\/\/reddit/\/\/old\.reddit/g
+

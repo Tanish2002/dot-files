@@ -868,6 +868,7 @@ get_wm() {
                             *monsterwm*) wm=monsterwm ;;
                             *wmaker*)    wm='Window Maker' ;;
                             *sowm*)      wm=sowm ;;
+                            *xmonad*)      wm=xmonad ;;
                         esac
                     done <<-EOF
                         $(ps x)

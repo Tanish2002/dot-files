@@ -3,7 +3,7 @@ opt="$(echo "Poweroff \nReboot \nLogout " | rofi -dmenu -width 22 -line
 echo $opt
 case $opt in
     "Logout ")
-        bspc quit || dwmc quit 
+        bspc quit 2>/dev/null || killall -TERM dwm 2>/dev/null
         ;;
     "Reboot ")
         sudo reboot

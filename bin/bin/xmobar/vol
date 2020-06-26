@@ -1,0 +1,11 @@
+get_vol() {
+    speakers=$(amixer sget Master | grep '\[on\]' 2>/dev/null)
+    getvol=$(amixer sget Master)
+    getvol=${getvol%%\%*}
+    getvol=${getvol##*\[}
+    [ "${speakers}" ] && echo '🔊 ' ${getvol}% || echo '  muted' 
+
+}
+printf '%s' "$(get_vol)"
+
+

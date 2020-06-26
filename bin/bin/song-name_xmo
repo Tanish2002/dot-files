@@ -1,0 +1,24 @@
+#!/bin/sh
+song_skroll=${XDG_CACHE_HOME:-~/.cache}/song_skroll
+
+rm $bar_fifo $song_skroll 2>/dev/null ||:
+
+
+while sleep 3 ; do
+    while pgrep mpv >/dev/null && \
+        : | nc -U -N /tmp/mpvsocket 2>/dev/null ;do
+        $HOME/bin/song-name | skroll -n 40 -d 0.2 -r >>$song_skroll
+    done
+    rm $song_skroll 2>/dev/null ||:
+done &
+
+get_song() {
+    [ -f $song_skroll ] || return 1
+    while read -r line ; do
+        song=$line
+    done <$song_skroll
+    printf '🎵 %s |' "${song:-loading...}"
+}
+
+printf '%s' "$(get_song)"
+

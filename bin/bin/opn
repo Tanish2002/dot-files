@@ -1,0 +1,223 @@
+#!/bin/sh
+#
+# http://github.com/mitchweaver/bin
+#
+# yet another plumber script
+#
+# -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-
+
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+# Functions
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+case ${1#-} in
+    m)
+        # if given '-m', we are playing as music
+        MPV_OPTS="$MPV_OPTS --no-video"
+        shift
+esac
+
+parse() {
+    while [ "$1" ] ; do
+        case ${1#-} in
+            c)
+                # -c flag to grab input from clipboard
+                arg=$(clip -o)
+                ;;
+            *)
+                arg=$*
+                break
+        esac
+        shift
+    done
+
+    [ "$arg" ] || exit 1
+
+    # output the argument,
+    # first running it through a url cleanser, (also in my ~/bin)
+    # then trimming any leading/trailing whitespace
+    printf '%s\n' "$arg" | urlcleanse | trim
+}
+
+# trim leading/trailing space from input
+trim() { awk '{$1=$1};1' ; }
+
+isfile() {
+    case ${1##*.} in
+        mp4webm|gif|mkv|avi)  isvideo "$1"  ;;
+        jpg|png|jpeg|JPG|JPEG) isimage "$1"  ;;
+        mp3|flac|ogg|opus|wav) ismusic "$1"  ;;
+        pdf|epub)              exec pdf "$1" ;;
+        docx|xlsx|rtf|odt|ods) exec libreoffice "$1" ;;
+        xcf)                   exec gimp "$1" ;;
+        xoj)                   exec xournal "$1" ;;
+        pcap)                  exec wireshark "$1"   ;;
+        *)
+            case $(file "$1") in
+                *ASCII*) edit "$1"
+            esac
+    esac
+}
+
+isdir() {
+    if command -v exa >/dev/null ; then
+        exa -F --group-directories-first "$1"
+    else
+        ls -F "$1"
+    fi
+}
+
+isurl() {
+    # if it is a remote file, handle it via extension
+    case ${1##*.} in
+        zip|gz|bz2|xz|tgz|tar|rar|7z|pdf|epub) download "$1" ;;
+        mp4|webm|gif|mkv|avi)                  isvideo "$1"  ;;
+        mp3|flac|wav|ogg|opus|aac)             ismusic "$1"  ;;
+        jpg|png|jpeg|JPG|JPEG)                 isimage "$1"
+    esac
+
+    case $1 in
+        *tube*|*tu.be*|*invidio*|*vimeo*|*v.redd*|*hub.*)
+            isvideo "$1"
+            ;;
+        *bandcamp*|*soundcloud*)
+            ismusic "$1"
+            ;;
+        *i.redd*|*i.img*)
+            isimage "$1"
+            ;;
+        'ftp://'*)
+            download "$1"
+            ;;
+        *)
+            # exhausted all checks, it must just be a
+            # a web page to be viewed in a browser
+            exec firefox --new-instance "$1"
+    esac
+}
+
+edit() {
+    case $TERM in
+        linux)
+            # if not called from a terminal, open one to edit
+            st -e "$EDITOR" "$@"
+            ;;
+        *)
+            # if attached to a terminal, just open the editor
+            $EDITOR "$@"
+    esac
+}
+
+# shellcheck disable=SC2086
+# mpv errors if its options are one string
+isvideo()  { exec mpv $MPV_OPTS -- "$1" ; }
+ismusic()  { exec play "$1"             ; }
+# isimage()  { exec sxiv -a -N sxiv -p -q -r -s d "$@" ; } # -b
+isimage()  { exec mpvimg "$1"           ; }
+download() { exec dl "$1"               ; }
+
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+# End Functions
+# -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*
+
+# obey '--' to end argument listing
+case $1 in --) shift ; esac
+
+# if no args provided, try to read from pipe
+[ "$1" ] ||
+while read -r inp ; do
+    set -- "$@" "$inp"
+done
+
+arg=$(parse "$@")
+
+if [ -f "$arg" ] ; then
+    isfile "$arg"
+elif [ -d "$arg" ] ; then
+    isdir "$arg"
+else
+    case $arg in
+        http://*|https://*|ftp://*|*.com|*.org|*.net)
+            isurl "$arg"
+            ;;
+        # youtube, but shorthand to indicate only play audio
+        *'m:watch?v='*)
+            ismusic https://youtube.com/"${arg#m:}"
+            ;;
+        # youtube video
+        *'watch?v='*)
+            isvideo https://youtube.com/"$arg"
+            ;;
+        # wikipedia
+        *'wiki/'*)
+            exec firefox --new-instance "https://en.wikipedia.org/$arg"
+            ;;
+        # subreddit
+        'r '*|/r/*|r/*)
+            arg=${arg#'r '}
+            arg=${arg#r/}
+            arg=${arg#/r/}
+            exec firefox --new-instance "https://old.reddit.com/r/$arg"
+            ;;
+        # 4chan
+        '4 '*)
+            exec firefox --new-instance "https://boards.4chan.org/${arg#4 }"
+            ;;
+        # usps tracking number - either 22 digits long starting with '940',
+        #                            or 26 digits long starting with '920'
+        940*|920*)
+            case ${#arg} in
+                22|26)
+                    exec firefox --new-instance "https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=$arg"
+            esac
+            ;;
+        # short hand in my notes for me saying 'search this on youtube'
+        yt://*|yt:*)
+            arg=${arg#yt://}
+            arg=${arg#yt:}
+            exec yt "$arg"
+            ;;
+        # as above, but audio only
+        ytm://*|ytm:*)
+            arg=${arg#ytm://}
+            arg=${arg#ytm:}
+            exec yt -m "$arg"
+            ;;
+        # dictionary lookup
+        dict://*|dict:*)
+            word=${arg#dict://}
+            word=${word#dict:}
+            case $TERM in
+                # linux) exec st -e /bin/sh -c "dict $word ; read _" ;;
+                linux) T=9999 pop "$(dict "$word")" ;;
+                    *) dict "$word"
+            esac
+            ;;
+        *bandcamp*|*soundcloud*)
+            ismusic https://"$arg"
+            ;;
+        # imbd
+        title/*)
+            isurl https://imdb.com/"$arg"
+            ;;
+        # may be an "artist - song", try to look it up
+        *' - '*)
+            exec yt -m "$arg"
+            ;;
+        # github - note: this rule is vague so it must be at the bottom
+        */*)
+            exec firefox --new-instance "https://github.com/$arg"
+            ;;
+        *)
+            case ${#arg} in
+                # 40 chars, could be a sha256, check if git commit
+                40)
+                    isurl "https://github.com/search?q=$arg&type=Commits"
+                    ;;
+                *)
+                    >&2 printf "Couldn't plumb %s\n" "$arg"
+                    exit 1
+            esac
+    esac
+fi
+|

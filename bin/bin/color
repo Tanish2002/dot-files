@@ -1,0 +1,126 @@
+#!/bin/sh
+
+
+#height=5
+
+
+hex2rgb() {
+	[ -t 0 ] || set -- $(cat) $*
+	while [ $1 ]; do
+	    s="${1#??}"
+	    printf '%d %d %d\n' "0x${1%????}" "0x${s%??}" "0x${1#????}"
+	    shift
+	done
+}
+
+invhex() {
+    read -r r g b <<-EOF
+                $(hex2rgb "${1}")
+EOF
+
+    r=$(($r*-1+255))
+    g=$(($g*-1+255))
+    b=$(($b*-1+255))
+    printf '%02x%02x%02x\n' "$r" "$g" "$b"
+}
+
+rgb2hex() {
+	[ -t 0 ] || set -- $(cat) $*
+	while [ "${1}" ]; do
+	    printf '%02x%02x%02x\n' "$1" "$2" "$3"
+	    shift 3
+	done
+}
+
+block() {
+    
+    [ -t 0 ] || set -- $(cat) $*
+    # get last positional argument
+    for last; do :; done
+
+    # if the last positional argument is shorter than 5 characters, assume it is meant as a height and not a hex code
+    case $last in
+	    [0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F][0-9a-fA-F])
+		    height=5
+		    ;;
+	    *)
+		    height=$last
+		    ;;
+    esac
+    for hex; do
+	set -- $(hex2rgb $hex)
+	printf '\033[48;2;%s;%s;%sm          \033[m #%s\n' "$1" "$2" "$3" "$hex"
+	
+	for i in `seq $(($height-1))`; do
+	    printf '\033[48;2;%s;%s;%sm          \033[m\n' "$1" "$2" "$3"
+	done
+
+    done
+}
+
+tab() {
+    [ -t 0 ] || set -- $(cat) $*
+    set -- $(hex2rgb $@) 
+    while [ $1 ]; do
+	hex=$(rgb2hex "$1" "$2" "$3")
+	printf '\033[48;2;%s;%s;%sm          \033[m #%s\n' "$1" "$2" "$3" "$hex"
+	shift 3	
+    done
+}
+
+## kinda buggy and slow not using for now
+#
+#rand() {
+#    awk '
+#    BEGIN { srand()
+#            while(cnt++< "'"$1"'"* 3)
+#                    printf("%d\n", 256 * rand())
+#    }' | while read byteone
+#    do      
+#        printf '%s ' "$byteone"
+#    done
+#}
+
+rand () {
+    for i in `seq $(($1*3))`
+    do
+	od -An -N1 -i /dev/random
+    done
+}
+
+main() {
+    case $1 in
+	2RGB | hex2RGB)
+	    shift
+	    hex2rgb "${@}" ;;
+	invhex | *i)
+	    shift    
+	    invhex "${1}" ;;
+	RGB2hex | 2hex)
+	    shift
+	    rgb2hex "${1}" "${2}" "${3}" ;;
+	block | B)
+	    shift
+	    for last; do :; done
+	    # if the last positional argument is shorter than 3 characters, assume it is meant as a height and not a hex code
+	    if [ "${#last}" -lt 3  ]; then
+		height="$last"
+	    else
+		height=5
+	    fi
+	    block "${@}" ;;
+	tab | T)
+	    shift
+	    #hex="${1}"
+	    tab "${@}" ;;
+	rand | r)
+	    shift
+	    num=${1:-1}
+	    rand "${num}" | rgb2hex 
+	    ;;
+	*) 
+	    echo "Command Not Found"
+	    ;;
+	esac
+}
+main $@
