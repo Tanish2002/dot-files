@@ -2,19 +2,19 @@
 ## Details
 
 
-* **OS:** Bedrock Linux {Void + Arch}
+* **OS:** Void Linux
  
 * **WM:** bspwm, i3-gaps, [dwm](https://gitlab.com/Tanish2002/dwm-tanish2002)
  
 * **Terminal:** [st](https://gitlab.com/Tanish2002/st-tanish2002)
 
-*  **File Manager:** Ranger for Terminal, Dolphin for GUI
+*  **File Manager:** lf for TUI, Spacefm for GUI
  
-* **Terminal Font:** Hack Nerd Font Mono, FuraCode Nerd Font Mono Bold
+* **Terminal Font:** FuraCode Nerd Font Mono Bold, Hack Nerd Font Mono
  
 * **Shell:** zsh
  
-* **Bar:** polybar
+* **Bar:** polybar, dwm bar
  
 * **Compositor:** [ibhagwan's Picom](https://github.com/ibhagwan/picom)
  
