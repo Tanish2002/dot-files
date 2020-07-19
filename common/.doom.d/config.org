@@ -2,19 +2,16 @@
 #+AUTHOR: Tanish Khare
 #+STARTUP: showeverything
 
-* Table of Contents :toc:
-- [[#fonts][FONTS]]
-- [[#doom-theme][DOOM THEME]]
-- [[#org-mode][ORG MODE]]
-- [[#language-server][Language Server]]
-  - [[#rust][Rust]]
-  - [[#python][Python]]
-  - [[#cc][C/C++]]
-- [[#line-settings][LINE SETTINGS]]
-- [[#neotree][NEOTREE]]
-- [[#tabs][Tabs]]
+** Table of Contents :toc:
+  - [[#fonts][FONTS]]
+  - [[#doom-theme][DOOM THEME]]
+  - [[#org-mode][ORG MODE]]
+  - [[#language-server][Language Server]]
+  - [[#line-settings][LINE SETTINGS]]
+  - [[#neotree][NEOTREE]]
+  - [[#tabs][Tabs]]
 
-* FONTS
+** FONTS
 Doom exposes five (optional) variables for controlling fonts in Doom. Here
 are the three important ones:
 
@@ -30,42 +27,42 @@ font string. You generally only need these two:
 (setq doom-font (font-spec :family "Mononoki Nerd Font" :size 13)
        doom-variable-pitch-font (font-spec :family "Mononoki Nerd Font" :size 13))
 #+END_SRC
-* DOOM THEME
+** DOOM THEME
 #+BEGIN_SRC emacs-lisp
 (setq doom-theme 'doom-palenight)
 #+END_SRC
 
-* ORG MODE
+** ORG MODE
 #+BEGIN_SRC emacs-lisp
 (setq org-directory "~/Documents/org/")
 #+END_SRC
 
-* Language Server
-** Rust
+** Language Server
+*** Rust
 #+BEGIN_SRC emacs-lisp
 (setq rustic-lsp-server 'rust-analyzer)
 #+END_SRC
-** Python
+*** Python
+@TODO
 #+BEGIN_SRC emacs-lisp
-
 #+END_SRC
-** C/C++
+*** C/C++
+@TODO
 #+BEGIN_SRC emacs-lisp
-
 #+END_SRC
-* LINE SETTINGS
+** LINE SETTINGS
  #+BEGIN_SRC emacs-lisp
 (setq display-line-numbers-type 'relative)
 #+END_SRC
 
-* NEOTREE
+** NEOTREE
 Setting the neotree width to be adjustable.
 #+BEGIN_SRC emacs-lisp
 (setq neo-window-fixed-size nil)
 (setq doom-themes-neotree-file-icons t)
 #+END_SRC
 
-* Tabs
+** Tabs
 Tabs like vscode
 #+BEGIN_SRC emacs-lisp
 (use-package! centaur-tabs
