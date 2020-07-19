@@ -8,9 +8,9 @@ sleep 0.1
 
 xrdb -remove
 xrdb $HOME/xrdb/solid/solid
-picom --config /home/tanish2002/.config/picom/picom.conf &
-/home/tanish2002/bin/batterywarn &
-/home/tanish2002/bin/dunstxres &
+picom --config $HOME/.config/picom/picom.conf &
+$HOME/bin/batterywarn &
+$HOME/bin/dunstxres &
 dunst &
 $HOME/bin/bar_small &
 pkill -USR1 dwm

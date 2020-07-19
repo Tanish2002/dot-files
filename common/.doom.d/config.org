@@ -1,0 +1,75 @@
+#+TITLE:Doom Emacs Config
+#+AUTHOR: Tanish Khare
+#+STARTUP: showeverything
+
+** FONTS
+Doom exposes five (optional) variables for controlling fonts in Doom. Here
+are the three important ones:
+
++ `doom-font'
++ `doom-variable-pitch-font'
++ `doom-big-font' -- used for `doom-big-font-mode'; use this for
+  presentations or streaming.
+
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+font string. You generally only need these two:
+
+#+BEGIN_SRC emacs-lisp
+(setq doom-font (font-spec :family "Mononoki Nerd Font" :size 13)
+       doom-variable-pitch-font (font-spec :family "Mononoki Nerd Font" :size 13))
+#+END_SRC
+
+** DOOM THEME
+#+BEGIN_SRC emacs-lisp
+(setq doom-theme 'doom-palenight)
+#+END_SRC
+
+** ORG MODE
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/Documents/org/")
+#+END_SRC
+
+** Language Server
+*** Rust
+#+BEGIN_SRC emacs-lisp
+(setq rustic-lsp-server 'rust-analyzer)
+#+END_SRC
+*** Python
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+*** C/C++
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+** LINE SETTINGS
+ #+BEGIN_SRC emacs-lisp
+(setq display-line-numbers-type 'relative)
+#+END_SRC
+
+** NEOTREE
+Setting the neotree width to be adjustable.
+#+BEGIN_SRC emacs-lisp
+(setq neo-window-fixed-size nil)
+(setq doom-themes-neotree-file-icons t)
+#+END_SRC
+
+** Tabs
+Tabs like vscode
+#+BEGIN_SRC emacs-lisp
+(use-package! centaur-tabs
+   :config
+   (setq centaur-tabs-style "bar"
+	  centaur-tabs-height 32
+	  centaur-tabs-set-icons t
+	  centaur-tabs-set-modified-marker t
+	  centaur-tabs-set-bar 'under
+	  x-underline-at-descent-line t)
+   :bind
+   ("C-<left>" . centaur-tabs-backward)
+   ("C-<right>" . centaur-tabs-forward)
+   (:map evil-normal-state-map
+	  ("g t" . centaur-tabs-forward)
+	  ("g T" . centaur-tabs-backward)))
+#+END_SRC
+

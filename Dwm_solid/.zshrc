@@ -5,7 +5,7 @@ FORCE_UNSAFE_CONFIGURE=1
 export ZSH=$HOME/.oh-my-zsh
 
 # GIT_SSH_COMMAND(git ssh seprate folder)
-export GIT_SSH_COMMAND="ssh -i /home/tanish2002/.config/ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
+export GIT_SSH_COMMAND="ssh -i $HOME/.config/ssh/key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -117,7 +117,8 @@ cont(){
   fi
 }
 
-export EDITOR=nvim
+export EDITOR=kak
+export VISUAL=emacs
 export BROWSER=firefox
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
@@ -135,8 +136,6 @@ alias CD="cd"
 alias ff='firefox'
 alias netprocs="lsof -P -i -n"
 alias update="sudo xbps-install -Svu"
-alias CC="cd $HOME"
-alias cc="cd .."
 
 # Xbps Aliases
 alias xr="sudo xbps-remove"
@@ -149,10 +148,15 @@ alias lf="bash ~/bin/lfrun"
 # So that sudo doesnt override aliases (doesnt work with flags)
 # alias sudo='sudo '
 
+#emacs
+alias ed="devour emacsclient --socket-name=weeb-emacsd -c"
+alias ee="devour emacs"
+
 # neovim
 alias vim="nvim"
 alias init.vim="vim ~/.config/nvim/init.vim"
-
+alias nvim="kak"
+alias vim="kak"
 # Quick edit
 alias pac="sudo pacman -S"
 alias rr="ranger"
