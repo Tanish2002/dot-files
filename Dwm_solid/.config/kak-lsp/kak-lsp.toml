@@ -41,7 +41,7 @@ timeout = 1800 # seconds = 30 minutes
 [language.rust]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "rls"
+command = "rust-analyzer"
 
 [language.crystal]
 filetypes = ["crystal"]
