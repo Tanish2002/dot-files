@@ -49,12 +49,10 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
 
-(package! elcord)
+;; (package! elcord)
 (package! kakoune :recipe
   (:host github
    :repo "Tanish2002/kakoune.el"
    :files ("*.el")))
-(package! undo-tree)
 (package! visual-regexp)
 (package! phi-search)
-;;(package! boon)

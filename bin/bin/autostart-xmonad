@@ -1,0 +1,15 @@
+pkill picom  
+pkill polybar 
+pkill batterywarn 
+pkill dunst
+pkill polybar
+feh --bg-fill ~/Wallpapers/nier.png
+sleep 0.1
+
+xrdb -remove
+xrdb $HOME/xrdb/nier/nier
+picom --config $HOME/.config/picom/picom.conf &
+$HOME/bin/batterywarn &
+$HOME/bin/dunstxres &
+dunst &
+$HOME/.config/polybar/launch.sh

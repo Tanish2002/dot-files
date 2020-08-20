@@ -2,8 +2,35 @@
 
 
 #height=5
+ _head () {
+    i=0
+    while read -r line && [ "$i" -lt "$1" ]; do
+        : $(( i = i + 1 ))
+        printf '%s\n' "$line"
+    done
+}
+ only_num () {
+    while read -r line; do
+        while [ "$line" ]; do
+            char="${line%${line#?}}"
+            case $char in [0-9]) printf '%s' "$char"; esac
+            line=${char#?}
+        done
+    done
+}
 
-
+rand () {
+    i=0
+    while read -r line && [ "$i" -lt "$1" ]; do
+        : $(( i = i + 1 ))
+        while [ "$line" ]; do
+            char="${line%${line#?}}"
+            case $char in [0-9]) printf '%s' "$char"; esac
+            line=${char#?}
+        done
+    done < "/dev/urandom"
+}
+ 
 hex2rgb() {
 	[ -t 0 ] || set -- $(cat) $*
 	while [ $1 ]; do
@@ -28,7 +55,7 @@ rgb2hex() {
 	[ -t 0 ] || set -- $(cat) $*
 	while [ "${1}" ]; do
 	    printf '%02x%02x%02x\n' "$1" "$2" "$3"
-	    shift 3
+        shift 3
 	done
 }
 
@@ -81,12 +108,22 @@ tab() {
 #    done
 #}
 
-rand () {
-    for i in `seq $(($1*3))`
-    do
-	od -An -N1 -i /dev/random
+# rand () {
+#     for i in `seq $(($1*3))`
+#     do
+# 	od -An -N1 -i /dev/random
+#     done
+# }
+rand() {
+    i=$1
+    while [ "$i" -gt 0 ]; do
+        r=$(_head 100 < /dev/urandom | only_num)
+        r=$((r % 255))
+        printf '%s\n' "$r"
+        i=$((i-1))
     done
 }
+
 
 main() {
     case $1 in
@@ -116,7 +153,7 @@ main() {
 	rand | r)
 	    shift
 	    num=${1:-1}
-	    rand "${num}" | rgb2hex 
+	    rand "$((num * 3))" | rgb2hex 
 	    ;;
 	*) 
 	    echo "Command Not Found"

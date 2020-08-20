@@ -1,0 +1,43 @@
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Find new executables in path
+# autoload -U compinit && compinit
+# zstyle ':completion:*' rehash true
+
+#This causes pasted URLs to be automatically escaped, without needing to disable globbing.
+# autoload -Uz bracketed-paste-magic
+# zle -N bracketed-paste bracketed-paste-magic
+# autoload -Uz url-quote-magic
+# zle -N self-insert url-quote-magic
+
+
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+#(cat ~/.cache/wal/sequences &)
+
+## workaround for handling TERM variable in multiple tmux sessions properly from http://sourceforge.net/p/tmux/mailman/message/32751663/ by Nicholas Marriott
+#if [[ -n ${TMUX} && -n ${commands[tmux]} ]];then
+#        case $(tmux showenv TERM 2>/dev/null) in
+#                *256color) ;&
+#                TERM=fbterm)
+#                        TERM=screen-256color ;;
+#                *)
+#                        TERM=screen
+#        esac
+#fi
+
+
+# If not running interactively, do not do anything
+#[[ $- != *i* ]] && return
+#[[ -z "$TMUX" ]] && exec tmux
+
+# XRDM DIRS
+# #export XRDM_DIR=~/.Xresource.d
+#export XRDM_FONT_DIR=$XRDM_DIR/fonts
+#export XRDM_COLOR_DIR=$XRDM_DIR/colors
+#export XRDM_PRESET_DIR=$XRDM_DIR/presets
+#export XRDM_PROGRAM_DIR=$XRDM_DIR/programs
+#export XRDM_UPDATE=N
+

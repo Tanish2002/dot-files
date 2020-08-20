@@ -2,7 +2,7 @@
 #+AUTHOR: Tanish Khare
 #+STARTUP: showeverything
 
-** Table of Contents :toc:
+** Table of :toc:
   - [[#fonts][FONTS]]
   - [[#doom-theme][DOOM THEME]]
   - [[#org-mode][ORG MODE]]
@@ -117,9 +117,9 @@ Tabs like vscode
 ** Elcord
 Discord Rich Presenece Integration
 #+BEGIN_SRC emacs-lisp
-(use-package! elcord
-  :config
-  (elcord-mode))
+;; (use-package! elcord
+;;   :config
+;;   (elcord-mode))
 #+END_SRC
 
 ** Disable Persistent Undo History
@@ -157,10 +157,13 @@ Version 2017-03-12"
 ** Kakoune Config
 #+BEGIN_SRC emacs-lisp
 ;; (setq evil-default-state 'emacs)
-
+;; (load! "kak-evil.el")
 (load! "kak.el")
-;; (use-package! boon
-;;    :config
-;;    (require 'boon-qwerty)
-;;    (boon-mode))
+;; (use-package! meow
+;;   :init
+;;   (meow-global-mode 1)
+;;   :custom
+;;   ;; layout options: qwerty, dvorak, dvp, colemak
+;;   (meow-layout 'qwerty))
+;; (ctrlf-mode +1)
 #+END_SRC

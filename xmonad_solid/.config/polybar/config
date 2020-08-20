@@ -1,0 +1,324 @@
+[bar/bottom]
+
+;------------;
+; DIMENSIONS ;
+;------------;
+
+width = 100%
+height = 15
+offset-y = 0
+offset-x = 0
+
+border-top-size = 10
+border-bottom-size = 0
+border-right-size = 10
+border-left-size = 10
+
+;----------;
+; LOCATION ;
+;----------;
+
+bottom = true
+monitor = eDP1
+override-redirect = true
+
+;-------;
+; FONTS ;
+;-------;
+
+font-0 = Hack Nerd Font:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
+font-2 = "Osaka-Mono:style=Regular-Mono:pixelsize=12;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=12;3"
+
+;--------;
+; COLORS ;
+;--------;
+background = 0
+foreground = #040508
+border-color = 0
+third = ${xrdb:color2:#222}
+
+;---------------;
+; MISCELLANEOUS ;
+;---------------;
+
+fixed-center = true
+padding-left = 2 
+padding-right = 2
+module-margin = 1.5
+
+modules-left = title
+modules-center = bspwm
+;modules-right =
+
+tray-position = none
+tray-detached = true
+
+;--------------------------------------------------------------------------------------------------------------------------------------------;
+
+[bar/top]
+
+;------------;
+; DIMENSIONS ;
+;------------;
+
+width = 100%
+height = 13
+offset-y = 0
+offset-x = 0
+
+border-top-size = 10
+border-bottom-size = 0
+border-right-size = 10
+border-left-size = 10
+
+;----------;
+; LOCATION ;
+;----------;
+
+bottom = false
+monitor = eDP1
+override-redirect = true
+
+;-------;
+; FONTS ;
+;-------;
+
+font-0 = Hack Nerd Font:size=10;3
+font-1 = "Font Awesome 5 Free:style=Solid:pixelsize=12;3"
+font-2 = "Osaka-Mono:style=Regular-Mono:pixelsize=12;3"
+font-3 = "Font Awesome 5 Brands:pixelsize=12;3"
+
+;--------;
+; COLORS ;
+;--------;
+background = 0
+foreground = #05070a
+border-color = 0
+third = ${xrdb:color2:#222}
+
+
+;---------------;
+; MISCELLANEOUS ;
+;---------------;
+
+fixed-center = true
+padding-left = 2 
+padding-right = 2
+module-margin = 1.5
+
+modules-left = battery volume wlan
+modules-center = mpv
+modules-right = time
+
+
+;---------;
+; MODULES ;
+;---------;
+
+[module/bspwm]
+type = internal/xworkspaces
+
+
+
+enable-click = true
+enable-scroll = true
+reverse-scroll = true
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = " "
+
+
+format = <label-state>
+label-active = 
+label-active-padding = 1.5
+
+label-occupied = 
+label-occupied-padding = 1.5
+
+
+label-urgent = 
+label-urgent-padding = 1.5
+
+
+label-empty = •
+label-empty-padding = 1.5
+
+
+; Separator in between workspaces
+;label-separator = |
+;label-separator-padding = 10
+;label-separator-foreground = #ffb52a
+
+
+
+
+[module/time]
+type = internal/date
+
+interval = 1.0
+
+date =  %H:%M
+
+[module/date]
+type = internal/date
+date =  %e %B - %A
+label = %date%
+
+[module/battery]
+type = internal/battery
+
+battery = BAT1
+
+poll-interval = 1
+
+full-at = 95
+
+label-discharging = %percentage%%
+label-charging = %percentage%%
+label-full = %percentage%%
+
+format-discharging = <ramp-capacity> <label-discharging>
+
+
+format-full = <ramp-capacity> <label-full>
+
+
+format-charging =  <label-charging>
+
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = #05070a
+format-muted =  muted
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/mpd]
+type = internal/mpd
+
+label-offline = mpd is offline
+format-online = <icon-prev> <toggle> <icon-next> <label-song>
+format-offline = <label-offline>
+host = 127.0.0.1
+port = 6600
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 25
+label-song-ellipsis = true
+
+bar-progress-width = 10
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = radeon_bl0
+
+format = <ramp> <label>
+
+label = %percentage%%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+
+[module/wlan]
+type = internal/network
+
+interface = ""
+
+interval = 5
+
+label-connected =  %essid%
+label-disconnected =  Not Connected
+
+[module/cpu]
+type = internal/cpu
+label =  %percentage%%
+
+
+[module/memory]
+type = internal/memory
+label =  %gb_used%
+
+[module/network]
+type = internal/network
+interface = ""
+label-connected =  %downspeed% |  %upspeed%
+
+
+[module/discord]
+type = custom/menu
+
+format-spacing = 1
+
+
+label-open = 
+label-close = 
+label-separator = |
+
+
+menu-0-0 = TG
+menu-0-0-exec = telegram-desktop &
+menu-0-1 = DSCRD
+menu-0-1-exec = Discord &
+menu-0-2 = KILL
+menu-0-2-exec = killall Discord | killall Discord | killall telegram-deskto
+
+format-padding = 1
+
+[module/prev]
+type = custom/text
+content = 
+click-left = "bin/bash $HOME/bin/mpvctl -p "
+click-right = "/bin/bash $HOME/bin/mpvctl -b "
+
+[module/play_pause]
+type = custom/text
+content = 
+click-left = "/bin/bash $HOME/bin/mpvctl -t "
+click-right = "/bin/bash $HOME/bin/mpvctl -q "
+
+[module/next]
+type = custom/text
+content = 
+click-left = "/bin/bash  $HOME/bin/mpvctl -n "
+click-right = "/bin/bash $HOME/bin/mpvctl -f "
+
+[module/mpv]
+type = custom/script
+exec-if=pgrep -x mpv
+format-prefix = "  "
+exec = "/bin/sh -c $HOME/bin/song-name"
+
+[module/title]
+type = internal/xwindow

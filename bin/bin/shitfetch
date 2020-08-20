@@ -1,8 +1,8 @@
 #!/bin/sh
 ## Getting Username & Hostname
 get_title() {
-  user=$(id -un)
-  host=$(hostname)
+  user=$USER
+  read -r host < /etc/hostname
   }
 
 ## Getting OS
@@ -37,39 +37,48 @@ get_packages() {
 }
 ## Window Manager
 get_wm() {
-  wm="$(xprop -id $(xprop -root -notype | grep "_NET_SUPPORTING_WM_CHECK:" | cut -d '#' -f 2) | grep "_NET_WM_NAME" | cut -d '"' -f 2 >/dev/null)"
-  [ "$wm" ] || while read -r ps_line; do
-                        case $ps_line in
-                            *catwm*)     wm=catwm ;;
-                            *fvwm*)      wm=fvwm ;;
-                            *dwm*)       wm=dwm ;;
-                            *2bwm*)      wm=2bwm ;;
-                            *monsterwm*) wm=monsterwm ;;
-                            *wmaker*)    wm='Window Maker' ;;
-                            *sowm*)      wm=sowm ;;
-                            *xmonad*)    wm=xmonad ;;
-                        esac
-                    done <<-EOF
-                        $(ps x)
-					EOF
-
+if [ "$XDG_CURRENT_DESKTOP" ]; then
+	wm="$XDG_CURRENT_DESKTOP"
+elif [ "$DESKTOP_SESSION" ]; then
+	wm="$DESKTOP_SESSION"
+elif [ "$DISPLAY" ]; then
+	for i in /proc/*/comm; do
+		read -r c < "$i"
+		case $c in
+			awesome|xmonad*|qtile|i3*|*box*|*wm*) wm="$c"; break;;
+		esac
+	done
+fi
 }
 
 get_shell() {
   shell="${SHELL##*/}"
 }
 
+yoink() {
+	[ "$2" ] && printf '\033[31m%6s\033[36m   %s\n' "$1" "$2"
+}
+
+
 main() {
 get_title && get_packages && get_wm && get_shell
 
-[ "${@}" ] && printf '\033[32m' && cat "${@}"
+[ "$1" ] && {
+	while IFS='' read -r line ; do
+		printf '\033[32m  %s\n' "$line"
+	done < "$1"
+}
 
-printf '\033[33m%s@%s\n' "${user}" "${host}"
-printf '\033[31mos: \033[36m%s\n' "${os}"
-printf '\033[31mshell: \033[36m%s\n' "${shell}"
-printf '\033[31mwm: \033[36m%s\n' "${wm}"
-printf '\033[31mpkgs: \033[36m%s\n' "${pkg}"
-printf '\033[41m   \033[42m   \033[43m   \033[44m   \033[45m   \033[46m   \033[47m   ' 
+printf '\033[33m%7s\033[0m@\033[33m%s\n' "${user}" "${host}"
+
+yoink "os" "${os}"
+yoink "shell" "${shell}"
+yoink "wm" "${wm}"
+yoink "pkg" "${pkg}"
+i=1 && while [ "$i" -ne 7 ] ; do
+    printf '\033[4%sm   ' "$i"
+    i=$((i + 1))
+done
 printf '\033[0m\n'
 }
 main "${@}"

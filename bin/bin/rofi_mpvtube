@@ -22,7 +22,7 @@
 # ~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·~·
 
 # Playlist file
-playlist_file=/home/tanish2002/.config/mpv/mpvtube_playlists
+playlist_file=$HOME/.config/mpv/mpvtube_playlists
 # playlist_file=/path/to/your/mpvtube_playlists
 
 # Arguments that will be passed to mpv

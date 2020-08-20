@@ -1,0 +1,100 @@
+# PLUGINS
+source "%val{config}/plugins/plug.kak/rc/plug.kak"
+
+plug "andreyorst/plug.kak" noload
+plug "delapouite/kakoune-text-objects"
+
+
+## KEYBINDINGS 
+
+#Making ',' behave as '<space>'
+map global normal <a-c> '<a-space>'
+
+#Interchanging behavior of 'p' and 'P'
+map global normal p 'P'
+map global normal P 'p'
+
+# selection using left and right instead of hjkl
+map global normal <a-left> '<a-h>'
+map global normal <a-right> '<a-l>'
+
+# VimBindings(That I like)
+map global normal D '<a-l>d' -docstring 'delete to end of line'
+map global normal Y '<a-l>y' -docstring 'yank to end of line'
+
+map global normal '#' :comment-line<ret> -docstring 'comment line'
+
+# User Mode
+
+#VimBindings(That I like)
+declare-user-mode VimBindings
+map global normal Z ': enter-user-mode VimBindings<ret>'
+map global VimBindings -docstring 'Save and Quit' Z ': wq<ret>'
+map global VimBindings -docstring 'Force Quit' Q ': quit!<ret>'
+
+# space as leader
+map global normal <space> , -docstring 'leader'
+map global normal , <space>
+
+#Move cursor left and right
+map global user -docstring 'move cursor to left end' 		<left> 'gh'
+map global user -docstring 'move cursor to left end' 		<right> 'gl'
+
+#Copy-Paste From System Clipboard
+map global user -docstring 'yank to system clipboard'       y '<a-|>xclip -sel clip<ret>'
+map global user -docstring 'paste (after) from clipboard'   p '!xclip -o -sel clip<ret>'
+map global user -docstring 'paste (before) from clipboard'  P '<a-!>xclip -o -sel clip<ret>'
+map global user -docstring 'paste (over) from clipboard'    r '<a-d>!xclip -o -sel clip<ret>'
+
+## OPTIONS/HOOKS
+
+#StatusLine
+set-option global modelinefmt '{{context_info}} {green}%val{bufname}{default} {red}|{default} {{mode_info}} {red}|{default} {cyan}%val{cursor_line}{default}:{cyan}%val{cursor_char_column}{default}'
+
+# use tab with completions
+hook global InsertCompletionShow .* %{
+	try %{
+		# this command temporarily removes cursors preceded by whitespace;
+		# if there are no cursors left, it raises an error, does not
+		# continue to execute the mapping commands, and the error is eaten
+		# by the `try` command so no warning appears.
+		exec -draft 'h<a-K>\h<ret>'
+		map window insert <tab> <c-n>
+		map window insert <s-tab> <c-p>
+	}
+}
+
+hook global InsertCompletionHide .* %{
+	unmap window insert <tab> <c-n>
+	unmap window insert <s-tab> <c-p>
+}
+
+# <Tab> options
+set-option global indentwidth 0
+set-option global aligntab true
+set-option global tabstop 4
+
+#Line
+add-highlighter global/ number-lines -relative
+
+def -params 1 extend-line-down %{
+  exec "<a-:>%arg{1}X"
+}
+def -params 1 extend-line-up %{
+  exec "<a-:><a-;>%arg{1}K<a-;>"
+  try %{
+    exec -draft ';<a-K>\n<ret>'
+    exec X
+  }
+  exec '<a-;><a-X>'
+}
+map global normal x ':extend-line-down %val{count}<ret>'
+map global normal X ':extend-line-up %val{count}<ret>'
+
+## KAK-LSP
+
+#init
+eval %sh{kak-lsp --kakoune -s $kak_session}
+lsp-enable
+
+

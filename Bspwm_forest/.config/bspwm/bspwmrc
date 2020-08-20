@@ -11,10 +11,9 @@ feh --bg-fill ~/Wallpapers/forest.jpg
 
 xrdb ~/xrdb/forest/forest &
 ~/bin/batterywarn &
-picom --config /home/tanish2002/.config/picom/picom.conf -b &
+picom --config $HOME/.config/picom/picom.conf -b &
 
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 & eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg) &
-sh /home/tanish2002/.config/polybar/launch.sh &
+sh $HOME/.config/polybar/launch.sh &
 setxkbmap -model pc105 -layout us,ru,ua -option grp:alt_shift_toggle &
 systemctl --user --now start greenclip.service &
 sxhkd &
@@ -32,7 +31,7 @@ bspc monitor -d web code media edit graphics other
 # Source the colors
 
 #source "${HOME}/.cache/wal/colors.sh"
-. "${HOME}/.cache/wal/colors.sh"
+# . "${HOME}/.cache/wal/colors.sh"
 
 
 # Set the border colors
@@ -65,7 +64,7 @@ bspc config pointer_motion_interval 14
 
 # Rules
 
-bspc config external_rules_command "$(which /home/tanish2002/.config/bspwm/bspwm-rules)"
+bspc config external_rules_command "$(which $HOME/.config/bspwm/bspwm-rules)"
 
 bspc rule -a firefox desktop="web"
 bspc rule -a Firefox desktop="web"

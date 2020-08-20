@@ -14,7 +14,7 @@ v=$'\e[7m'
 
 # Symbol
 s=
-#s=
+# s=
 
 cat << EOF
  $f0$s $d$s  $t

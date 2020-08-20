@@ -55,9 +55,9 @@
    ("C-<left>" . centaur-tabs-backward)
    ("C-<right>" . centaur-tabs-forward))
 
-(use-package! elcord
-  :config
-  (elcord-mode))
+;; (use-package! elcord
+;;   :config
+;;   (elcord-mode))
 
 (remove-hook 'undo-fu-mode-hook #'global-undo-fu-session-mode)
 
@@ -87,11 +87,14 @@ Version 2017-03-12"
   (font-lock-flush))
 
 ;; (setq evil-default-state 'emacs)
-
+;; (load! "kak-evil.el")
 (load! "kak.el")
-;; (use-package! boon
-;;    :config
-;;    (require 'boon-qwerty)
-;;    (boon-mode))
+;; (use-package! meow
+;;   :init
+;;   (meow-global-mode 1)
+;;   :custom
+;;   ;; layout options: qwerty, dvorak, dvp, colemak
+;;   (meow-layout 'qwerty))
+;; (ctrlf-mode +1)
 
 
