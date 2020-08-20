@@ -13,7 +13,7 @@ Plug 'dylanaraps/wal.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
-Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
+"" Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
 Plug 'itchyny/lightline.vim'
 
 " Comfort
